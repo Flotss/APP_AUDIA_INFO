@@ -1,0 +1,16 @@
+{
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  // disable confirm
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+
+  // auto save
+  "files.autoSave": "onFocusChange",
+  "files.autoSaveDelay": 500,
+
+  // BRACKET PAIR COLORIZER
+  "editor.guides.bracketPairs": true
+}
