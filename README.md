@@ -11,6 +11,14 @@ Suivez ces étapes pour installer et configurer ce projet sur votre propre machi
    ```bash
    git clone https://github.com/votre-utilisateur/nom-du-projet.git
    ```
+2. **Installer [compsoser](https://getcomposer.org/download/)**
+
+### Xampp
+4. **Installer [xampp](https://www.apachefriends.org/fr/index.html)**
+5. Configurer les fichiers du service **Apache**
+- Dans les fichiers `Apache (httpd.conf)` et `Apache (httpd-ssl.conf)`
+- Remplacer les chemins `C:/.../.../docs`
+- Lancer le service
 
 2. **Accédez au répertoire du projet**
    ```bash
@@ -21,8 +29,14 @@ Suivez ces étapes pour installer et configurer ce projet sur votre propre machi
    composer install
    ```
 
-### Outils pour le développement :
+#### Comment coder : 
+##### Lorsque vous un ajout/modification : 
+1. Faire une nouvelle branch `git checkout NOM_DE_LA_BRANCHE`
+2. Faire tous les commits que vous voulez
+3. Faire une pullrequest sur Github NOM_DE_LA_BRANCHE -> main
+4. Le owner va review les changements et merge la branch 
 
+### Outils pour le développement :
 #### A installer :
 
 - [XAMPP](https://www.apachefriends.org/fr/index.html)
