@@ -1,0 +1,20 @@
+{
+  "name": "app-g8/audia",
+  "description": "Application web d'AUDIA",
+  "type": "project",
+  "require": {
+    "php": "8.1.12",
+    "twig/twig": "^3.0"
+  },
+  "config": {
+    "disable-tls": true
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  },
+  "scripts": {
+    "test": "phpunit"
+  }
+}

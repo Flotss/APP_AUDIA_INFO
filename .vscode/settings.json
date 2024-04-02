@@ -12,5 +12,8 @@
   "files.autoSaveDelay": 500,
 
   // BRACKET PAIR COLORIZER
-  "editor.guides.bracketPairs": true
+  "editor.guides.bracketPairs": true,
+  "[php]": {
+    "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+  }
 }
