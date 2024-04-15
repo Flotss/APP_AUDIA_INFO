@@ -9,6 +9,6 @@ class IndexController extends AbstractController
 
     public function __construct()
     {
-        parent::__construct("template/index");
+        parent::__construct("index");
     }
 }

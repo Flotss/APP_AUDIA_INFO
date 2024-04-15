@@ -8,14 +8,16 @@ use Twig\Loader\FilesystemLoader;
 abstract class AbstractController
 {
     protected $twig;
+    protected $pathToLoad;
     protected $twigError;
     protected $data = [];
 
 
-    public function __construct(string $templatePath = 'template/example')
+    public function __construct(string $templatePath = 'template')
     {
-        $loader = new FilesystemLoader($templatePath);
+        $loader = new FilesystemLoader('template');
         $this->twig = new Environment($loader);
+        $this->pathToLoad = $templatePath;
 
         $this->twigError = new Environment(new FilesystemLoader('template/error'));
     }
@@ -24,7 +26,7 @@ abstract class AbstractController
     {
         $this->tryCatch(function () {
             // Logic for the index action
-            echo $this->twig->render('index.html.twig', ['data' => $this->data]);
+            $this->twig->load($this->pathToLoad . '/index.html.twig')->display($this->data);
         });
     }
 
@@ -32,7 +34,7 @@ abstract class AbstractController
     {
         $this->tryCatch(function () use ($id) {
             // Logic for the show action
-            echo $this->twig->render('show.html.twig', ['id' => $id]);
+            $this->twig->load($this->pathToLoad . '/show.html.twig')->display(['id' => $id]);
         });
     }
 
@@ -40,7 +42,7 @@ abstract class AbstractController
     {
         $this->tryCatch(function () {
             // Logic for the create action
-            echo $this->twig->render('create.html.twig');
+            echo $this->twig->load($this->pathToLoad . '/create.html.twig')->render([]);
         });
     }
 
@@ -48,7 +50,7 @@ abstract class AbstractController
     {
         $this->tryCatch(function () use ($id) {
             // Logic for the update action
-            echo $this->twig->render('update.html.twig', ['id' => $id]);
+            echo $this->twig->load($this->pathToLoad . '/update.html.twig')->render(['id' => $id]);
         });
     }
 
@@ -56,16 +58,16 @@ abstract class AbstractController
     {
         $this->tryCatch(function () use ($id) {
             // Logic for the delete action
-            echo $this->twig->render('delete.html.twig', ['id' => $id]);
+            echo $this->twig->load($this->pathToLoad . '/delete.html.twig')->render(['id' => $id]);
         });
     }
 
     private function tryCatch(callable $callback)
     {
-        try {
-            $callback();
-        } catch (\Exception $e) {
-            echo $this->twigError->render('error.html.twig', ['error' => $e->getMessage()]);
-        }
+        // try {
+        $callback();
+        // } catch (\Exception $e) {
+        // echo $this->twigError->render('error.html.twig', ['error' => $e->getMessage()]);
+        // }
     }
 }
