@@ -13,6 +13,7 @@
 
     use App\Router\Router;
     use App\Controller\IndexController;
+    use App\Exceptions\RouterException;
 
 
     // TODO : MAKE DYNAMIC HEADER 
@@ -30,7 +31,22 @@
         $controller = new IndexController();
         $controller->index();
     });
-    $router->run();
+
+    try {
+        $router->run();
+    } catch (RouterException $e) {
+        // TODO : CREATE ERROR PAGE
+        // EN CAS D'ERREUR 404
+        // TODO : FAIRE UNE PAGE D'ERREUR
+
+        // EN CAS d'autre erreur
+        // TODO : FAIRE UNE PAGE D'ERREUR GENERIQUE
+
+
+        // Pour l'instant on redirige vers la page d'accueil
+        $controller = new IndexController();
+        $controller->index();
+    }
 
 
     // TODO : CREATE FOOTER
