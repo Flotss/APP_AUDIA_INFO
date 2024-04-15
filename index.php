@@ -25,12 +25,18 @@
     }
     $router = new Router($_GET['url']);
 
-    // AJOUTER UN GET COMME ICI POUR CHAQUE PAGE
+    // AJOUTER LA ROUTE COMME ICI POUR CHAQUE PAGE
     // Avec le controller associé à votre page
-    $router->get('/', function () {
-        $controller = new IndexController();
-        $controller->index();
-    });
+    $routes = [
+        '/' => new IndexController(),
+        // Add more routes here
+    ];
+
+    foreach ($routes as $route => $controller) {
+        $router->get($route, function () use ($controller) {
+            $controller->index();
+        });
+    }
 
     try {
         $router->run();
