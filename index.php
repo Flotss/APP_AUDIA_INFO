@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HELLO WORLD</title>
+    <title>Event IT</title>
 </head>
 
 <body>
@@ -12,7 +12,6 @@
     require_once 'vendor/autoload.php';
 
     use App\Router\Router;
-    use App\Router\Route;
     use App\Controller\IndexController;
 
 
@@ -20,13 +19,17 @@
     // HEADER IS NOT SAME IF WE ARE IN ADMIN PAGE OR USER PAGE
 
 
+    if (!isset($_GET['url'])) {
+        $_GET['url'] = '/';
+    }
     $router = new Router($_GET['url']);
-    echo $router->url;
+
+    // AJOUTER UN GET COMME ICI POUR CHAQUE PAGE
+    // Avec le controller associé à votre page
     $router->get('/', function () {
         $controller = new IndexController();
         $controller->index();
     });
-
     $router->run();
 
 
