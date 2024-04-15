@@ -5,6 +5,8 @@ require_once 'src/Config/Credentials.php';
 use App\Router\Router;
 use App\Controller\IndexController;
 use App\Controller\ConnexionController;
+use App\Controller\FaqController;
+use App\Controller\FaqAdminController;
 use App\Exceptions\RouterException;
 use App\Controller\ContactController;
 use App\Controller\MonitoringController;
@@ -26,6 +28,8 @@ $router = new Router($_GET['url']);
 // Avec le controller associé à votre page
 $routesGet = [
     '/' => new IndexController(),
+    '/faq' => new FaqController(),
+    '/admin/faq' => new FaqAdminController(),
     '/contact' => new ContactController(),
     '/monitoring' => new MonitoringController(),
     '/connexion' => new ConnexionController(),

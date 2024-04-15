@@ -15,11 +15,7 @@ abstract class AbstractController
     protected $twigError;
     protected $data = [];
 
-    /**
-     * Constructs a new AbstractController instance.
-     *
-     * @param string $templatePath The path to the template directory.
-     */
+
     public function __construct(string $templatePath = 'template')
     {
         $loader = new FilesystemLoader('template');
@@ -93,7 +89,7 @@ abstract class AbstractController
     {
         $this->tryCatch(function () {
             // Logic for the delete action
-            $this->twig->display($this->pathToLoad . '/delete.html.twig', $this->data);
+            echo $this->twig->render('delete.html.twig', ['id' => $id]);
         });
     }
 
