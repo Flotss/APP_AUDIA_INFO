@@ -26,7 +26,7 @@ abstract class AbstractController
     {
         $this->tryCatch(function () {
             // Logic for the index action
-            $this->twig->load($this->pathToLoad . '/index.html.twig')->display($this->data);
+            $this->twig->display($this->pathToLoad . '/index.html.twig', $this->data);
         });
     }
 
@@ -34,7 +34,7 @@ abstract class AbstractController
     {
         $this->tryCatch(function () use ($id) {
             // Logic for the show action
-            $this->twig->load($this->pathToLoad . '/show.html.twig')->display(['id' => $id]);
+            $this->twig->display($this->pathToLoad . '/show.html.twig', $this->data);
         });
     }
 
@@ -42,7 +42,7 @@ abstract class AbstractController
     {
         $this->tryCatch(function () {
             // Logic for the create action
-            echo $this->twig->load($this->pathToLoad . '/create.html.twig')->render([]);
+            $this->twig->display($this->pathToLoad . '/create.html.twig', $this->data);
         });
     }
 
@@ -50,7 +50,7 @@ abstract class AbstractController
     {
         $this->tryCatch(function () use ($id) {
             // Logic for the update action
-            echo $this->twig->load($this->pathToLoad . '/update.html.twig')->render(['id' => $id]);
+            $this->twig->display($this->pathToLoad . '/update.html.twig', $this->data);
         });
     }
 
@@ -58,7 +58,7 @@ abstract class AbstractController
     {
         $this->tryCatch(function () use ($id) {
             // Logic for the delete action
-            echo $this->twig->load($this->pathToLoad . '/delete.html.twig')->render(['id' => $id]);
+            $this->twig->display($this->pathToLoad . '/delete.html.twig', $this->data);
         });
     }
 
