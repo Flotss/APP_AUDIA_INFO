@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.blue-banner {
+  background-color: rgb(69, 134, 209);
+  color: rgb(0, 0, 0);
+  padding: 0.5px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 20px;
+  width: 100%; /* Ajouté pour que le bandeau s'étende sur toute la largeur du conteneur */
+}
+
+.title {
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.title-space {
+  margin-right: 200px;
+}
+
+.user-management {
+  margin-right: 200px;
+}
+
+table {
+  margin-top: 20px; /* Ajouté pour ajouter un espace entre le bandeau et le tableau */
+}
