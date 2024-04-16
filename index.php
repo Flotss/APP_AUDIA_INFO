@@ -1,5 +1,6 @@
 <?php
 require_once 'vendor/autoload.php';
+require_once 'src/Config/Credentials.php';
 
 use App\Router\Router;
 use App\Controller\IndexController;
@@ -7,7 +8,6 @@ use App\Controller\FaqController;
 use App\Controller\FaqAdminController;
 use App\Exceptions\RouterException;
 
-require_once 'src/Config/Credentials.php';
 
 
 // TODO : MAKE DYNAMIC HEADER 
