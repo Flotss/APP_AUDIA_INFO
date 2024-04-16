@@ -19,6 +19,7 @@ use App\Controller\DeconnexionController;
 //ADMIN
 use App\Controller\FaqAdminController;
 use App\Controller\CguAdminController;
+use App\Controller\Admin\GestionUtilisateursController;
 
 session_start();
 
@@ -51,6 +52,7 @@ $routesGet = [
     // ADMIN ROUTES
     '/admin/faq' => new FaqAdminController(),
     '/admin/cgu' => new CguAdminController(),
+    '/admin/gestion_utilisateurs' => new GestionUtilisateursController(),
 ];
 
 $routePost = [
