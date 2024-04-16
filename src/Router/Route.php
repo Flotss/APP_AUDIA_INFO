@@ -10,6 +10,12 @@ class Route
     private $matches = [];
     private $params = [];
 
+    /**
+     * Route constructor.
+     *
+     * @param string $path The route path
+     * @param mixed $callable The callable to be executed when the route is matched
+     */
     public function __construct($path, $callable)
     {
         $this->path = trim($path, '/'); // On retire les / inutils
@@ -17,22 +23,29 @@ class Route
     }
 
     /**
-     * Permettra de capturer l'url avec les paramètre
-     * get('/posts/:slug-:id') par exemple
-     **/
+     * Matches the given URL against the route path and captures the parameters.
+     *
+     * @param string $url The URL to match against
+     * @return bool True if the URL matches the route, false otherwise
+     */
     public function match($url)
     {
-        $url = trim($url, (string) '/');
+        $url = trim($url, '/');
         $path = preg_replace('#:([\w]+)#', '([^/]+)', $this->path);
         $regex = "#^$path$#i";
         if (!preg_match($regex, $url, $matches)) {
             return false;
         }
         array_shift($matches);
-        $this->matches = $matches; // On sauvegarde les paramètre dans l'instance pour plus tard
+        $this->matches = $matches; // Save the parameters for later use
         return true;
     }
 
+    /**
+     * Calls the callable associated with the route.
+     *
+     * @return mixed The result of the callable
+     */
     public function call()
     {
         if (is_string($this->callable)) {
