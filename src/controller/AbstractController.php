@@ -20,9 +20,20 @@ abstract class AbstractController
         $this->pathToLoad = $templatePath;
 
         $this->twigError = new Environment(new FilesystemLoader('template/error'));
+
+        // TODO : Execute service to retrieve data
+        // Like a service to retrieve User data (isAdmin, isLogged, etc)
+        // Or a service to retrieve data from internet etc...
     }
 
+    public function addData($key, $value)
+    {
+        $this->data[$key] = $value;
+    }
+
+
     public function index()
+
     {
         $this->tryCatch(function () {
             // Logic for the index action
