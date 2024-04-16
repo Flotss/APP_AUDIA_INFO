@@ -2,61 +2,91 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
-
-// ICI POUR L'ORM JE SUIS PAS SUR QUIL SOIT AUTORISER
-
-/**
- * @ORM\Entity
- * @ORM\Table(name="users")
- */
 class User
 {
     /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @var int|null The ID of the user.
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @var string|null The username of the user.
      */
-    private $name;
+    private $username;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @var string|null The email of the user.
      */
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @var string|null The hashed password of the user.
      */
     private $password;
 
+    /**
+     * User constructor.
+     *
+     * @param string $username The username of the user.
+     * @param string $email The email of the user.
+     * @param string|null $password The password of the user (optional).
+     */
+    public function __construct(string $username, string $email, string $password = null)
+    {
+        $this->username = $username;
+        $this->email = $email;
+        $this->password = $password ? password_hash($password, PASSWORD_DEFAULT) : null;
+    }
+
+    /**
+     * Gets the ID of the user.
+     *
+     * @return int|null The ID of the user.
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    /**
+     * Gets the username of the user.
+     *
+     * @return string|null The username of the user.
+     */
+    public function getUsername(): ?string
     {
-        return $this->name;
+        return $this->username;
     }
 
-    public function setName(string $name): self
+    /**
+     * Sets the username of the user.
+     *
+     * @param string $username The new username.
+     * @return self
+     */
+    public function setName(string $username): self
     {
-        $this->name = $name;
+        $this->username = $username;
 
         return $this;
     }
 
+    /**
+     * Gets the email of the user.
+     *
+     * @return string|null The email of the user.
+     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
+    /**
+     * Sets the email of the user.
+     *
+     * @param string $email The new email.
+     * @return self
+     */
     public function setEmail(string $email): self
     {
         $this->email = $email;
@@ -64,11 +94,22 @@ class User
         return $this;
     }
 
+    /**
+     * Gets the hashed password of the user.
+     *
+     * @return string|null The hashed password of the user.
+     */
     public function getPassword(): ?string
     {
         return $this->password;
     }
 
+    /**
+     * Sets the password of the user.
+     *
+     * @param string $password The new password.
+     * @return self
+     */
     public function setPassword(string $password): self
     {
         $this->password = $password;
