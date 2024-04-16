@@ -7,6 +7,8 @@ use App\Controller\FaqController;
 use App\Controller\FaqAdminController;
 use App\Exceptions\RouterException;
 
+require_once 'src/Config/Credentials.php';
+
 
 // TODO : MAKE DYNAMIC HEADER 
 // HEADER IS NOT SAME IF WE ARE IN ADMIN PAGE OR USER PAGE
