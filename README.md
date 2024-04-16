@@ -17,7 +17,7 @@ Suivez ces étapes pour installer et configurer ce projet sur votre propre machi
 4. **Installer [xampp](https://www.apachefriends.org/fr/index.html)**
 5. Configurer les fichiers du service **Apache**
 - Dans les fichiers `Apache (httpd.conf)` et `Apache (httpd-ssl.conf)`
-- Remplacer les chemins `C:/.../.../docs` par le chemin du dossier du projet donc `C:/.../.../APP_AUDIA_INFO`
+- Remplacer les chemins `C:/.../.../htdocs` par le chemin du dossier du projet donc `C:/.../.../APP_AUDIA_INFO`
 - Lancer le service
 
 2. **Accédez au répertoire du projet**
