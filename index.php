@@ -3,13 +3,7 @@ require_once 'vendor/autoload.php';
 
 use App\Router\Router;
 use App\Controller\IndexController;
-use App\Controller\FaqController;
-use App\Controller\FaqAdminController;
 use App\Exceptions\RouterException;
-
-
-// TODO : MAKE DYNAMIC HEADER 
-// HEADER IS NOT SAME IF WE ARE IN ADMIN PAGE OR USER PAGE
 
 
 if (!isset($_GET['url'])) {
