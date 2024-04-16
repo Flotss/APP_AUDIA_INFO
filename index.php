@@ -45,7 +45,3 @@ try {
     $controller = new IndexController();
     $controller->index();
 }
-
-
-// TODO : CREATE FOOTER
-// AND RUN IT HERE
