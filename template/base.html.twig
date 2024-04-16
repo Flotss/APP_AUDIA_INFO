@@ -2,14 +2,34 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		{% block meta %}{% endblock %}
 		<title>
 			{% block title %}{% endblock %}
 		</title>
-		<link rel="stylesheet" href="/template/base.css"/> {% block stylesheet %}{% endblock %}
-
+		<link rel="stylesheet" href="template/base.css"/> 
+		{% block stylesheet %}{% endblock %}
+		{% block script %}{% endblock %}
+		{% block favicon %}<link rel="icon" type="image/png" href="assets/favicon.jpeg" />{% endblock %}
+		{% block head %}{% endblock %}
 		</head>
 		<body>
-			{% block body %}{% endblock %}
+			{# {% if app.user and app.user.roles|join('') == 'ROLE_ADMIN' %}
+				{% block header %}
+					{% include 'header/admin_header.html.twig' %}
+				{% endblock %}
+			{% else %} #}
+				{% block header %}
+					{% include 'header/header.html.twig' %}
+				{% endblock %}
+			{# {% endif %} #}
+			
+			<div class="content">
+				{% block body %}{% endblock %}
+			</div>
+
+			{% block footer %}
+				{% include 'footer/footer.html.twig' %}
+			{% endblock %}
 
 			{% block javascript %}{% endblock %}
 		</body>
