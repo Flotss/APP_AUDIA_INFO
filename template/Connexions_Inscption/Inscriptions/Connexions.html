@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Page de connexion</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #fafafa url('background.png') no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        width: 300px;
+        padding: 16px;
+        background-color: rgba(255, 255, 255, 0.8);
+        margin: 0 auto;
+        margin-top: 100px;
+        border: 1px solid #e6e6e6;
+        border-radius: 1px;
+      }
+      .logo {
+        display: block;
+        margin: 22px auto;
+        width: 50%;
+        border-radius: 20px;
+      }
+      .form-control {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 10px;
+        box-sizing: border-box;
+        font-size: 14px;
+        border: 1px solid #dbdbdb;
+        border-radius: 3px;
+      }
+      .btn {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        background-color: #3897f0;
+        border: none;
+        color: #fff;
+        border-radius: 3px;
+        margin-top: 10px;
+      }
+      #signup-fields {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 1s;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img class="logo" src="logo.png" alt="Logo" />
+      <input type="text" class="form-control" placeholder="Nom d'utilisateur" />
+      <input type="password" class="form-control" placeholder="Mot de passe" />
+      <div id="signup-fields">
+        <input type="text" class="form-control" placeholder="Email" />
+        <input type="text" class="form-control" placeholder="Nom complet" />
+        <input
+          type="password"
+          class="form-control"
+          placeholder="Confirmer le mot de passe"
+        />
+      </div>
+      <button class="btn" id="login">Se connecter</button>
+      <button class="btn" id="signup">S'inscrire</button>
+    </div>
+    <script>
+      document.getElementById('signup').addEventListener('click', function () {
+        document.getElementById('signup-fields').style.maxHeight = '300px';
+      });
+    </script>
+  </body>
+</html>
