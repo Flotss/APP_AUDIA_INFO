@@ -5,6 +5,9 @@ namespace App\Controller;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
+/**
+ * The AbstractController class provides a base class for other controllers in the application.
+ */
 abstract class AbstractController
 {
     protected $twig;
@@ -12,7 +15,11 @@ abstract class AbstractController
     protected $twigError;
     protected $data = [];
 
-
+    /**
+     * Constructs a new AbstractController instance.
+     *
+     * @param string $templatePath The path to the template directory.
+     */
     public function __construct(string $templatePath = 'template')
     {
         $loader = new FilesystemLoader('template');
@@ -26,14 +33,21 @@ abstract class AbstractController
         // Or a service to retrieve data from internet etc...
     }
 
+    /**
+     * Adds data to the controller's data array.
+     *
+     * @param mixed $key   The key to associate with the data.
+     * @param mixed $value The value to add.
+     */
     public function addData($key, $value)
     {
         $this->data[$key] = $value;
     }
 
-
+    /**
+     * Handles the index action.
+     */
     public function index()
-
     {
         $this->tryCatch(function () {
             // Logic for the index action
@@ -41,6 +55,11 @@ abstract class AbstractController
         });
     }
 
+    /**
+     * Handles the show action.
+     *
+     * @param mixed $id The ID of the item to show.
+     */
     public function show($id)
     {
         $this->tryCatch(function () use ($id) {
@@ -49,6 +68,9 @@ abstract class AbstractController
         });
     }
 
+    /**
+     * Handles the create action.
+     */
     public function create()
     {
         $this->tryCatch(function () {
@@ -57,6 +79,11 @@ abstract class AbstractController
         });
     }
 
+    /**
+     * Handles the update action.
+     *
+     * @param mixed $id The ID of the item to update.
+     */
     public function update($id)
     {
         $this->tryCatch(function () use ($id) {
@@ -65,6 +92,11 @@ abstract class AbstractController
         });
     }
 
+    /**
+     * Handles the delete action.
+     *
+     * @param mixed $id The ID of the item to delete.
+     */
     public function delete($id)
     {
         $this->tryCatch(function () use ($id) {
@@ -73,6 +105,11 @@ abstract class AbstractController
         });
     }
 
+    /**
+     * Executes a callback function within a try-catch block.
+     *
+     * @param callable $callback The callback function to execute.
+     */
     private function tryCatch(callable $callback)
     {
         // try {
