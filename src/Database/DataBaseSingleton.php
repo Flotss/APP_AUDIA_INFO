@@ -19,7 +19,7 @@ class DataBaseSingleton
      */
     private function __construct()
     {
-        $credentials = Credentials::getCredentials(Credentials::DB_DEV);
+        $credentials = Credentials::getCredentials(Credentials::$DB_PROD);
 
         $this->connection = new PDO(
             'mysql:host=' . $credentials->getHost() . ';port=' . $credentials->getPort() . ';dbname=' . $credentials->getName(),
