@@ -73,7 +73,7 @@ class Cookies
      *
      * @return array An associative array containing all cookies.
      */
-    public static function all()
+    public static function COOKIE()
     {
         return $_COOKIE;
     }

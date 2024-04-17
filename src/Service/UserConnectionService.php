@@ -3,7 +3,7 @@
 use App\Database\DataBaseSingleton;
 use App\Entity\User;
 use App\Utils\Security;
-use App\Service\CookieService;
+use App\Utils\Cookies;
 
 /**
  * Class UserConnectionService
@@ -29,15 +29,9 @@ class UserConnectionService
      * 
      * @return User The created user object.
      */
-    public function createUserFromCookie()
+    public function createUserFromCookie(): ?User
     {
-        // Retrieve user data from cookie
-        $userData = CookieService::getUserFromCookie();
-
-        // Create a new User object
-        $user = new User($userData['username'], $userData['email']);
-
-        return $user;
+        return Cookies::get('user') ?? null;
     }
 
     /**
@@ -54,9 +48,13 @@ class UserConnectionService
         $user = $this->db->getUserByEmail($email);
 
         if ($user && Security::verifyPassword($password, $user->getPassword())) {
-            // Perform any additional actions for successful login
+            // Save the user to a cookie
+            Cookies::set('user', $user);
             return true;
         }
+
+        // Delete the user cookie if the login is unsuccessful
+        Cookies::delete('user');
 
         return false;
     }

@@ -7,6 +7,7 @@ use App\Controller\IndexController;
 use App\Controller\FaqController;
 use App\Controller\FaqAdminController;
 use App\Exceptions\RouterException;
+use App\Database\DataBaseSingleton;
 
 
 
