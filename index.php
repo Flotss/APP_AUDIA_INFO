@@ -4,15 +4,7 @@ require_once 'src/Config/Credentials.php';
 
 use App\Router\Router;
 use App\Controller\IndexController;
-use App\Controller\FaqController;
-use App\Controller\FaqAdminController;
 use App\Exceptions\RouterException;
-use App\Database\DataBaseSingleton;
-
-
-
-// TODO : MAKE DYNAMIC HEADER 
-// HEADER IS NOT SAME IF WE ARE IN ADMIN PAGE OR USER PAGE
 
 
 if (!isset($_GET['url'])) {
@@ -48,7 +40,3 @@ try {
     $controller = new IndexController();
     $controller->index();
 }
-
-
-// TODO : CREATE FOOTER
-// AND RUN IT HERE
