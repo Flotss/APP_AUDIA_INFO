@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% extends '/base.html.twig' %}
+
+{% block title %}
+	Page de connexion/Inscription
+{% endblock %}
+
+{% block stylesheet %}
+	<link
+      rel="stylesheet"
+      href="/template/Connexions_Inscption/Inscriptions/Connexions.css"
+    />
+{% endblock %}
+
+{% block body %}
+	 <div class="container">
+      <img class="logo" src="logo.png" alt="Logo" />
+      <input type="text" class="form-control" placeholder="Nom d'utilisateur" />
+      <input type="password" class="form-control" placeholder="Mot de passe" />
+      <div id="signup-fields">
+        <input type="text" class="form-control" placeholder="Email" />
+        <input type="text" class="form-control" placeholder="Nom complet" />
+        <input
+          type="password"
+          class="form-control"
+          placeholder="Confirmer le mot de passe"
+        />
+      </div>
+      <button class="btn" id="login">Se connecter</button>
+      <button class="btn" id="signup">S'inscrire</button>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+	<script>
+      document.getElementById('signup').addEventListener('click', function () {
+        document.getElementById('signup-fields').style.maxHeight = '300px';
+        src = 'template/index/index.js';
+      });
+    </script>
+{% endblock %}
