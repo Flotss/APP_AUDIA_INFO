@@ -5,8 +5,6 @@ require_once 'src/Config/Credentials.php';
 use App\Router\Router;
 use App\Controller\IndexController;
 use App\Exceptions\RouterException;
-use App\Database\DataBaseSingleton;
-
 
 
 if (!isset($_GET['url'])) {
