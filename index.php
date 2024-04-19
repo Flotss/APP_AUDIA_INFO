@@ -4,6 +4,7 @@ require_once 'src/Config/Credentials.php';
 
 use App\Router\Router;
 use App\Controller\IndexController;
+use App\Controller\ConnexionController;
 use App\Exceptions\RouterException;
 use App\Controller\ContactController;
 use App\Controller\MonitoringController;
@@ -20,6 +21,7 @@ $routes = [
     '/' => new IndexController(),
     '/contact' => new ContactController(),
     '/monitoring' => new MonitoringController(),
+    'connexion' => new ConnexionController(),
     // Add more routes here
 ];
 

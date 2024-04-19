@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 {% extends '/base.html.twig' %}
 
 {% block title %}
@@ -8,13 +7,13 @@
 {% block stylesheet %}
 	<link
       rel="stylesheet"
-      href="/template/Connexions_Inscption/Inscriptions/Connexions.css"
+      href="/template/Connexion_Inscription/Inscription/connexions.css"
     />
 {% endblock %}
 
 {% block body %}
 	 <div class="container">
-      <img class="logo" src="logo.png" alt="Logo" />
+      <img class="logo" src="/template/Connexion_Inscription/Inscription/logo.png" alt="Logo" />
       <input type="text" class="form-control" placeholder="Nom d'utilisateur" />
       <input type="password" class="form-control" placeholder="Mot de passe" />
       <div id="signup-fields">
@@ -28,14 +27,21 @@
       </div>
       <button class="btn" id="login">Se connecter</button>
       <button class="btn" id="signup">S'inscrire</button>
+      <button class="btn" id="returnToLogin" style="display: none">Retourner à la connexion</button>
     </div>
 {% endblock %}
 
 {% block javascript %}
 	<script>
+      const btnReturn = document.getElementById('returnToLogin');
       document.getElementById('signup').addEventListener('click', function () {
         document.getElementById('signup-fields').style.maxHeight = '300px';
-        src = 'template/index/index.js';
+        btnReturn.style.display = 'block';
+      });
+
+      document.getElementById('returnToLogin').addEventListener('click', function () {
+        document.getElementById('signup-fields').style.maxHeight = '0';
+        btnReturn.style.display = 'none';
       });
     </script>
 {% endblock %}
