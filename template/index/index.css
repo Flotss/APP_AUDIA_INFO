@@ -38,54 +38,61 @@ img[src$='template\\concert fond noir.JPG'] {
   border: 2px solid #fff; /* Par exemple, ajoute une bordure blanche de 2px */
   width: 50%; /* Pour agrandir l'image à 100% de la largeur de son conteneur */
   height: auto; /* Pour maintenir le rapport hauteur/largeur de l'image */
+  margin-top: 180px;
+  margin-bottom: 50px;
 }
 
-/* Styles spécifiques pour les images */
-img[src$='template\\enceinte.webp'],
-img[src$='template\\température.webp'],
-img[src$='template\\CO2.webp'] {
-  /* Ajoutez vos styles personnalisés pour les images ici */
-  border: 2px solid #fff; /* Par exemple, ajoute une bordure blanche de 2px */
-  width: 33%; /* Pour diviser l'espace en 3 colonnes égales */
+.overlay-image {
+  position: absolute; /* Position absolue pour superposer l'image */
+  top: 350px; /* Positionnement en haut de la div parent */
+  left: 730px; /* Positionnement à gauche de la div parent */
+}
+
+.image-container {
+  display: flex;
+  justify-content: space-between; /* Pour répartir l'espace entre les images */
+  /* Pour aligner les images verticalement */
+}
+
+.image-wrapper {
+  text-align: center;
+}
+
+.image-wrapper img {
+  max-width: 100%; /* Pour que l'image ne dépasse pas la largeur du conteneur */
   height: auto; /* Pour maintenir le rapport hauteur/largeur de l'image */
-  display: inline-block; /* Pour aligner les images horizontalement */
-  margin: 0; /* Pour supprimer les marges entre les images */
-  padding: 0; /* Pour supprimer les espaces supplémentaires */
 }
 
-.special-text,
-.right-text,
-.left-text {
-  display: inline-block;
-  margin-right: 320px; /* Add some space between the texts */
+.background-change {
+  background-color: #ff0000; /* Changez cette couleur par la couleur de fond souhaitée */
+}
+
+.image-text {
+  font-family: 'Oswald', sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  color: #000000;
+  margin-top: 10px; /* Espacement entre l'image et le texte */
 }
 
 .first-text {
   font-family: 'Oswald', sans-serif;
   font-size: 40px;
+  font-weight: bold;
   color: #000000;
   text-align: center;
+  margin-bottom: 250px;
 }
 
-.special-text {
+.last-text {
   font-family: 'Oswald', sans-serif;
+  border: 5px solid #0f0f0f;
+  border-radius: 10px;
   font-size: 30px;
   color: #000000;
   text-align: center;
-}
-
-.right-text {
-  font-family: 'Oswald', sans-serif;
-  font-size: 30px;
-  color: #000000;
-  text-align: right;
-}
-
-.left-text {
-  font-family: 'Oswald', sans-serif;
-  font-size: 30px;
-  color: #000000;
-  text-align: left;
+  margin-top: 250px;
+  margin-bottom: 250px;
 }
 
 /* Styles pour l'en-tête */
