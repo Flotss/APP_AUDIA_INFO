@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Roboto&display=swap');
+
+/* Réinitialisation des styles par défaut */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.roboto-regular {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Styles de base pour le corps de la page */
+body {
+  font-family: 'Inter', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: 'slnt' 0;
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+img {
+  max-width: 100%; /* Pour assurer que l'image ne dépasse pas la largeur de son conteneur */
+  height: auto; /* Pour maintenir le rapport hauteur/largeur de l'image */
+  display: block; /* Pour supprimer l'espace supplémentaire sous l'image */
+  margin: 0 auto; /* Pour centrer l'image horizontalement */
+  /* Ajoutez d'autres styles personnalisés selon vos besoins */
+}
+
+/* Styles spécifiques à la première image */
+img[src$='template\\concert fond noir.JPG'] {
+  /* Ajoutez vos styles personnalisés pour la première image ici */
+  border: 2px solid #fff; /* Par exemple, ajoute une bordure blanche de 2px */
+  width: 50%; /* Pour agrandir l'image à 100% de la largeur de son conteneur */
+  height: auto; /* Pour maintenir le rapport hauteur/largeur de l'image */
+}
+
+/* Styles spécifiques pour les images */
+img[src$='template\\enceinte.webp'],
+img[src$='template\\température.webp'],
+img[src$='template\\CO2.webp'] {
+  /* Ajoutez vos styles personnalisés pour les images ici */
+  border: 2px solid #fff; /* Par exemple, ajoute une bordure blanche de 2px */
+  width: 33%; /* Pour diviser l'espace en 3 colonnes égales */
+  height: auto; /* Pour maintenir le rapport hauteur/largeur de l'image */
+  display: inline-block; /* Pour aligner les images horizontalement */
+  margin: 0; /* Pour supprimer les marges entre les images */
+  padding: 0; /* Pour supprimer les espaces supplémentaires */
+}
+
+.special-text,
+.right-text,
+.left-text {
+  display: inline-block;
+  margin-right: 320px; /* Add some space between the texts */
+}
+
+.first-text {
+  font-family: 'Oswald', sans-serif;
+  font-size: 40px;
+  color: #000000;
+  text-align: center;
+}
+
+.special-text {
+  font-family: 'Oswald', sans-serif;
+  font-size: 30px;
+  color: #000000;
+  text-align: center;
+}
+
+.right-text {
+  font-family: 'Oswald', sans-serif;
+  font-size: 30px;
+  color: #000000;
+  text-align: right;
+}
+
+.left-text {
+  font-family: 'Oswald', sans-serif;
+  font-size: 30px;
+  color: #000000;
+  text-align: left;
+}
+
+/* Styles pour l'en-tête */
+header {
+  background-color: #333;
+  padding: 20px;
+  color: #fff;
+}
+
+header h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* Styles pour la navigation */
+nav {
+  background-color: #666;
+  padding: 10px;
+}
+
+nav ul {
+  list-style-type: none;
+}
+
+nav ul li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 5px;
+}
+
+/* Styles pour le contenu principal */
+main {
+  padding: 20px;
+}
+
+/* Styles pour le pied de page */
+footer {
+  background-color: #333;
+  padding: 20px;
+  color: #fff;
+  text-align: center;
+}
