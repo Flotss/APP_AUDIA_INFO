@@ -1,0 +1,108 @@
+.container-title {
+  text-align: center;
+}
+
+h1,
+h2 {
+  color: #333;
+  margin: 0; /* Supprimer les marges par défaut */
+}
+
+p {
+  color: #666;
+}
+
+.container-box {
+  display: flex;
+  justify-content: center;
+  width: 60%;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.box1 {
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #f0f0f0; /* Couleur de fond grise */
+}
+
+.box2 {
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 35%;
+  box-sizing: border-box;
+  background-color: #f0f0f0; /* Couleur de fond grise */
+}
+
+.office {
+  float: left; /* Alignement à gauche */
+  width: 35%; /* Largeur de la moitié de la boîte */
+}
+
+/* Modifier les styles pour le conteneur de la carte */
+.map {
+  width: 100%; /* Utiliser toute la largeur disponible */
+  height: 400px; /* Définir une hauteur fixe */
+  margin-top: 20px; /* Ajouter un espace entre le contenu précédent */
+  border: 1px solid #ccc; /* Ajouter une bordure */
+  background-color: #f0f0f0; /* Couleur de fond grise */
+  position: relative; /* Activer le positionnement relatif */
+}
+
+/* Ajouter des styles pour l'iframe de la carte */
+.map iframe {
+  position: absolute; /* Activer le positionnement absolu pour positionner la carte */
+  top: 0; /* Positionner la carte en haut */
+  left: 0; /* Positionner la carte à gauche */
+  width: 100%; /* Utiliser toute la largeur disponible */
+  height: 100%; /* Utiliser toute la hauteur disponible */
+  border: none; /* Supprimer la bordure de l'iframe */
+}
+
+.map {
+  float: right; /* Alignement à droite */
+  width: 50%; /* Largeur de la moitié de la boîte */
+}
+
+.map img {
+  width: 100%; /* Utiliser toute la largeur disponible */
+  height: auto; /* Permettre à la hauteur de s'ajuster proportionnellement */
+}
+
+ul {
+  list-style-type: none; /* Supprimer les puces de la liste */
+  padding: 0px; /* Supprimer le padding par défaut */
+}
+
+li {
+  margin-bottom: 10px; /* Ajouter un espacement entre les éléments de la liste */
+}
+
+.contacts-container {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+
+  width: 70%; /* Définir la largeur de la div */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact {
+  padding: 20px;
+  width: 80%;
+  box-sizing: border-box;
+}
+
+.contact-details {
+  margin-top: 20px;
+}
+
+.contact-details hr {
+  border: none;
+  border-top: 2px solid #ccc; /* Ajouter une ligne horizontale */
+  margin: 5px; /* Espacement entre les lignes horizontales */
+}

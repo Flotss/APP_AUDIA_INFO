@@ -5,6 +5,7 @@ require_once 'src/Config/Credentials.php';
 use App\Router\Router;
 use App\Controller\IndexController;
 use App\Exceptions\RouterException;
+use App\Controller\ContactController;
 
 
 if (!isset($_GET['url'])) {
@@ -16,6 +17,7 @@ $router = new Router($_GET['url']);
 // Avec le controller associé à votre page
 $routes = [
     '/' => new IndexController(),
+    '/contact' => new ContactController()
     // Add more routes here
 ];
 
