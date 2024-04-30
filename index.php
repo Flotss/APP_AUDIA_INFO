@@ -9,6 +9,7 @@ use App\Exceptions\RouterException;
 use App\Controller\ContactController;
 use App\Controller\MonitoringController;
 use App\Controller\CguController;
+use App\Controller\MentionslegalesController;
 
 
 
@@ -26,6 +27,7 @@ $routes = [
     '/monitoring' => new MonitoringController(),
     '/connexion' => new ConnexionController(),
     '/cgu' => new CguController(),
+    '/mentionslegales' => new MentionslegalesController(),
     // Add more routes here
 ];
 
