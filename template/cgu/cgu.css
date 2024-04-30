@@ -3,7 +3,7 @@ body {
 }
 
 .container {
-  width: 80%;
+  width: 70%;
   margin: 0 auto;
 }
 
@@ -17,8 +17,9 @@ h2 {
 }
 .terms {
   margin: 0 auto;
-  border: 2px solid black;
-  padding: 8%;
+  border: 1px solid black;
+  padding: 3%;
+  width: 90%;
 }
 
 .barre {
@@ -26,6 +27,7 @@ h2 {
 
   width: 90%;
   border-top: 1px solid rgba(0, 0, 0, 0.5);
+  padding: 0, 5%;
 }
 
 .modify-button {
