@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Service\AdminVerificationService;
 
 /**
- * The AbstractAminController class is responsible for handling requests related to the index page.
+ * The AbstractAdminController class is responsible for handling requests related to the index page.
  */
 abstract class AbstractAdminController extends AbstractController
 {
@@ -32,13 +32,11 @@ abstract class AbstractAdminController extends AbstractController
 
     /**
      * Handles the show action.
-     *
-     * @param mixed $id The ID of the item to show.
      */
-    public function show($id)
+    public function show()
     {
         $this->verifyAdmin();
-        $this->tryCatch(function () use ($id) {
+        $this->tryCatch(function () {
             // Logic for the show action
             $this->twig->display($this->pathToLoad . '/show.html.twig', $this->data);
         });
@@ -58,13 +56,11 @@ abstract class AbstractAdminController extends AbstractController
 
     /**
      * Handles the update action.
-     *
-     * @param mixed $id The ID of the item to update.
      */
-    public function update($id)
+    public function update()
     {
         $this->verifyAdmin();
-        $this->tryCatch(function () use ($id) {
+        $this->tryCatch(function () {
             // Logic for the update action
             $this->twig->display($this->pathToLoad . '/update.html.twig', $this->data);
         });
@@ -72,13 +68,11 @@ abstract class AbstractAdminController extends AbstractController
 
     /**
      * Handles the delete action.
-     *
-     * @param mixed $id The ID of the item to delete.
      */
-    public function delete($id)
+    public function delete()
     {
         $this->verifyAdmin();
-        $this->tryCatch(function () use ($id) {
+        $this->tryCatch(function () {
             // Logic for the delete action
             $this->twig->display($this->pathToLoad . '/delete.html.twig', $this->data);
         });
