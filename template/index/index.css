@@ -20,8 +20,17 @@ body {
   font-weight: 400;
   font-style: normal;
   font-variation-settings: 'slnt' 0;
-  background-color: #f2f2f2;
   color: #333;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 1)
+    ),
+    url('/assets/Image/fond-texture-abstrait.jpg'); /* Spécifiez le chemin de votre image */
+  background-size: cover; /* Ajuste la taille de l'image pour couvrir l'ensemble de la fenêtre */
+  background-position: center; /* Centre l'image horizontalement et verticalement */
+  background-repeat: no-repeat; /* Empêche la répétition de l'image */
+  /* Ajoutez d'autres styles personnalisés selon vos besoins */
 }
 
 img {
@@ -34,7 +43,7 @@ img {
 
 #firstLogo {
   /* Vos styles personnalisés pour l'image ici */
-  border: 2px solid #fff !important; /* Ajoute !important */
+  /* Ajoute !important */
   width: 50% !important; /* Ajoute !important */
   height: auto !important; /* Ajoute !important */
   margin-top: 180px !important; /* Ajoute !important */
