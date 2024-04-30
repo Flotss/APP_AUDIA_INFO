@@ -8,6 +8,9 @@ use App\Controller\ConnexionController;
 use App\Exceptions\RouterException;
 use App\Controller\ContactController;
 use App\Controller\MonitoringController;
+use App\Controller\CguController;
+
+
 
 
 if (!isset($_GET['url'])) {
@@ -21,7 +24,8 @@ $routes = [
     '/' => new IndexController(),
     '/contact' => new ContactController(),
     '/monitoring' => new MonitoringController(),
-    'connexion' => new ConnexionController(),
+    '/connexion' => new ConnexionController(),
+    '/cgu' => new CguController(),
     // Add more routes here
 ];
 

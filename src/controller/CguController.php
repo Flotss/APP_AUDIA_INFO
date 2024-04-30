@@ -1,0 +1,14 @@
+<?php
+
+namespace App\Controller;
+
+use App\Entity\User;
+
+class CguController extends AbstractController
+{
+
+    public function __construct()
+    {
+        parent::__construct("cgu");
+    }
+}

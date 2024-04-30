@@ -1,0 +1,39 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+h2 {
+  font-size: 120%;
+}
+.terms {
+  margin: 20px 0;
+  border: 2px solid black;
+  padding: 3%;
+}
+
+.modify-button {
+  display: block;
+  width: 200px;
+  height: 50px;
+  margin: 20px auto;
+  background-color: #01afff;
+  color: white;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 5px solid black;
+  cursor: pointer;
+}
+
+.modify-button:hover {
+  background-color: #4e4e4e;
+}
