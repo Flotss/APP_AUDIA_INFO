@@ -2,8 +2,7 @@
   text-align: center;
 }
 
-h1,
-h2 {
+.textstyle {
   color: #333;
   margin: 0; /* Supprimer les marges par défaut */
 }
@@ -15,7 +14,7 @@ p {
 .container-box {
   display: flex;
   justify-content: center;
-  width: 60%;
+  width: 50%;
 
   margin-left: auto;
   margin-right: auto;
@@ -26,7 +25,8 @@ p {
   padding: 20px;
   width: 100%;
   box-sizing: border-box;
-  background-color: #f0f0f0; /* Couleur de fond grise */
+  background-color: #dad7d7; /* Couleur de fond grise */
+  border-radius: 10px; /* Ajouter un arrondi aux bords */
 }
 
 .box2 {
@@ -50,6 +50,7 @@ p {
   border: 1px solid #ccc; /* Ajouter une bordure */
   background-color: #f0f0f0; /* Couleur de fond grise */
   position: relative; /* Activer le positionnement relatif */
+  border-radius: 20px;
 }
 
 /* Ajouter des styles pour l'iframe de la carte */
@@ -59,7 +60,7 @@ p {
   left: 0; /* Positionner la carte à gauche */
   width: 100%; /* Utiliser toute la largeur disponible */
   height: 100%; /* Utiliser toute la hauteur disponible */
-  border: none; /* Supprimer la bordure de l'iframe */
+  border-radius: 10px; /* Supprimer la bordure de l'iframe */
 }
 
 .map {

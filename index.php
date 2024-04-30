@@ -6,6 +6,7 @@ use App\Router\Router;
 use App\Controller\IndexController;
 use App\Exceptions\RouterException;
 use App\Controller\ContactController;
+use App\Controller\MonitoringController;
 
 
 if (!isset($_GET['url'])) {
@@ -17,7 +18,8 @@ $router = new Router($_GET['url']);
 // Avec le controller associé à votre page
 $routes = [
     '/' => new IndexController(),
-    '/contact' => new ContactController()
+    '/contact' => new ContactController(),
+    '/monitoring' => new MonitoringController(),
     // Add more routes here
 ];
 

@@ -1,0 +1,53 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  width: 80%;
+}
+
+.box1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly; /* Add this line to separate the elements */
+  align-items: center; /* Add this line to vertically center the elements */
+  padding-top: 20px; /* Add this line to add space between the elements */
+  border-radius: 12px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #dcdcdc;
+}
+
+.box2 {
+  width: 100%;
+  background-color: #dcdcdc;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  justify-content: space-evenly; /* Add this line to separate the elements */
+  align-items: center; /* Add this line to vertically center the elements */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.data-box {
+  background-color: #b3c6ff;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.chart-container {
+  background-color: #b3c6ff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+canvas {
+  width: 100%;
+  height: 200px;
+}
