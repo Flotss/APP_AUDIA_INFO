@@ -27,10 +27,6 @@ abstract class AbstractController
         $this->pathToLoad = $templatePath;
 
         $this->twigError = new Environment(new FilesystemLoader('template/error'));
-
-        // TODO : Execute service to retrieve data
-        // Like a service to retrieve User data (isAdmin, isLogged, etc)
-        // Or a service to retrieve data from internet etc...
     }
 
     /**
@@ -57,12 +53,10 @@ abstract class AbstractController
 
     /**
      * Handles the show action.
-     *
-     * @param mixed $id The ID of the item to show.
      */
-    public function show($id)
+    public function show()
     {
-        $this->tryCatch(function () use ($id) {
+        $this->tryCatch(function () {
             // Logic for the show action
             $this->twig->display($this->pathToLoad . '/show.html.twig', $this->data);
         });
@@ -84,9 +78,9 @@ abstract class AbstractController
      *
      * @param mixed $id The ID of the item to update.
      */
-    public function update($id)
+    public function update()
     {
-        $this->tryCatch(function () use ($id) {
+        $this->tryCatch(function () {
             // Logic for the update action
             $this->twig->display($this->pathToLoad . '/update.html.twig', $this->data);
         });
@@ -94,12 +88,10 @@ abstract class AbstractController
 
     /**
      * Handles the delete action.
-     *
-     * @param mixed $id The ID of the item to delete.
      */
-    public function delete($id)
+    public function delete()
     {
-        $this->tryCatch(function () use ($id) {
+        $this->tryCatch(function () {
             // Logic for the delete action
             $this->twig->display($this->pathToLoad . '/delete.html.twig', $this->data);
         });
