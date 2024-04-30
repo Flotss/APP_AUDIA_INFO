@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Roboto&display=swap');
 
-/* Réinitialisation des styles par défaut */
 * {
   margin: 0;
   padding: 0;
@@ -13,7 +12,6 @@
   font-style: normal;
 }
 
-/* Styles de base pour le corps de la page */
 body {
   font-family: 'Inter', sans-serif;
   font-optical-sizing: auto;
@@ -26,40 +24,36 @@ body {
       rgba(255, 255, 255, 0),
       rgba(255, 255, 255, 1)
     ),
-    url('/assets/Image/fond-texture-abstrait.jpg'); /* Spécifiez le chemin de votre image */
-  background-size: cover; /* Ajuste la taille de l'image pour couvrir l'ensemble de la fenêtre */
-  background-position: center; /* Centre l'image horizontalement et verticalement */
-  background-repeat: no-repeat; /* Empêche la répétition de l'image */
-  /* Ajoutez d'autres styles personnalisés selon vos besoins */
+    url('/assets/Image/fond-texture-abstrait.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 img {
-  max-width: 100%; /* Pour assurer que l'image ne dépasse pas la largeur de son conteneur */
-  height: auto; /* Pour maintenir le rapport hauteur/largeur de l'image */
-  display: block; /* Pour supprimer l'espace supplémentaire sous l'image */
-  margin: 0 auto; /* Pour centrer l'image horizontalement */
-  /* Ajoutez d'autres styles personnalisés selon vos besoins */
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 #firstLogo {
-  /* Vos styles personnalisés pour l'image ici */
-  /* Ajoute !important */
-  width: 50% !important; /* Ajoute !important */
-  height: auto !important; /* Ajoute !important */
-  margin-top: 180px !important; /* Ajoute !important */
-  margin-bottom: 50px !important; /* Ajoute !important */
+  width: 50% !important;
+  height: auto !important;
+  margin-top: 180px !important;
+  margin-bottom: 50px !important;
 }
 
 .overlay-image {
-  position: absolute; /* Position absolue pour superposer l'image */
-  top: 350px; /* Positionnement en haut de la div parent */
-  left: 730px; /* Positionnement à gauche de la div parent */
+  position: absolute;
+  top: 350px;
+  left: 730px;
 }
 
 .image-container {
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Pour répartir l'espace entre les images */
+  align-items: center;
 }
 
 .image-wrapper {
@@ -69,12 +63,12 @@ img {
 }
 
 .image-wrapper img {
-  width: auto; /* Pour que l'image ne dépasse pas la largeur du conteneur */
-  max-height: 300px; /* Pour maintenir le rapport hauteur/largeur de l'image */
+  width: auto;
+  max-height: 300px;
 }
 
 .background-change {
-  background-color: #f2f2f2; /* Changez cette couleur par la couleur de fond souhaitée */
+  background-color: white;
 }
 
 .padding {
@@ -86,7 +80,7 @@ img {
   font-weight: bold;
   color: #000000;
   margin-top: 10px;
-  text-align: center; /* Espacement entre l'image et le texte */
+  text-align: center;
 }
 
 .first-text {
@@ -101,20 +95,19 @@ img {
 .last-text {
   padding: 20px;
   font-family: 'Oswald', sans-serif;
-  border: 5px solid #0f0f0f;
+  border: 5px solid black;
   border-radius: 10px;
   font-size: 30px;
-  color: #000000;
+  color: black;
   text-align: center;
   margin-top: 250px;
   margin-bottom: 250px;
 }
 
-/* Styles pour l'en-tête */
 header {
-  background-color: #333;
+  background-color: black;
   padding: 20px;
-  color: #fff;
+  color: white;
 }
 
 header h1 {
@@ -122,7 +115,6 @@ header h1 {
   margin-bottom: 10px;
 }
 
-/* Styles pour la navigation */
 nav {
   background-color: #666;
   padding: 10px;
@@ -143,12 +135,10 @@ nav ul li a {
   padding: 5px;
 }
 
-/* Styles pour le contenu principal */
 main {
   padding: 20px;
 }
 
-/* Styles pour le pied de page */
 footer {
   background-color: #333;
   padding: 20px;
