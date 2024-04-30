@@ -49,12 +49,12 @@ class UserConnectionService
         // Check if the user exists in the database
         $user = $this->db->getUserByEmail($email);
 
-        // if ($user && Security::verifyPassword($password, $user->getPassword())) {
-        // Save the user to a cookie
-        $user = serialize($user);
-        Cookies::set('user', $user);
-        return true;
-        // }
+        if ($user && Security::verifyPassword($password, $user->getPassword())) {
+            // Save the user to a cookie
+            $user = serialize($user);
+            Cookies::set('user', $user);
+            return true;
+        }
 
         // Delete the user cookie if the login is unsuccessful
         Cookies::delete('user');
