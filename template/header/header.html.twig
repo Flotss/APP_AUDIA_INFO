@@ -1,9 +1,18 @@
-<header>
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/FAQ">FAQ</a></li>
-            <li><a href="/contact">Contact</a></li>
+<header class="header">
+    <nav class="headernav">
+        <img src="/assets/logo event it header.png" alt="Logo" class="logoheader">
+        <ul class="headerul">
+            <li class="liheader"><a href="/Accueil">Accueil</a></li>
+            <li class="liheader"><a href="/about">Monitoring</a></li>
+            <li class="liheader"><a href="/contact">Contact</a></li>
+            <li class="liheader"><a href="/FAQ">FAQ</a></li>
+            <li class="liheader"><a href="/Connexion">Connexion</a></li>
+            <li class="liheader">
+                <form action="/search" method="GET">
+                    <input type="text" name="query" placeholder="Search" class="search-input">
+                    <button type="submit" class="search-button">Search</button>
+                </form>
+            </li>
         </ul>
     </nav>
 </header>
