@@ -89,7 +89,7 @@ abstract class AbstractAdminController extends AbstractController
     {
         $adminVerificationService = new AdminVerificationService();
         if (!$adminVerificationService->isAdmin()) {
-            $this->redirect("/");
+            $this->redirect("");
             exit();
         }
 
@@ -98,9 +98,13 @@ abstract class AbstractAdminController extends AbstractController
 
     private function redirect($page)
     {
+        if ($page == '/') {
+            $page = '';
+        }
+
         if ($_SERVER['REQUEST_URI'] !== "/$page") {
             header("Location: /$page");
-            exit();
+            die();
         }
     }
 }

@@ -4,7 +4,6 @@ require_once 'src/Config/Credentials.php';
 
 use App\Router\Router;
 use App\Controller\IndexController;
-use App\Controller\TestController;
 use App\Exceptions\RouterException;
 
 
@@ -17,7 +16,6 @@ $router = new Router($_GET['url']);
 // Avec le controller associé à votre page
 $routes = [
     '/' => new IndexController(),
-    '/test' => new TestController()
     // Add more routes here
 ];
 
