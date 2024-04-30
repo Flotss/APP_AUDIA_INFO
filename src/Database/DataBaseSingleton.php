@@ -19,7 +19,7 @@ class DataBaseSingleton
      */
     private function __construct()
     {
-        $credentials = Credentials::getCredentials(Credentials::$DB_PROD);
+        $credentials = Credentials::getCredentials(Credentials::$DB_DEV);
 
         $this->connection = new PDO(
             'mysql:host=' . $credentials->getHost() . ';port=' . $credentials->getPort() . ';dbname=' . $credentials->getName(),
@@ -59,11 +59,20 @@ class DataBaseSingleton
      */
     public function saveUser(User $user)
     {
-        $query = $this->connection->prepare('INSERT INTO users (username, email, password) VALUES (:username, :email, :password)');
+        if ($user->getId() != 0) {
+            $query = $this->connection->prepare('UPDATE User SET username = :username, firstName = :firstName, lastName = :lastName, email = :email, location = :location, phone = :phone, password = :password, role = :role WHERE id = :id');
+            $query->bindValue('id', $user->getId());
+        } else {
+            $query = $this->connection->prepare('INSERT INTO User (username, firstName, lastName, email, location, phone, password, role) VALUES (:username, :firstName, :lastName, :email, :location, :phone, :password, :role)');
+        }
         $query->execute([
             'username' => $user->getUsername(),
+            'firstName' => $user->getFirstName(),
+            'lastName' => $user->getLastName(),
             'email' => $user->getEmail(),
-            'password' => $user->getPassword()
+            'phone' => $user->getPhone(),
+            'password' => $user->getPassword(),
+            'role' => $user->getRole(),
         ]);
     }
 
@@ -75,12 +84,12 @@ class DataBaseSingleton
      */
     public function getUserByUsername(string $username): ?User
     {
-        $query = $this->connection->prepare('SELECT * FROM users WHERE username = :username');
+        $query = $this->connection->prepare('SELECT * FROM User WHERE username = :username');
         $query->execute(['username' => $username]);
         $userData = $query->fetch();
 
         if ($userData) {
-            return new User($userData['username'], $userData['email'], $userData['password']);
+            return User::createUserFromArray($userData);
         }
 
         return null;
@@ -94,12 +103,12 @@ class DataBaseSingleton
      */
     public function getUserByEmail(string $email): ?User
     {
-        $query = $this->connection->prepare('SELECT * FROM users WHERE email = :email');
+        $query = $this->connection->prepare('SELECT * FROM User WHERE email = :email');
         $query->execute(['email' => $email]);
         $userData = $query->fetch();
 
         if ($userData) {
-            return new User($userData['username'], $userData['email'], $userData['password']);
+            return User::createUserFromArray($userData);
         }
 
         return null;

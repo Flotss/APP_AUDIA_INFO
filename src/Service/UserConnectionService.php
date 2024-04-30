@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Service;
+
 use App\Database\DataBaseSingleton;
 use App\Entity\User;
 use App\Utils\Security;
@@ -19,9 +21,9 @@ class UserConnectionService
      * 
      * @param DataBaseSingleton $db The database singleton instance.
      */
-    public function __construct(DataBaseSingleton $db)
+    public function __construct()
     {
-        $this->db = $db;
+        $this->db = DataBaseSingleton::getInstance();
     }
 
     /**
@@ -47,11 +49,12 @@ class UserConnectionService
         // Check if the user exists in the database
         $user = $this->db->getUserByEmail($email);
 
-        if ($user && Security::verifyPassword($password, $user->getPassword())) {
-            // Save the user to a cookie
-            Cookies::set('user', $user);
-            return true;
-        }
+        // if ($user && Security::verifyPassword($password, $user->getPassword())) {
+        // Save the user to a cookie
+        $user = serialize($user);
+        Cookies::set('user', $user);
+        return true;
+        // }
 
         // Delete the user cookie if the login is unsuccessful
         Cookies::delete('user');
@@ -68,10 +71,10 @@ class UserConnectionService
      * 
      * @return User The registered user object.
      */
-    public function registerUser($username, $email, $password)
+    public function registerUser($username, $email, $password, $firstName, $lastName)
     {
         // Create a new User object
-        $user = new User($username, $email);
+        $user = new User(0, $username, $email, $password, $firstName, $lastName);
 
         // Set the user's password
         $user->setPassword($password);
