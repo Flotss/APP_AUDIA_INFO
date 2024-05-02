@@ -1,34 +1,31 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
-		{% block meta %}{% endblock %}
+		<meta charset="UTF-8"> {% block meta %}{% endblock %}
 		<title>
 			{% block title %}{% endblock %}
 		</title>
-		<link rel="stylesheet" href="template/base.css"/> 
-		<link rel="stylesheet" href="template/header/style.css"/>
-		<link rel="stylesheet" href="template/footer/style.css"/>
-		{% block stylesheet %}{% endblock %}
-		{% block script %}{% endblock %}
-		{% block favicon %}<link rel="icon" type="image/png" href="assets/favicon.jpeg" />{% endblock %}
+		<link rel="stylesheet" href="/template/base.css"/>
+		<link rel="stylesheet" href="/template/header/style.css"/>
+		<link rel="stylesheet" href="/template/footer/style.css"/> {% block stylesheet %}{% endblock %}{% block script %}{% endblock %}
+		{% block favicon %}<link rel="icon" type="image/png" href="assets/favicon.jpeg"/>
+		{% endblock %}
 		{% block head %}{% endblock %}
-		</head>
-		<body>
-			{% if admin %}
-					{% include 'header/admin_header.html.twig' %}
-			{% else %}
-					{% include 'header/header.html.twig' %}
-			{% endif %}
-			
-			{% block body %}{% endblock %}
+	</head>
+	<body>
+		{% if admin %}
+			{% include 'header/admin_header.html.twig' %}
+		{% else %}
+			{% include 'header/header.html.twig' %}
+		{% endif %}
 
-			{% block footer %}
+		{% block body %}{% endblock %}
+
+		{% block footer %}
 			{% include 'footer/footer.html.twig' %}
-			{% endblock %}
+		{% endblock %}
 
-			
 
-			{% block javascript %}{% endblock %}
-		</body>
-	</html>
+		{% block javascript %}{% endblock %}
+	</body>
+</html>

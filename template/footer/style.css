@@ -1,5 +1,6 @@
 .footer {
   background-color: gray;
+  width: 100%;
 }
 
 .footernav {
@@ -9,7 +10,7 @@
   padding: 0px;
   background-color: gray;
   color: white;
-  height: 10px;
+  width: 100%;
   text-align: center;
 }
 
@@ -22,6 +23,7 @@
 }
 
 .liheader {
+  color: white;
   margin-top: -10px;
   padding: 10px;
   height: 20%;
@@ -29,10 +31,16 @@
   justify-content: center;
   align-items: center;
   width: auto;
+  text-decoration: none;
+}
+
+.liheader a {
+  color: white;
+  text-decoration: none;
 }
 
 .logofooter {
-  height: 500%;
+  height: 50px;
   width: auto;
   margin: 0;
 }
