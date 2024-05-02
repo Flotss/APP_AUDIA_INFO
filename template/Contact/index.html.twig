@@ -1,0 +1,144 @@
+{% extends '/base.html.twig' %}
+
+{% block title %}
+	Nous contacter
+{% endblock %}
+
+{% block stylesheet %}
+<link rel="stylesheet" type="text/css" href="/template/contact/contact.css" />
+{% endblock %}
+
+{% block body %}
+<div class="container-title">
+   <h1 class="text1">NOUS CONTACTER</h1>
+   <p class="p1" >Vous avez plusieurs moyens de nous contacter. </br> Contactez-nous par mail ou par un appel.</p>
+</div>  
+
+
+<div class="container-box">
+  
+  <div class="box1">
+    <div class="office">
+      <h2 class="text1">Nos bureaux :</h2>
+      <p class="p1">CAMPUS NDL : 10 rue de Vanves; 92130 ISSY-LES-MOULINEAUX</p>
+      <ul class="ul1" >
+        <ul class="ul1">
+          <li class="li1"><strong>Métros:</strong> Saint Placide (ligne 4), Notre-Dame des Champs (ligne 12), Montparnasse (lignes 6 et 13)</li>
+          <li class="li1"><strong>Bus:</strong> Lignes 89 – 94 – 95 – 96 – 68 – 58 – 82</li>
+        </ul>
+    </div>
+
+    <div class="map"id="map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d42009.102420962176!2d2.2566751836453487!3d48.84736115559214!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e670797ea4730d%3A0xe0d3eb2ad501cb27!2sInstitut%20sup%C3%A9rieur%20d&#39;%C3%A9lectronique%20de%20Paris%20(ISEP)!5e0!3m2!1sfr!2sfr!4v1713536447771!5m2!1sfr!2sfr" width="100%" height="auto" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+  
+</div>
+
+
+<div class="contacts-container">
+  <div class="contact">
+    <h2>Appelez nous :</h2>
+    <div class="contact-details">
+      <p class="p1">XX123456 Mr XZY</p>
+      <hr>
+      <p class="p1">XX123456 Mr XZY</p>
+      <hr>
+      <p class="p1">XX123456 Mr XZY</p>
+      <hr>
+      <p class="p1">XX123456 Mr XZY</p>
+      <hr>
+      <p class="p1">XX123456 Mr XZY</p>
+    </div>
+  </div>
+
+  <div class="contact">
+    <h2>Envoyez nous un Mail :</h2>
+    <div class="contact-details">
+      <p class="p1">XYZ@audio.fr Mr XZY</p>
+      <hr>
+      <p class="p1">XYZ@audio.fr Mr XZY</p>
+      <hr>
+      <p class="p1">XYZ@audio.fr Mr XZY</p>
+      <hr>
+      <p class="p1">XYZ@audio.fr Mr XZY</p>
+      <hr>
+      <p class="p1">XYZ@audio.fr Mr XZY</p>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block javascript %}
+	<script src="template/index/index.js"></script>
+{% endblock %}
+
+
+
+
+{# <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="contact.css" />
+  </head>
+
+
+  <body>
+      <div class="container-title">
+      <h1>NOUS CONTACTER</h1>
+      <p class="p1">Vous avez plusieurs moyens de nous contacter. </br> Contactez-nous par mail ou par un appel.</p>
+      </div>  
+    <div class="container-box">
+      <div class="box1">
+        <div class="office">
+          <h2>Nos bureaux :</h2>
+          <p class="p1">CAMPUS NDL : 10 rue de Vanves; 92130 ISSY-LES-MOULINEAUX</p>
+          <ul>
+            <ul>
+              <li><strong>Métros:</strong> Saint Placide (ligne 4), Notre-Dame des Champs (ligne 12), Montparnasse (lignes 6 et 13)</li>
+              <li><strong>Bus:</strong> Lignes 89 – 94 – 95 – 96 – 68 – 58 – 82</li>
+            </ul>
+        </div>
+        <div class="map"id="map">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d42009.102420962176!2d2.2566751836453487!3d48.84736115559214!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e670797ea4730d%3A0xe0d3eb2ad501cb27!2sInstitut%20sup%C3%A9rieur%20d&#39;%C3%A9lectronique%20de%20Paris%20(ISEP)!5e0!3m2!1sfr!2sfr!4v1713536447771!5m2!1sfr!2sfr" width="100%" height="auto" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="contacts-container">
+      <div class="contact">
+        <h2>Appelez nous :</h2>
+        <div class="contact-details">
+          <p class="p1">XX123456 Mr XZY</p>
+          <hr>
+          <p class="p1">XX123456 Mr XZY</p>
+          <hr>
+          <p class="p1">XX123456 Mr XZY</p>
+          <hr>
+          <p class="p1">XX123456 Mr XZY</p>
+          <hr>
+          <p class="p1">XX123456 Mr XZY</p>
+        </div>
+      </div>
+
+      <div class="contact">
+        <h2>Envoyez nous un Mail :</h2>
+        <div class="contact-details">
+          <p class="p1">XYZ@audio.fr Mr XZY</p>
+          <hr>
+          <p class="p1">XYZ@audio.fr Mr XZY</p>
+          <hr>
+          <p class="p1">XYZ@audio.fr Mr XZY</p>
+          <hr>
+          <p class="p1">XYZ@audio.fr Mr XZY</p>
+          <hr>
+          <p class="p1">XYZ@audio.fr Mr XZY</p>
+        </div>
+      </div>
+
+  </div>
+  </body>
+</html> #}
