@@ -4,7 +4,7 @@
 
 .text1 {
   color: #333;
-  margin: 0; /* Supprimer les marges par défaut */
+  margin: 0;
 }
 
 .p1 {
@@ -34,39 +34,38 @@
 }
 
 .map {
-  width: 100%; /* Utiliser toute la largeur disponible */
-  height: 400px; /* Définir une hauteur fixe */
-  margin-top: 20px; /* Ajouter un espace entre le contenu précédent */
-  border: 1px solid #ccc; /* Ajouter une bordure */
-  background-color: #f0f0f0; /* Couleur de fond grise */
-  position: relative; /* Activer le positionnement relatif */
+  width: 100%;
+  height: 400px;
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  position: relative;
   border-radius: 20px;
-  width: 50%; /* Largeur de la moitié de la boîte */
-  float: right; /* Alignement à droite */
+  width: 50%;
+  float: right;
 }
 
-/* Ajouter des styles pour l'iframe de la carte */
 .map iframe {
-  position: absolute; /* Activer le positionnement absolu pour positionner la carte */
-  width: 100%; /* Utiliser toute la largeur disponible */
-  height: 100%; /* Utiliser toute la hauteur disponible */
-  border-radius: 10px; /* Supprimer la bordure de l'iframe */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
 }
 
 .ul1 {
-  list-style-type: none; /* Supprimer les puces de la liste */
-  padding: 0px; /* Supprimer le padding par défaut */
+  list-style-type: none;
+  padding: 0px;
 }
 
 .li1 {
-  margin-bottom: 10px; /* Ajouter un espacement entre les éléments de la liste */
+  margin-bottom: 10px;
 }
 
 .contacts-container {
   display: flex;
   justify-content: space-between;
   text-align: center;
-  width: 70%; /* Définir la largeur de la div */
+  width: 70%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -83,6 +82,6 @@
 
 .contact-details hr {
   border: none;
-  border-top: 2px solid #ccc; /* Ajouter une ligne horizontale */
-  margin: 5px; /* Espacement entre les lignes horizontales */
+  border-top: 2px solid #ccc;
+  margin: 5px;
 }
