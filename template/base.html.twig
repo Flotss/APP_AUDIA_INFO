@@ -11,15 +11,17 @@
 		{% block favicon %}<link rel="icon" type="image/png" href="assets/favicon.jpeg"/>
 		{% endblock %}
 		{% block head %}{% endblock %}
-	</head>
-	<body>
-		{% if admin %}
-			{% include 'header/admin_header.html.twig' %}
-		{% else %}
-			{% include 'header/header.html.twig' %}
-		{% endif %}
-
-		{% block body %}{% endblock %}
+		</head>
+		<body>
+			{% if admin %}
+					{% include 'header/admin_header.html.twig' %}
+			{% else %}
+					{% include 'header/header.html.twig' %}
+			{% endif %}
+			
+			<div class="content">
+				{% block body %}{% endblock %}
+			</div>
 
 		{% block footer %}
 			{% include 'footer/footer.html.twig' %}
