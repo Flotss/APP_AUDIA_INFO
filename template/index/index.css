@@ -102,33 +102,6 @@ header h1 {
   margin-bottom: 10px;
 }
 
-nav {
-  background-color: #666;
-  padding: 10px;
-}
-
-nav ul {
-  list-style-type: none;
-}
-
-nav ul li {
-  display: inline-block;
-  margin-right: 10px;
-}
-
-nav ul li a {
-  color: white;
-  text-decoration: none;
-  padding: 5px;
-}
-
 main {
   padding: 20px;
-}
-
-footer {
-  background-color: black;
-  padding: 20px;
-  color: white;
-  text-align: center;
 }
