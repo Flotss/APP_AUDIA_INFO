@@ -15,23 +15,19 @@
 		{% block head %}{% endblock %}
 		</head>
 		<body>
-			{# {% if app.user and app.user.roles|join('') == 'ROLE_ADMIN' %}
-				{% block header %}
+			{% if admin %}
 					{% include 'header/admin_header.html.twig' %}
-				{% endblock %}
-			{% else %} #}
-				{% block header %}
+			{% else %}
 					{% include 'header/header.html.twig' %}
-				{% endblock %}
-			{# {% endif %} #}
+			{% endif %}
 			
-			<div class="content">
-				{% block body %}{% endblock %}
-			</div>
+			{% block body %}{% endblock %}
 
 			{% block footer %}
-				{% include 'footer/footer.html.twig' %}
+			{% include 'footer/footer.html.twig' %}
 			{% endblock %}
+
+			
 
 			{% block javascript %}{% endblock %}
 		</body>
