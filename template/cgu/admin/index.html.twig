@@ -1,0 +1,52 @@
+{% extends '/base.html.twig' %}
+
+{% block title %}
+	CGU
+{% endblock %}
+
+{% block stylesheet %}
+	<link rel="stylesheet" href="/template/cgu/user/cgu.css"/>
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<br/>
+		<h1>
+			<B>Conditions Générales d'Utilisation (CGU)
+			</B>
+		</h1>
+		<br/>
+
+		<div class="barre"></div>
+		<br/>
+
+		{% if error %}
+			<div class="alert alert-danger" role="alert">
+				{{ error }}
+			</div>
+		{% endif %}
+
+		{% if message %}
+			<div class="alert alert-success" role="alert">
+				{{ message }}
+			</div>
+		{% endif %}
+
+		<div class="terms">
+			<div class="form-group">
+				<form method="post" action="/admin/cgu">
+					<textarea id="cgu" name="cgu" rows="50" cols="150">{{ cgu }}</textarea>
+					<br/><br/>
+					<button type="submit" class="modify-button">Enregistrer</button>
+					<button type="button" class="btn btn-danger" onclick="window.location.href='/admin'">Annuler</button>
+				</form>
+
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
+
+{% block javascript %}
+	<script src="template/index/index.js"></script>
+{% endblock %}

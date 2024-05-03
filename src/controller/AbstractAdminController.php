@@ -13,9 +13,9 @@ abstract class AbstractAdminController extends AbstractController
     /**
      * Constructs a new instance of the AbstractAminController class.
      */
-    public function __construct()
+    public function __construct(string $templatePath = 'template/admin')
     {
-        parent::__construct("index");
+        parent::__construct($templatePath);
     }
 
     /**

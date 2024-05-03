@@ -1,0 +1,31 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  width: 70%;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+h2 {
+  font-size: 110%;
+}
+.terms {
+  margin: 0 auto;
+  border: 1px solid black;
+  padding: 3%;
+  width: 90%;
+}
+
+.barre {
+  margin: 0 auto;
+
+  width: 90%;
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  padding: 0, 5%;
+}

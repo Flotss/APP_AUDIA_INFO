@@ -8,6 +8,13 @@ use App\Controller\ConnexionController;
 use App\Exceptions\RouterException;
 use App\Controller\ContactController;
 use App\Controller\MonitoringController;
+use App\Controller\CguController;
+use App\Controller\MentionslegalesController;
+
+//ADMIN
+use App\Controller\CguAdminController;
+
+
 
 
 if (!isset($_GET['url'])) {
@@ -17,16 +24,31 @@ $router = new Router($_GET['url']);
 
 // AJOUTER LA ROUTE COMME ICI POUR CHAQUE PAGE
 // Avec le controller associé à votre page
-$routes = [
+$routesGet = [
     '/' => new IndexController(),
     '/contact' => new ContactController(),
     '/monitoring' => new MonitoringController(),
-    'connexion' => new ConnexionController(),
-    // Add more routes here
+    '/connexion' => new ConnexionController(),
+    '/cgu' => new CguController(),
+    '/mentionslegales' => new MentionslegalesController(),
+
+    // ADMIN ROUTES
+    '/admin/cgu' => new CguAdminController(),
 ];
 
-foreach ($routes as $route => $controller) {
+$routePost = [
+    '/connexion' => new ConnexionController(),
+    '/admin/cgu' => new CguAdminController(),
+];
+
+foreach ($routesGet as $route => $controller) {
     $router->get($route, function () use ($controller) {
+        $controller->index();
+    });
+}
+
+foreach ($routePost as $route => $controller) {
+    $router->post($route, function () use ($controller) {
         $controller->index();
     });
 }

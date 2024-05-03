@@ -1,0 +1,53 @@
+.container {
+  width: 70%;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+h2 {
+  font-size: 110%;
+}
+.terms {
+  margin: 0 auto;
+  border: 1px solid black;
+  padding: 3%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+#cgu {
+  width: 500px;
+}
+
+.barre {
+  margin: 0 auto;
+
+  width: 90%;
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  padding: 0, 5%;
+}
+
+.modify-button {
+  display: block;
+  width: 200px;
+  height: 50px;
+  margin: 20px auto;
+  background-color: #01afff;
+  color: white;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 5px solid black;
+  cursor: pointer;
+}
+
+.modify-button:hover {
+  background-color: #4e4e4e;
+}

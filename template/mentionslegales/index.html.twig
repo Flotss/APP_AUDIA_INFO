@@ -1,0 +1,29 @@
+{% extends '/base.html.twig' %}
+
+{% block title %}
+	Mentions Légales
+{% endblock %}
+
+{% block stylesheet %}
+	<link rel="stylesheet" href="/template/mentionslegales/mentionslegales.css"/>
+{% endblock %}	
+
+{% block body %}
+	 <div class="container">
+   <br/>
+      <h1> <B >Mentions Légales</B></h1>
+       <br/>
+    </div>
+
+    <div class="barre">
+    <br/>
+
+    <div class="terms">
+     {{ mentions_legales | raw }}
+    </div>
+
+{% endblock %}	
+
+{% block javascript %}
+	<script src="template/index/index.js"></script>
+{% endblock %}
