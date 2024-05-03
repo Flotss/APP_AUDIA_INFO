@@ -34,14 +34,18 @@
 {% block javascript %}
 	<script>
       const btnReturn = document.getElementById('returnToLogin');
+      const btnSignup = document.getElementById('signup-fields');
+      const btnLogin = document.getElementById('login');
       document.getElementById('signup').addEventListener('click', function () {
         document.getElementById('signup-fields').style.maxHeight = '300px';
         btnReturn.style.display = 'block';
+        btnLogin.style.display = 'none';
       });
 
       document.getElementById('returnToLogin').addEventListener('click', function () {
         document.getElementById('signup-fields').style.maxHeight = '0';
         btnReturn.style.display = 'none';
+        btnLogin.style.display = 'block';
       });
     </script>
 {% endblock %}
