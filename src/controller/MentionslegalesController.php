@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
+use App\Entity\Content;
+use App\Service\RetrieveDataFromDataUtils;
 
 class MentionslegalesController extends AbstractController
 {
@@ -11,10 +12,8 @@ class MentionslegalesController extends AbstractController
     {
         parent::__construct("mentionslegales");
 
-
         // Recuperer le contenu depuis la base de donnée
-
-
-        //$this->data['cgu'] =  ta variable;
+        $service = new RetrieveDataFromDataUtils();
+        $this->data['mentions_legales'] = $service->getContentByKey("mentions_legales")->getValue();
     }
 }

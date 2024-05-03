@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
+use App\Service\RetrieveDataFromDataUtils;
 
 class CguController extends AbstractController
 {
@@ -13,8 +13,7 @@ class CguController extends AbstractController
 
 
         // Recuperer le contenu depuis la base de donnée
-
-
-        //$this->data['cgu'] =  ta variable;
+        $service = new RetrieveDataFromDataUtils();
+        $this->data['cgu'] = $service->getContentByKey("cgu")->getValue();
     }
 }
