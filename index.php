@@ -6,7 +6,6 @@ use App\Router\Router;
 use App\Controller\IndexController;
 use App\Controller\ConnexionController;
 use App\Controller\FaqController;
-use App\Controller\FaqAdminController;
 use App\Exceptions\RouterException;
 use App\Controller\ContactController;
 use App\Controller\MonitoringController;
@@ -14,6 +13,7 @@ use App\Controller\CguController;
 use App\Controller\MentionslegalesController;
 
 //ADMIN
+use App\Controller\FaqAdminController;
 use App\Controller\CguAdminController;
 
 
@@ -29,7 +29,6 @@ $router = new Router($_GET['url']);
 $routesGet = [
     '/' => new IndexController(),
     '/faq' => new FaqController(),
-    '/admin/faq' => new FaqAdminController(),
     '/contact' => new ContactController(),
     '/monitoring' => new MonitoringController(),
     '/connexion' => new ConnexionController(),
@@ -37,12 +36,14 @@ $routesGet = [
     '/mentionslegales' => new MentionslegalesController(),
 
     // ADMIN ROUTES
+    '/admin/faq' => new FaqAdminController(),
     '/admin/cgu' => new CguAdminController(),
 ];
 
 $routePost = [
     '/connexion' => new ConnexionController(),
     '/admin/cgu' => new CguAdminController(),
+    '/admin/faq' => new FaqAdminController(),
 ];
 
 foreach ($routesGet as $route => $controller) {
