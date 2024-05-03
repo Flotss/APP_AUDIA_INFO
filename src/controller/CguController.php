@@ -9,7 +9,7 @@ class CguController extends AbstractController
 
     public function __construct()
     {
-        parent::__construct("cgu");
+        parent::__construct("cgu/user");
 
 
         // Recuperer le contenu depuis la base de donnée

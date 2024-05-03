@@ -22,4 +22,9 @@ class RetrieveDataFromDataUtils
 
         return new Content($result[0]['id'], $result[0]['cle'], $result[0]['texte']);
     }
+
+    public function updateContentByKey($key, $value)
+    {
+        $this->db->makeRequest("UPDATE DataUtil SET texte = :texte WHERE cle = :cle", ["texte" => $value, "cle" => $key]);
+    }
 }
