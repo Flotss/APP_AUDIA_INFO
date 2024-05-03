@@ -13,7 +13,7 @@
 
 {% block body %}
 	 <div class="container">
-      <img class="logo" src="/template/Connexion_Inscription/Inscription/logo.png" alt="Logo" />
+      <img class="logo" src="/assets/logo_eventIT.png" alt="Logo" />
       <input type="text" class="form-control" placeholder="Nom d'utilisateur" />
       <input type="password" class="form-control" placeholder="Mot de passe" />
       <div id="signup-fields">
@@ -34,7 +34,6 @@
 {% block javascript %}
 	<script>
       const btnReturn = document.getElementById('returnToLogin');
-      const btnSignup = document.getElementById('signup-fields');
       const btnLogin = document.getElementById('login');
       document.getElementById('signup').addEventListener('click', function () {
         document.getElementById('signup-fields').style.maxHeight = '300px';
@@ -47,5 +46,5 @@
         btnReturn.style.display = 'none';
         btnLogin.style.display = 'block';
       });
-    </script>
+  </script>
 {% endblock %}
