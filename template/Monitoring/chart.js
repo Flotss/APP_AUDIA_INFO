@@ -32,7 +32,7 @@ document.body.onload = function () {
       labels: data.map((row) => row.year),
       datasets: [
         {
-          label: 'Temperature (°C)',
+          label: 'Niveau Sonore (dB)',
           data: data.map((row) => row.count),
           fill: false,
           borderColor: 'rgb(75, 192, 192)',
@@ -48,7 +48,7 @@ document.body.onload = function () {
       labels: data.map((row) => row.year),
       datasets: [
         {
-          label: 'Temperature (°C)',
+          label: 'Niveau de CO2 (ppm)',
           data: data.map((row) => row.count),
           fill: false,
           borderColor: 'rgb(75, 192, 192)',
