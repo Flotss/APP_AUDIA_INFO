@@ -12,7 +12,7 @@ class CguAdminController extends AbstractAdminController
         parent::__construct("cgu/admin");
 
         // POST request
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cgu'])) {
             $this->updateCgu();
         }
 

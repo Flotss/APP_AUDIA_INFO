@@ -26,11 +26,19 @@ class FaqService
 	}
 
 
-	public function addOrUpdateQuestion($question, $answer)
+	public function addQuestion($question, $answer)
 	{
 		$this->db->makeRequest(
-			"INSERT INTO faq (question, answer) VALUES (?, ?) ON CONFLICT (question) DO UPDATE SET answer = ?",
-			[$question, $answer, $answer]
+			"INSERT INTO faq (question, answer) VALUES (?, ?)",
+			[$question, $answer]
+		);
+	}
+
+	public function updateQuestion($id, $question, $answer)
+	{
+		$this->db->makeRequest(
+			"UPDATE faq SET question = ?, answer = ? WHERE id = ?",
+			[$question, $answer, $id]
 		);
 	}
 

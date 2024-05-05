@@ -19,6 +19,8 @@ use App\Controller\CguAdminController;
 
 
 
+
+
 if (!isset($_GET['url'])) {
     $_GET['url'] = '/';
 }
@@ -41,9 +43,9 @@ $routesGet = [
 ];
 
 $routePost = [
-    '/connexion' => new ConnexionController(),
-    '/admin/cgu' => new CguAdminController(),
-    '/admin/faq' => new FaqAdminController(),
+    '/connexion' => $routesGet['/connexion'],
+    '/admin/cgu' => $routesGet['/admin/cgu'],
+    '/admin/faq' => $routesGet['/admin/faq'],
 ];
 
 foreach ($routesGet as $route => $controller) {
