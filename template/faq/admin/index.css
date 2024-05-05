@@ -1,0 +1,175 @@
+.content {
+  margin: 3vw;
+  margin-left: 10vw;
+  margin-right: 10vw;
+
+  font-family: Roboto, sans-serif;
+}
+
+.faq_question {
+  padding-top: 2em;
+  overflow: visible;
+  overflow-x: hidden;
+}
+
+.head_title {
+  display: flex;
+  justify-content: space-between;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.question {
+  border: 2px solid #333;
+  border-radius: 10px;
+  padding: 1vw;
+  margin-bottom: 1vw;
+  transition: all 0.5s ease;
+  animation: fadeInLeft 0.5s ease;
+
+  display: grid;
+
+  grid-template-columns: 0.5fr 1fr 0.25fr 0.25fr;
+  gap: 10px;
+}
+
+.questionTitle {
+  width: 90%;
+  text-wrap: nowrap;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.answer {
+  width: 90%;
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.question:nth-child(odd) {
+  animation: fadeInRight 0.5s ease;
+}
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.button {
+  background-color: #59b6f4;
+  border: none;
+  color: white;
+  padding: 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Les label et input sont sur deux ligne distinque */
+
+.modal label {
+  display: block;
+  padding: 5px 0px;
+}
+
+.modal input,
+textarea {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+
+  font-family: Roboto, sans-serif;
+}
+
+.modal textarea {
+  resize: none;
+  min-height: 100px;
+}
+
+.modal textarea:placeholder-shown {
+  scrollbar-width: none;
+}
+
+.title-modal {
+  padding: 10px 0px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: end;
+
+  gap: 10px;
+}
+
+.addButton {
+  float: right;
+}
+
+.modal {
+  position: fixed; /* Position fixe dans toute la fenêtre de visualisation */
+  z-index: 1; /* Se place au-dessus des autres éléments */
+  left: 0;
+  top: 0;
+  width: 100%; /* Prend toute la largeur */
+  height: 100%; /* Prend toute la hauteur */
+  overflow: auto; /* Permet le scroll si nécessaire */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.001
+  ); /* Noir avec opacité pour le fond */
+
+  /* remove border */
+  border: none;
+  outline: none;
+  box-shadow: none;
+
+  overflow-y: hidden;
+}
+
+/* Style pour centrer le contenu du modal */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% du haut et centré horizontalement */
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 10px;
+  width: 50%;
+  box-shadow: 5px 5px 15px rgb(50, 50, 50), -5px -5px 15px #ffffff;
+}

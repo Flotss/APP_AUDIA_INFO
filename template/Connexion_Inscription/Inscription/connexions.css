@@ -58,3 +58,9 @@ body {
   overflow: hidden;
   transition: max-height 1s;
 }
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

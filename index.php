@@ -5,6 +5,7 @@ require_once 'src/Config/Credentials.php';
 use App\Router\Router;
 use App\Controller\IndexController;
 use App\Controller\ConnexionController;
+use App\Controller\FaqController;
 use App\Exceptions\RouterException;
 use App\Controller\ContactController;
 use App\Controller\MonitoringController;
@@ -12,7 +13,10 @@ use App\Controller\CguController;
 use App\Controller\MentionslegalesController;
 
 //ADMIN
+use App\Controller\FaqAdminController;
 use App\Controller\CguAdminController;
+
+
 
 
 
@@ -26,6 +30,7 @@ $router = new Router($_GET['url']);
 // Avec le controller associé à votre page
 $routesGet = [
     '/' => new IndexController(),
+    '/faq' => new FaqController(),
     '/contact' => new ContactController(),
     '/monitoring' => new MonitoringController(),
     '/connexion' => new ConnexionController(),
@@ -33,12 +38,14 @@ $routesGet = [
     '/mentionslegales' => new MentionslegalesController(),
 
     // ADMIN ROUTES
+    '/admin/faq' => new FaqAdminController(),
     '/admin/cgu' => new CguAdminController(),
 ];
 
 $routePost = [
-    '/connexion' => new ConnexionController(),
-    '/admin/cgu' => new CguAdminController(),
+    '/connexion' => $routesGet['/connexion'],
+    '/admin/cgu' => $routesGet['/admin/cgu'],
+    '/admin/faq' => $routesGet['/admin/faq'],
 ];
 
 foreach ($routesGet as $route => $controller) {

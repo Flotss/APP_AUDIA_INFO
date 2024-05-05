@@ -1,0 +1,33 @@
+{% extends '/base.html.twig' %}
+
+{% block title %}
+	Event IT - FAQ
+{% endblock %}
+
+{% block stylesheet %}
+	<link rel="stylesheet" href="/template/faq/User/index.css"/>
+{% endblock %}
+
+{% block body %}
+    <h1>FAQ : Foire au questions</h1>
+	<h3>Voici les questions les plus populaires</h3>	
+	<div class="faq_question"> 
+		{% for question in questions %}
+			<div class="question">
+				<h4 class="questionTitle">
+					<div class="three_dot">
+						{% for i in range(1,3) %}
+							<p class="dot"></p>
+						{% endfor %}
+					</div>
+					{{ question.question }}
+				</h4>
+				<p class="answer">{{ question.answer }}</p>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}
+
+{% block javascript %}
+	<script src="/template/faq/User/index.js"></script>
+{% endblock %}

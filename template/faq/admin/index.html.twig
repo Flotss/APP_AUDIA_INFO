@@ -1,0 +1,90 @@
+{% extends '/base.html.twig' %}
+
+{% block title %}
+	Event IT - FAQ
+{% endblock %}
+
+{% block stylesheet %}
+	<link rel="stylesheet" href="/template/faq/admin/index.css"/>
+{% endblock %}
+
+{% block body %}
+	<div class="head_title">
+		<h1>FAQ</h1>
+		<button class="button addButton" id="add">Ajouter une question</button>
+	</div>
+	{# separator #}
+	<div class="separator"></div>
+	<div class="faq_question"> 
+		{% for question in questions %}
+			<div class="question">
+				<h4 class="questionTitle">
+					{{ question.question }}
+				</h4>
+				<p class="answer">{{ question.answer }}</p>
+				<button class="button modify" data-id="{{ question.id }}" data-question="{{ question.question }}" data-answer="{{ question.answer }}">Modifier</button>
+				<button class="button delete" data-id="{{ question.id }}">Supprimer</button>
+			</div>
+		{% endfor %}
+	</div>
+
+	{# modal ajout #}
+	<dialog class="modal" id="modalAdd">
+		<div class="modal-content">
+			<span class="close" id="closeAdd">&times;</span>
+			<h2 class="title-modal">Ajouter une question</h2>
+			<form id="formAdd" method="post" onaction="/admin/faq">
+				<input type="hidden" name="typeActionFaq" value="add">
+				<label for="question">Titre : </label>
+				<input type="text" name="question" placeholder="Titre de la question" required>
+				<label for="answer">Réponse : </label>
+				<textarea name="answer" placeholder="Sed id tincidunt diam. Curabitur vehicula justo ante, vel vehicula nulla ullamcorper vel. Cras et iaculis nunc, vel elementum est. Aliquam ipsum dolor, vehicula in malesuada sit amet, gravida. Sed id tincidunt diam. Curabitur vehicula justo ante, vel vehicula nulla ullamcorper vel. Cras et iaculis nunc, vel elementum est. Aliquam ipsum dolor, vehicula in malesuada sit amet, gravida." required></textarea>
+				<div class="buttons">
+					<button type="button" class="button button-modal cancel">Annuler</button>
+					<button type="submit" class="button button-modal">Ajouter</button>
+				</div>
+			</form>
+		</div>
+	</dialog>
+
+	{# modal modification #}
+	<dialog class="modal" id="modalModify">
+		<div class="modal-content">
+			<span class="close" id="closeModify">&times;</span>
+			<h2 class="title-modal">Modifier la question</h2>
+			<form id="form" method="post" onaction="/admin/faq">
+				<input type="hidden" name="typeActionFaq" value="update">
+				<input type="hidden" id="id" name="id" value="">
+				<label for="question">Titre : </label>
+				<input type="text" id="question" name="question" value="" placeholder="Titre de la question" required>
+				<label for="answer">Réponse : </label>
+				<textarea id="answer" name="answer" placeholder="Sed id tincidunt diam. Curabitur vehicula justo ante, vel vehicula nulla ullamcorper vel. Cras et iaculis nunc, vel elementum est. Aliquam ipsum dolor, vehicula in malesuada sit amet, gravida. Sed id tincidunt diam. Curabitur vehicula justo ante, vel vehicula nulla ullamcorper vel. Cras et iaculis nunc, vel elementum est. Aliquam ipsum dolor, vehicula in malesuada sit amet, gravida." required></textarea>
+				<div class="buttons">
+					<button type="button" class="button button-modal cancel">Annuler</button>
+					<button type="submit" class="button button-modal">Modifier</button>
+				</div>
+			</form>
+		</div>
+	</dialog>
+
+	{# modal suppression #}
+	<dialog class="modal" id="modalDelete">
+		<div class="modal-content">
+			<span class="close" id="closeDelete">&times;</span>
+			<h2 class="title-modal">Supprimer la question</h2>
+			<form id="formDelete" method="post" onaction="/admin/faq" >
+				<input type="hidden" name="typeActionFaq" value="delete">
+				<input type="hidden" id="idDelete" name="id" value="">
+				<p>Êtes-vous sûr de vouloir supprimer cette question ?</p>
+				<div class="buttons">
+					<button type="button" class="button button-modal cancel" >Annuler</button>
+					<button type="submit" class="button button-modal">Supprimer</button>
+				</div>
+			</form>
+		</div>
+	</dialog>
+{% endblock %}
+
+{% block javascript %}
+	<script src="/template/faq/admin/index.js"></script>
+{% endblock %}
