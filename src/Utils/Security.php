@@ -2,6 +2,8 @@
 
 namespace App\Utils;
 
+use App\Exceptions\PasswordSecurityException;
+
 class Security
 {
     /**
@@ -27,6 +29,37 @@ class Security
     {
         $isPasswordCorrect = password_verify($password, $hashedPassword);
         return $isPasswordCorrect;
+    }
+
+    public static function verifyStrongPassword($password)
+    {
+        $uppercase = preg_match('@[A-Z]@', $password);
+        $lowercase = preg_match('@[a-z]@', $password);
+        $number    = preg_match('@[0-9]@', $password);
+        $specialChars = preg_match('@[^\w]@', $password);
+
+
+        if (!$uppercase) {
+            throw new PasswordSecurityException("Le mot de passe doit contenir au moins une lettre majuscule.");
+        }
+
+        if (!$lowercase) {
+            throw new PasswordSecurityException("Le mot de passe doit contenir au moins une lettre minuscule.");
+        }
+
+        if (!$number) {
+            throw new PasswordSecurityException("Le mot de passe doit contenir au moins un chiffre.");
+        }
+
+        if (!$specialChars) {
+            throw new PasswordSecurityException("Le mot de passe doit contenir au moins un caractère spécial.");
+        }
+
+        if (strlen($password) < 8) {
+            throw new PasswordSecurityException("Le mot de passe doit contenir au moins 8 caractères.");
+        }
+
+        return true;
     }
 
     /**
