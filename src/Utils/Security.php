@@ -14,7 +14,7 @@ class Security
      */
     public static function hashPassword($password)
     {
-        $hashedPassword = password_hash($password, PASSWORD_ARGON2ID);
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         return $hashedPassword;
     }
 
@@ -27,8 +27,7 @@ class Security
      */
     public static function verifyPassword($password, $hashedPassword)
     {
-        $isPasswordCorrect = password_verify($password, $hashedPassword);
-        return $isPasswordCorrect;
+        return password_verify($password, $hashedPassword);
     }
 
     public static function verifyStrongPassword($password)
@@ -83,6 +82,15 @@ class Security
     {
         $sanitizedInput = htmlspecialchars($input);
         return $sanitizedInput;
+    }
+
+    public static function sanitiseArray($array)
+    {
+        $sanitisedArray = array_map(function ($value) {
+            return self::sanitizeInput($value);
+        }, $array);
+
+        return $sanitisedArray;
     }
 
     /**

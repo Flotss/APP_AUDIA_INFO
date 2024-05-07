@@ -44,7 +44,7 @@ class UserConnectionService
      * 
      * @return bool True if the login is successful, false otherwise.
      */
-    public function loginUser($email, $password)
+    public function loginUser($email, $password): bool
     {
         // Check if the user exists in the database
         $user = $this->db->getUserByEmail($email);
@@ -71,17 +71,21 @@ class UserConnectionService
      * 
      * @return User The registered user object.
      */
-    public function registerUser($username, $email, $password, $firstName, $lastName)
+    public function registerUser($username, $email, $password, $firstName, $lastName): bool
     {
         // Create a new User object
         $user = new User(0, $username, $email, $password, $firstName, $lastName);
 
         // Set the user's password
-        $user->setPassword($password);
+        $user->setPasswordHashed($password);
 
         // Save the user to the database
-        $this->db->saveUser($user);
+        $user = $this->db->saveUser($user);
 
-        return $user;
+        // Save the user to a cookie
+        $user = serialize($user);
+        Cookies::set('user', $user);
+
+        return true;
     }
 }
