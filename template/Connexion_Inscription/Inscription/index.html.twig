@@ -12,39 +12,132 @@
 {% endblock %}
 
 {% block body %}
-	 <div class="container">
-      <img class="logo" src="/assets/logo_eventIT.png" alt="Logo" />
-      <input type="text" class="form-control" placeholder="Nom d'utilisateur" />
-      <input type="password" class="form-control" placeholder="Mot de passe" />
+  <div class="container">
+    <img class="logo" src="/assets/logo_eventIT.png" alt="Logo" />
+    <form onAction="/connexion" method="POST">
+      <input type="hidden" name="actionLogin" value="login" />
+      <input type="text" class="form-control" placeholder="Nom d'utilisateur" name="username" />
+      <input type="password" class="form-control" placeholder="Mot de passe" name="password" />
       <div id="signup-fields">
         <input
           type="password"
           class="form-control"
           placeholder="Confirmer le mot de passe"
+          name="confirm_password"
         />
-        <input type="text" class="form-control" placeholder="Email" />
-        <input type="text" class="form-control" placeholder="Nom complet" />
+        <div class="password_same" style="display:none">
+          <i id="icon_same_password" class="fa-solid fa-xmark bad"></i>
+          <span class="password-checklist-item-text">Les mots de passe ne correspondent pas</span>
+        </div>
+        <input type="text" class="form-control" placeholder="Email" name="email" />
+        <input type="text" class="form-control" placeholder="Nom" name="last_name" />
+        <input type="text" class="form-control" placeholder="Prenom" name="first_name" />
+
+        {# mot de passe checklist #}
+        <div class="password-checklist" style="display:none">
+          <div class="password-checklist-item">
+            <i id="password-length" class="fa-solid fa-xmark bad"></i>
+            <span class="password-checklist-item-text">8 caractères minimum</span>
+          </div>
+          <div class="password-checklist-item">
+            <i id="password-uppercase" class="fa-solid fa-xmark bad"></i>
+            <span class="password-checklist-item-text">1 majuscule</span>
+          </div>
+          <div class="password-checklist-item">
+            <i id="password-lowercase" class="fa-solid fa-xmark bad"></i>
+            <span class="password-checklist-item-text">1 minuscule</span>
+          </div>
+          <div class="password-checklist-item">
+            <i id="password-number" class="fa-solid fa-xmark bad"></i>
+            <span class="password-checklist-item-text">1 chiffre</span>
+          </div>
+          <div class="password-checklist-item">
+            <i id="password-special" class="fa-solid fa-xmark bad"></i>
+            <span class="password-checklist-item-text">1 caractère spécial</span>
+          </div>
+        </div>
       </div>
-      <button class="btn" id="login">Se connecter</button>
-      <button class="btn" id="signup">S'inscrire</button>
-      <button class="btn" id="returnToLogin" style="display: none">Retourner à la connexion</button>
-    </div>
+      <button class="btn" id="login" type="submit">Se connecter</button>
+      <button class="btn" id="signup" type="button">S'inscrire</button>
+      <button class="btn" id="returnToLogin" type="button" style="display: none">Retourner à la connexion</button>
+    </form>
+  </div>
 {% endblock %}
 
 {% block javascript %}
 	<script>
       const btnReturn = document.getElementById('returnToLogin');
       const btnLogin = document.getElementById('login');
+      const btnSignup = document.getElementById('signup');
+
+      const inputAction = document.querySelector('input[name="actionLogin"]');
       document.getElementById('signup').addEventListener('click', function () {
         document.getElementById('signup-fields').style.maxHeight = '300px';
         btnReturn.style.display = 'block';
         btnLogin.style.display = 'none';
+        setTimeout(() => {
+          btnSignup.type = 'submit';
+          inputAction.value = 'signup';
+        }, 200);
       });
 
       document.getElementById('returnToLogin').addEventListener('click', function () {
         document.getElementById('signup-fields').style.maxHeight = '0';
         btnReturn.style.display = 'none';
         btnLogin.style.display = 'block';
+        btnSignup.type = 'button';
+        inputAction.value = 'login';
       });
+  </script>
+  <script>
+    const password = document.querySelector('input[name="password"]');
+    const passwordChecklist = document.querySelector('.password-checklist');
+    const passwordChecklistItems = document.querySelectorAll('.password-checklist-item');
+    const passwordChecklistItemsIcon = document.querySelectorAll('.password-checklist-item i');
+
+    {# if password is selected  #}
+    password.addEventListener('focus', function () {
+      passwordChecklist.style.display = 'block';
+    });
+
+    {# if password is not selected  #}
+    password.addEventListener('blur', function () {
+      passwordChecklist.style.display = 'none';
+    });
+
+
+    password.addEventListener('input', function () {
+      console.log(password.value);
+      const value = password.value;
+      const length = value.length >= 8;
+      const uppercase = value.match(/[A-Z]/);
+      const lowercase = value.match(/[a-z]/);
+      const number = value.match(/[0-9]/);
+      const special = value.match(/[^A-Za-z0-9]/);
+
+      passwordChecklistItemsIcon[0].className = length ? 'fa-solid fa-check good' : 'fa-solid fa-xmark bad';
+      passwordChecklistItemsIcon[1].className = uppercase ? 'fa-solid fa-check good' : 'fa-solid fa-xmark bad';
+      passwordChecklistItemsIcon[2].className = lowercase ? 'fa-solid fa-check good' : 'fa-solid fa-xmark bad';
+      passwordChecklistItemsIcon[3].className = number ? 'fa-solid fa-check good' : 'fa-solid fa-xmark bad';
+      passwordChecklistItemsIcon[4].className = special ? 'fa-solid fa-check good' : 'fa-solid fa-xmark bad';
+    });
+
+    const confirmPassword = document.querySelector('input[name="confirm_password"]');
+    const iconSamePassword = document.getElementById('icon_same_password');
+
+    confirmPassword.addEventListener('input', function () {
+      const password = password.value;
+      const confirmPassword = confirmPassword.value;
+      iconSamePassword.className = password === confirmPassword ? 'fa-solid fa-check good' : 'fa-solid fa-xmark bad';
+    });
+
+    confirmPassword.addEventListener('focus', function () {
+      document.querySelector('.password_same').style.display = 'block';
+    });
+
+    confirmPassword.addEventListener('blur', function () {
+      document.querySelector('.password_same').style.display = 'none';
+    });
+
   </script>
 {% endblock %}

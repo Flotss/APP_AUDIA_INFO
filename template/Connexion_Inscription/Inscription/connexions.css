@@ -64,3 +64,11 @@ footer {
   bottom: 0;
   width: 100%;
 }
+
+.good {
+  color: green;
+}
+
+.bad {
+  color: red;
+}
