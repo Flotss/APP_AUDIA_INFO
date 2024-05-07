@@ -50,7 +50,6 @@ class ConnexionController extends AbstractController
 
     private function handleConnection()
     {
-        // TODO : CHECK IF EMAIL AND PASSWORD ARE VALID
         $email = Security::sanitizeInput($_POST["email"]);
         $password = Security::sanitizeInput($_POST["password"]);
 
@@ -78,6 +77,7 @@ class ConnexionController extends AbstractController
             $this->data['message'] = $e->getMessage();
             return;
         }
+
         $isLog = $this->userConnectionService->registerUser($username, $email, $password, $firstName, $lastName, $phone);
 
         if ($isLog) {
