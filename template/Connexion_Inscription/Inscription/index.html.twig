@@ -25,11 +25,14 @@
           placeholder="Confirmer le mot de passe"
           name="confirm_password"
         />
-        <div class="password_same" style="display:none">
-          <i id="icon_same_password" class="fa-solid fa-xmark bad"></i>
-          <span class="password-checklist-item-text">Les mots de passe ne correspondent pas</span>
+        <div class="form-group">
+          <input type="password" class="form-control" placeholder="Confirmer le mot de passe" name="confirm_password">
+          <i class="fa-solid fa-xmark bad" id="icon_same_password" style=""></i>
         </div>
-        <input type="text" class="form-control" placeholder="Email" name="email" />
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Email" name="email">
+          <i class="fa fa-xmark bad" id="email-valid-icon" style=""></i>
+        </div>
         <input type="text" class="form-control" placeholder="Nom" name="last_name" />
         <input type="text" class="form-control" placeholder="Prenom" name="first_name" />
 
@@ -90,6 +93,17 @@
       });
   </script>
   <script>
+    let allIsGood = false;
+    const email = document.querySelector('input[name="email"]');
+    const emailValidIcon = document.getElementById('email-valid-icon');
+
+    email.addEventListener('input', function () {
+      const value = email.value;
+      const valid = value.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/);
+      emailValidIcon.className = valid ? 'fa-solid fa-check good' : 'fa-solid fa-xmark bad';
+    });
+
+
     const password = document.querySelector('input[name="password"]');
     const passwordChecklist = document.querySelector('.password-checklist');
     const passwordChecklistItems = document.querySelectorAll('.password-checklist-item');
@@ -106,20 +120,18 @@
     });
 
 
-    password.addEventListener('input', function () {
-      console.log(password.value);
-      const value = password.value;
-      const length = value.length >= 8;
-      const uppercase = value.match(/[A-Z]/);
-      const lowercase = value.match(/[a-z]/);
-      const number = value.match(/[0-9]/);
-      const special = value.match(/[^A-Za-z0-9]/);
+    function checkPasswordCondition(condition, index) {
+      passwordChecklistItemsIcon[index].className = condition ? 'fa-solid fa-check good' : 'fa-solid fa-xmark bad';
+    }
 
-      passwordChecklistItemsIcon[0].className = length ? 'fa-solid fa-check good' : 'fa-solid fa-xmark bad';
-      passwordChecklistItemsIcon[1].className = uppercase ? 'fa-solid fa-check good' : 'fa-solid fa-xmark bad';
-      passwordChecklistItemsIcon[2].className = lowercase ? 'fa-solid fa-check good' : 'fa-solid fa-xmark bad';
-      passwordChecklistItemsIcon[3].className = number ? 'fa-solid fa-check good' : 'fa-solid fa-xmark bad';
-      passwordChecklistItemsIcon[4].className = special ? 'fa-solid fa-check good' : 'fa-solid fa-xmark bad';
+    password.addEventListener('input', function () {
+      const value = password.value;
+    
+      checkPasswordCondition(value.length >= 8, 0);
+      checkPasswordCondition(value.match(/[A-Z]/), 1);
+      checkPasswordCondition(value.match(/[a-z]/), 2);
+      checkPasswordCondition(value.match(/[0-9]/), 3);
+      checkPasswordCondition(value.match(/[^A-Za-z0-9]/), 4);
     });
 
     const confirmPassword = document.querySelector('input[name="confirm_password"]');
@@ -128,6 +140,11 @@
     confirmPassword.addEventListener('input', function () {
       const password = password.value;
       const confirmPassword = confirmPassword.value;
+      console.log({
+        password,
+        confirmPassword
+      })
+
       iconSamePassword.className = password === confirmPassword ? 'fa-solid fa-check good' : 'fa-solid fa-xmark bad';
     });
 
