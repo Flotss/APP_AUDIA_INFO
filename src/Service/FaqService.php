@@ -15,13 +15,13 @@ class FaqService
 
 	public function getQuestions()
 	{
-		$questions = $this->db->makeRequest("SELECT * FROM faq");
+		$questions = $this->db->makeRequest("SELECT * FROM FAQ");
 		return $questions;
 	}
 
 	public function getQuestionById($id)
 	{
-		$question = $this->db->makeRequest("SELECT * FROM faq WHERE id = ?", [$id]);
+		$question = $this->db->makeRequest("SELECT * FROM FAQ WHERE id = ?", [$id]);
 		return $question;
 	}
 
@@ -29,7 +29,7 @@ class FaqService
 	public function addQuestion($question, $answer)
 	{
 		$this->db->makeRequest(
-			"INSERT INTO faq (question, answer) VALUES (?, ?)",
+			"INSERT INTO FAQ (question, answer) VALUES (?, ?)",
 			[$question, $answer]
 		);
 	}
@@ -37,7 +37,7 @@ class FaqService
 	public function updateQuestion($id, $question, $answer)
 	{
 		$this->db->makeRequest(
-			"UPDATE faq SET question = ?, answer = ? WHERE id = ?",
+			"UPDATE FAQ SET question = ?, answer = ? WHERE id = ?",
 			[$question, $answer, $id]
 		);
 	}
@@ -45,6 +45,6 @@ class FaqService
 
 	public function deleteQuestion($id)
 	{
-		$this->db->makeRequest("DELETE FROM faq WHERE id = ?", [$id]);
+		$this->db->makeRequest("DELETE FROM FAQ WHERE id = ?", [$id]);
 	}
 }
