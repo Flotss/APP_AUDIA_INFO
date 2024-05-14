@@ -17,8 +17,6 @@ class AdminVerificationService
 
     public function isAdmin()
     {
-        $user = new User(1, 'admin', 'admin@gmail.com', 'admin', 'admin', 'admin', 'admin', 'admin', 'ADMIN');
-        Cookies::set('user', serialize($user));
         // Get user from cookie
         $user = Cookies::get('user');
         if ($user === null) {
