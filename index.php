@@ -21,6 +21,9 @@ use App\Controller\FaqAdminController;
 use App\Controller\CguAdminController;
 use App\Controller\Admin\GestionUtilisateursController;
 
+//API
+use App\ApiController\MonitoringApiController;
+
 session_start();
 
 
@@ -68,6 +71,16 @@ $routePost = [
     '/admin/users' => $routesGet['/admin/users'],
 ];
 
+
+$routeApiGet = [
+    '/api/monitoring' => new MonitoringApiController(),
+];
+
+
+$routeApiGet = [
+    '/api/monitoring' => new MonitoringApiController(),
+];
+
 foreach ($routesGet as $route => $controller) {
     $router->get($route, function () use ($controller) {
         $controller->index();
@@ -77,6 +90,12 @@ foreach ($routesGet as $route => $controller) {
 foreach ($routePost as $route => $controller) {
     $router->post($route, function () use ($controller) {
         $controller->index();
+    });
+}
+
+foreach ($routeApiGet as $route => $controller) {
+    $router->get($route, function () use ($controller) {
+        $controller->get();
     });
 }
 
