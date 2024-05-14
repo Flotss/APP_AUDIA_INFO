@@ -102,3 +102,49 @@ footer {
 .bad {
   color: red;
 }
+
+/*   <div class="alert-section">
+    <div class="alert alert-danger" role="alert">
+      <i class="fa-solid fa-exclamation-triangle"></i>
+      <span>Erreur lors de la connexion</span>
+    </div>
+    <div class="alert alert-success" role="alert">
+      <i class="fa-solid fa-check"></i>
+      <span>Connexion réussie</span>
+    </div>
+  </div> */
+
+.alert-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+/* si alert section alors le margin top de container est de 10px */
+.alert-section + .container {
+  margin-top: 10px;
+}
+
+.alert {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  width: 300px;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.alert i {
+  margin-right: 10px;
+}

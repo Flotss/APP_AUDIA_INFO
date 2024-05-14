@@ -14,7 +14,7 @@ class Security
      */
     public static function hashPassword($password)
     {
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $hashedPassword = password_hash($password, PASSWORD_ARGON2ID);
         return $hashedPassword;
     }
 
@@ -30,7 +30,7 @@ class Security
         return password_verify($password, $hashedPassword);
     }
 
-    public static function verifyStrongPassword($password)
+    private static function verifyStrongPassword($password)
     {
         $uppercase = preg_match('@[A-Z]@', $password);
         $lowercase = preg_match('@[a-z]@', $password);
@@ -113,8 +113,7 @@ class Security
      */
     public static function validatePassword($password)
     {
-        $isPasswordValid = strlen($password) >= 8;
-        return $isPasswordValid;
+        return self::verifyStrongPassword($password);
     }
 
     /**

@@ -20,13 +20,17 @@ class ConnexionController extends AbstractController
     public function __construct()
     {
         parent::__construct("Connexion_Inscription/Inscription");
-        $this->userConnectionService = new UserConnectionService();
 
-        // IF CONNECTED REDIRECT TO HOME
-        Cookies::exists("user") ? header("Location: /") : null;
 
-        if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["actionLogin"])) {
-            $this->handlePostRequest();
+        if ($_SERVER["REQUEST_URI"] === "/connexion") {
+            $this->userConnectionService = new UserConnectionService();
+
+            // IF CONNECTED REDIRECT TO HOME
+            Cookies::exists("user") ? header("Location: /") : null;
+
+            if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["actionLogin"])) {
+                $this->handlePostRequest();
+            }
         }
     }
 
@@ -35,12 +39,12 @@ class ConnexionController extends AbstractController
      */
     private function handlePostRequest()
     {
-        if ($_POST["actionLogin"] === "connection") {
+        if ($_POST["actionLogin"] === "login") {
             $this->handleConnection();
             return;
         }
 
-        if ($_POST["actionLogin"] === "inscription") {
+        if ($_POST["actionLogin"] === "signup") {
             $this->handleInscription();
             return;
         }
@@ -58,7 +62,7 @@ class ConnexionController extends AbstractController
         if ($isLog) {
             header("Location: /");
         } else {
-            $this->data['message'] = "Email ou mot de passe incorrect";
+            $this->data['messageError'] = "Email ou mot de passe incorrect";
         }
     }
 
@@ -74,7 +78,7 @@ class ConnexionController extends AbstractController
         try {
             Security::validatePassword($password);
         } catch (\Exception $e) {
-            $this->data['message'] = $e->getMessage();
+            $this->data['messageError'] = $e->getMessage();
             return;
         }
 
@@ -83,7 +87,7 @@ class ConnexionController extends AbstractController
         if ($isLog) {
             header("Location: /inscription_confirmee");
         } else {
-            $this->data['message'] = "Erreur lors de l'inscription";
+            $this->data['messageError'] = "Erreur lors de l'inscription";
         }
     }
 }

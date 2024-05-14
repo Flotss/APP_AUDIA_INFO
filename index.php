@@ -16,7 +16,7 @@ use App\Controller\MentionslegalesController;
 use App\Controller\FaqAdminController;
 use App\Controller\CguAdminController;
 
-
+session_start();
 
 
 
