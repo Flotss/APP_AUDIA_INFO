@@ -9,7 +9,9 @@ document.body.onload = function () {
     { year: 2015, count: 30 },
     { year: 2016, count: 28 },
   ];
-
+  fetch('src/ApiController/MonitoringApiController.php');
+  // AJAX
+  //Promise 
   const chart = new Chart(document.getElementById('temperature-chart'), {
     type: 'line',
     data: {

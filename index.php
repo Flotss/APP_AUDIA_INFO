@@ -16,6 +16,8 @@ use App\Controller\MentionslegalesController;
 use App\Controller\FaqAdminController;
 use App\Controller\CguAdminController;
 
+//API
+use App\ApiController\MonitoringApiController;
 
 
 
@@ -48,6 +50,11 @@ $routePost = [
     '/admin/faq' => $routesGet['/admin/faq'],
 ];
 
+
+$routeApiGet = [
+    '/api/monitoring' => new MonitoringApiController(),
+];
+
 foreach ($routesGet as $route => $controller) {
     $router->get($route, function () use ($controller) {
         $controller->index();
@@ -57,6 +64,12 @@ foreach ($routesGet as $route => $controller) {
 foreach ($routePost as $route => $controller) {
     $router->post($route, function () use ($controller) {
         $controller->index();
+    });
+}
+
+foreach ($routeApiGet as $route => $controller) {
+    $router->get($route, function () use ($controller) {
+        $controller->get();
     });
 }
 
