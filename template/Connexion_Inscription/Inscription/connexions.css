@@ -103,17 +103,6 @@ footer {
   color: red;
 }
 
-/*   <div class="alert-section">
-    <div class="alert alert-danger" role="alert">
-      <i class="fa-solid fa-exclamation-triangle"></i>
-      <span>Erreur lors de la connexion</span>
-    </div>
-    <div class="alert alert-success" role="alert">
-      <i class="fa-solid fa-check"></i>
-      <span>Connexion réussie</span>
-    </div>
-  </div> */
-
 .alert-section {
   display: flex;
   flex-direction: column;
