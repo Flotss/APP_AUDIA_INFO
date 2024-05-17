@@ -14,12 +14,12 @@
 		{% block head %}{% endblock %}
 		</head>
 		<body>
-			{% if admin %}
-					{% include 'header/admin_header.html.twig' %}
+			{% if admin_page %}
+					{% include 'header/admin_header.html.twig' with { 'user_connected': usrer_connected } %}
 			{% else %}
-					{% include 'header/header.html.twig' %}
+					{% include 'header/header.html.twig' with { 'user_connected': user_connected, 'admin': admin } %}
 			{% endif %}
-			
+
 			<div class="content">
 				{% block body %}{% endblock %}
 			</div>

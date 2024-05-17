@@ -7,12 +7,12 @@
             <li class="liheader"><a href="/contact">Contact</a></li>
             <li class="liheader"><a href="/faq">FAQ</a></li>
 
+            {% if admin %}
+                <li class="liheader"><a href="/backoffice">Backoffice</a></li>
+            {% endif %}
             {% if user_connected %}
                 <li class="liheader"><a href="/profil">Profil</a></li>
                 <li class="liheader"><a href="/deconnexion">Deconnexion</a></li>
-            {% endif %}
-            {% if user_connected and user_role == 'admin' %}
-                <li class="liheader"><a href="/backoffice">Backoffice</a></li>
             {% endif %}
             {% if not user_connected %}
                 <li class="liheader"><a href="/connexion">Connexion</a></li>
