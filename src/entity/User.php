@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Utils\Security;
+
 class User
 {
     /**
@@ -42,12 +44,12 @@ class User
      * @param string $email The email of the user.
      * @param string|null $password The password of the user (optional).
      */
-    public function __construct(int $id, string $username, string $email, string $password = null, string $firstName, string $lastName, string $location = null, string $phone = null, string $role = 'USER')
+    public function __construct(int $id, string $username, string $email, string $password, string $firstName, string $lastName, string $location = "", string $phone = "", string $role = 'USER')
     {
         $this->id = $id;
         $this->username = $username;
         $this->email = $email;
-        $this->password = $password ? password_hash($password, PASSWORD_DEFAULT) : null;
+        $this->password = $password;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->location = $location;
@@ -83,6 +85,19 @@ class User
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    /**
+     * Sets the ID of the user.
+     *
+     * @param int $id The new ID.
+     * @return self
+     */
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     /**
@@ -141,15 +156,22 @@ class User
         return $this->password;
     }
 
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
     /**
      * Sets the password of the user.
      *
      * @param string $password The new password.
      * @return self
      */
-    public function setPassword(string $password): self
+    public function setPasswordHashed(string $password): self
     {
-        $this->password = $password;
+        $this->password = Security::hashPassword($password);
 
         return $this;
     }

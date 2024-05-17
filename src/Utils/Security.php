@@ -2,6 +2,8 @@
 
 namespace App\Utils;
 
+use App\Exceptions\PasswordSecurityException;
+
 class Security
 {
     /**
@@ -25,8 +27,38 @@ class Security
      */
     public static function verifyPassword($password, $hashedPassword)
     {
-        $isPasswordCorrect = password_verify($password, $hashedPassword);
-        return $isPasswordCorrect;
+        return password_verify($password, $hashedPassword);
+    }
+
+    private static function verifyStrongPassword($password)
+    {
+        $uppercase = preg_match('@[A-Z]@', $password);
+        $lowercase = preg_match('@[a-z]@', $password);
+        $number    = preg_match('@[0-9]@', $password);
+        $specialChars = preg_match('@[^\w]@', $password);
+
+
+        if (!$uppercase) {
+            throw new PasswordSecurityException("Le mot de passe doit contenir au moins une lettre majuscule.");
+        }
+
+        if (!$lowercase) {
+            throw new PasswordSecurityException("Le mot de passe doit contenir au moins une lettre minuscule.");
+        }
+
+        if (!$number) {
+            throw new PasswordSecurityException("Le mot de passe doit contenir au moins un chiffre.");
+        }
+
+        if (!$specialChars) {
+            throw new PasswordSecurityException("Le mot de passe doit contenir au moins un caractère spécial.");
+        }
+
+        if (strlen($password) < 8) {
+            throw new PasswordSecurityException("Le mot de passe doit contenir au moins 8 caractères.");
+        }
+
+        return true;
     }
 
     /**
@@ -52,6 +84,15 @@ class Security
         return $sanitizedInput;
     }
 
+    public static function sanitiseArray($array)
+    {
+        $sanitisedArray = array_map(function ($value) {
+            return self::sanitizeInput($value);
+        }, $array);
+
+        return $sanitisedArray;
+    }
+
     /**
      * Validates if an email address is valid.
      *
@@ -72,8 +113,7 @@ class Security
      */
     public static function validatePassword($password)
     {
-        $isPasswordValid = strlen($password) >= 8;
-        return $isPasswordValid;
+        return self::verifyStrongPassword($password);
     }
 
     /**

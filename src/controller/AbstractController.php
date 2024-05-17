@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\AdminVerificationService;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
@@ -27,6 +28,13 @@ abstract class AbstractController
         $this->pathToLoad = $templatePath;
 
         $this->twigError = new Environment(new FilesystemLoader('template/error'));
+
+        $user = $_COOKIE['user'] ?? null;
+        $isConnected = $user !== null;
+        $serviceAdmin = new AdminVerificationService();
+        $isAdmin = $isConnected && $serviceAdmin->isAdmin();
+        $this->addData('user_connected', $isConnected);
+        $this->addData('admin', $isAdmin);
     }
 
     /**

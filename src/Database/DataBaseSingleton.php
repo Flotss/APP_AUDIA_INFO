@@ -57,7 +57,7 @@ class DataBaseSingleton
      * @param User $user The user to be saved.
      * @return void
      */
-    public function saveUser(User $user)
+    public function saveUser(User $user): User
     {
         if ($user->getId() != 0) {
             $query = $this->connection->prepare('UPDATE User SET username = :username, firstName = :firstName, lastName = :lastName, email = :email, location = :location, phone = :phone, password = :password, role = :role WHERE id = :id');
@@ -70,10 +70,17 @@ class DataBaseSingleton
             'firstName' => $user->getFirstName(),
             'lastName' => $user->getLastName(),
             'email' => $user->getEmail(),
+            'location' => $user->getLocation(),
             'phone' => $user->getPhone(),
             'password' => $user->getPassword(),
             'role' => $user->getRole(),
         ]);
+
+        if ($user->getId() == 0) {
+            $user->setId($this->connection->lastInsertId());
+        }
+
+        return $user;
     }
 
     /**
