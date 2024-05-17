@@ -64,7 +64,6 @@ foreach ($routePost as $route => $controller) {
 // IF LOCATION IS /backoffice
 // REDIRECT TO /admin/faq
 if ($_GET['url'] === 'backoffice') {
-    echo $_GET['url'];
     header('Location: /admin/faq');
     exit();
 }
