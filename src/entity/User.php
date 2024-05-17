@@ -44,7 +44,7 @@ class User
      * @param string $email The email of the user.
      * @param string|null $password The password of the user (optional).
      */
-    public function __construct(int $id, string $username, string $email, string $password = null, string $firstName, string $lastName, string $location = null, string $phone = null, string $role = 'USER')
+    public function __construct(int $id, string $username, string $email, string $password, string $firstName, string $lastName, string $location = "", string $phone = "", string $role = 'USER')
     {
         $this->id = $id;
         $this->username = $username;

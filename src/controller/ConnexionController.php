@@ -71,9 +71,8 @@ class ConnexionController extends AbstractController
         $email = Security::sanitizeInput($_POST["email"]);
         $password = Security::sanitizeInput($_POST["password"]);
         $username = Security::sanitizeInput($_POST["username"]);
-        $firstName = Security::sanitizeInput($_POST["firstName"]);
-        $lastName = Security::sanitizeInput($_POST["lastName"]);
-        $phone = Security::sanitizeInput($_POST["phone"]);
+        $firstName = Security::sanitizeInput($_POST["first_name"]);
+        $lastName = Security::sanitizeInput($_POST["last_name"]);
 
         try {
             Security::validatePassword($password);
@@ -82,7 +81,7 @@ class ConnexionController extends AbstractController
             return;
         }
 
-        $isLog = $this->userConnectionService->registerUser($username, $email, $password, $firstName, $lastName, $phone);
+        $isLog = $this->userConnectionService->registerUser($username, $email, $password, $firstName, $lastName);
 
         if ($isLog) {
             header("Location: /inscription_confirmee");
