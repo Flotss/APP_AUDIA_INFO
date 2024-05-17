@@ -16,6 +16,7 @@ abstract class AbstractAdminController extends AbstractController
     public function __construct(string $templatePath = 'template/admin')
     {
         parent::__construct($templatePath);
+        $this->addData('admin_page', true);
     }
 
     /**
