@@ -11,6 +11,7 @@ use App\Controller\ContactController;
 use App\Controller\MonitoringController;
 use App\Controller\CguController;
 use App\Controller\MentionslegalesController;
+use App\Controller\DeconnexionController;
 
 //ADMIN
 use App\Controller\FaqAdminController;
@@ -26,8 +27,6 @@ if (!isset($_GET['url'])) {
 }
 $router = new Router($_GET['url']);
 
-// AJOUTER LA ROUTE COMME ICI POUR CHAQUE PAGE
-// Avec le controller associé à votre page
 $routesGet = [
     '/' => new IndexController(),
     '/faq' => new FaqController(),
@@ -36,6 +35,7 @@ $routesGet = [
     '/connexion' => new ConnexionController(),
     '/cgu' => new CguController(),
     '/mentionslegales' => new MentionslegalesController(),
+    '/deconnexion' => new DeconnexionController(),
 
     // ADMIN ROUTES
     '/admin/faq' => new FaqAdminController(),
@@ -58,6 +58,15 @@ foreach ($routePost as $route => $controller) {
     $router->post($route, function () use ($controller) {
         $controller->index();
     });
+}
+
+// IF backoffice redirection
+// IF LOCATION IS /backoffice
+// REDIRECT TO /admin/faq
+if ($_GET['url'] === 'backoffice') {
+    echo $_GET['url'];
+    header('Location: /admin/faq');
+    exit();
 }
 
 try {
