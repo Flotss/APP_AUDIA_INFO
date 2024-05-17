@@ -1,6 +1,6 @@
 <?php
 
-namespace App\ApiController;
+namespace App\Controller\ApiController;
 
 abstract class ApiAbstractController
 {

@@ -5,7 +5,7 @@ namespace App\Entity;
 class DataMonitoringSingle
 {
     private string $date;
-    private int $value;
+    private float $value;
 
     public function __construct($date, $value)
     {
@@ -18,7 +18,7 @@ class DataMonitoringSingle
         return $this->date;
     }
 
-    public function getValue(): string
+    public function getValue(): float
     {
         return $this->value;
     }

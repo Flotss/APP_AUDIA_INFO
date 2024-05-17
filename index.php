@@ -22,7 +22,7 @@ use App\Controller\CguAdminController;
 use App\Controller\Admin\GestionUtilisateursController;
 
 //API
-use App\ApiController\MonitoringApiController;
+use App\Controller\ApiController\MonitoringApiController;
 
 session_start();
 
