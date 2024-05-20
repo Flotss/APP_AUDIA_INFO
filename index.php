@@ -14,6 +14,8 @@ use App\Controller\ContactController;
 use App\Controller\MonitoringController;
 use App\Controller\CguController;
 use App\Controller\MentionslegalesController;
+use App\Controller\Cinema_selectController;
+
 use App\Controller\DeconnexionController;
 
 //ADMIN
@@ -50,6 +52,7 @@ $routesGet = [
 
     '/cgu' => new CguController(),
     '/mentionslegales' => new MentionslegalesController(),
+    '/cinema_select' => new Cinema_selectController(),
     '/deconnexion' => new DeconnexionController(),
 
     // ADMIN ROUTES

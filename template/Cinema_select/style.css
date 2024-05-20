@@ -1,0 +1,51 @@
+body {
+  background-color: #dcdcdc;
+  font-family: Arial, sans-serif;
+  color: #666;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #b3c6ff;
+}
+
+.cinema-list {
+  display: flex;
+  overflow-x: hidden;
+  width: 80%;
+  scroll-behavior: smooth;
+}
+
+.cinema-item {
+  min-width: 25%;
+  padding: 10px;
+}
+
+.cinema-item img {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+.scroll-btn {
+  background-color: #666;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.scroll-btn:hover {
+  background-color: #444;
+}
+
+.left-btn {
+  margin-right: 10px;
+}
+
+.right-btn {
+  margin-left: 10px;
+}

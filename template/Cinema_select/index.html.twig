@@ -1,0 +1,76 @@
+{% extends '/base.html.twig' %}
+
+{% block title %}
+	Monitoring
+{% endblock %}
+
+{% block stylesheet %}
+	<link rel="stylesheet" href="/template/Cinema_select/style.css"/>
+{% endblock %}
+
+{% block body %}
+	    <div class="container">
+      <button class="scroll-btn left-btn" onclick="scrollLeft()">
+        &#10094;
+      </button>
+      <div class="cinema-list">
+	  	<div class="cinema-item"><a href="http://localhost/monitoring?id=1"><img src="/assets/Image/Grand_rex.jpg" alt="Cinéma 1" /></div>
+        <div class="cinema-item"><a href="http://localhost/monitoring?id=2"><img src="cinema.jpg" alt="Cinéma 2" /></div>
+        <div class="cinema-item"><a href="http://localhost/monitoring?id=3"><img src="cinema.jpg" alt="Cinéma 3" /></div>
+        <div class="cinema-item"><a href="http://localhost/monitoring?id=4"><img src="cinema.jpg" alt="Cinéma 4" /></div>
+		<div class="cinema-item"><a href="http://localhost/monitoring?id=5"><img src="cinema.jpg" alt="Cinéma 5" /></div>
+      </div>
+      <button class="scroll-btn right-btn" onclick="scrollRight()">
+        &#10095;
+      </button>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+	<script src="/template/Cinema_select/script.js"></script>
+{% endblock %}
+
+{#
+	<!DOCTYPE html>
+	<html lang="en">
+	  <head>
+	    <meta charset="UTF-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	    <title>Monitoring Page</title>
+	    <link rel="stylesheet" href="style.css" />
+	  </head>
+	  <body>
+	    <div class="container">
+	      <div class="box1">
+	        <div class="data-box temperature">
+	          <h2>Temperature</h2>
+	          <p id="temperature-value">-- °C</p>
+	        </div>
+	        <div class="data-box sound-level">
+	          <h2>Sound Level</h2>
+	          <p id="sound-level-value">-- dB</p>
+	        </div>
+	        <div class="data-box co2-level">
+	          <h2>CO2 Level</h2>
+	          <p id="co2-level-value">-- ppm</p>
+	        </div>
+	      </div>
+	      <div class="box2">
+	        <div class="chart-container">
+	          <!-- Chart for temperature -->
+	          <canvas id="temperature-chart"></canvas>
+	        </div>
+	        <div class="chart-container">
+	          <!-- Chart for sound level -->
+	          <canvas id="sound-level-chart"></canvas>
+	        </div>
+	        <div class="chart-container">
+	          <!-- Chart for CO2 level -->
+	          <canvas id="co2-level-chart"></canvas>
+	        </div>
+	      </div>
+	    </div>
+	    <script src="scripts.js"></script>
+	  </body>
+	</html>
+	#}
