@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Authentification;
 
 use App\Service\UserConnectionService;
 use App\Utils\Cookies;
 use App\Utils\Security;
+use App\Controller\AbstractController;
 
 /**
  * The ConnexionController class is responsible for handling requests related to the index page.
@@ -19,7 +20,7 @@ class ConnexionController extends AbstractController
      */
     public function __construct()
     {
-        parent::__construct("Connexion_Inscription/Inscription");
+        parent::__construct("Authentification/Inscription");
 
 
         if ($_SERVER["REQUEST_URI"] === "/connexion") {

@@ -68,7 +68,7 @@ class Security
      */
     public static function generateToken()
     {
-        $token = bin2hex(random_bytes(32));
+        $token = bin2hex(random_bytes(50));
         return $token;
     }
 

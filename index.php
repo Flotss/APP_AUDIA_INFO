@@ -4,7 +4,9 @@ require_once 'src/Config/Credentials.php';
 
 use App\Router\Router;
 use App\Controller\IndexController;
-use App\Controller\ConnexionController;
+use App\Controller\Authentification\ConnexionController;
+use App\Controller\Authentification\ChangePasswordController;
+use App\Controller\Authentification\PasswordForgotController;
 use App\Controller\FaqController;
 use App\Exceptions\RouterException;
 use App\Controller\ContactController;
@@ -19,7 +21,8 @@ use App\Controller\CguAdminController;
 
 session_start();
 
-
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
 
 if (!isset($_GET['url'])) {
@@ -32,7 +35,11 @@ $routesGet = [
     '/faq' => new FaqController(),
     '/contact' => new ContactController(),
     '/monitoring' => new MonitoringController(),
+
     '/connexion' => new ConnexionController(),
+    '/forgot_password' => new PasswordForgotController(),
+    '/change_password' => new ChangePasswordController(),
+
     '/cgu' => new CguController(),
     '/mentionslegales' => new MentionslegalesController(),
     '/deconnexion' => new DeconnexionController(),

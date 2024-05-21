@@ -4,7 +4,8 @@
   "type": "project",
   "require": {
     "php": "8.1.12",
-    "twig/twig": "^3.0"
+    "twig/twig": "^3.0",
+    "phpmailer/phpmailer": "^6.9",
   },
   "config": {
     "disable-tls": true

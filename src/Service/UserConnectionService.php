@@ -88,4 +88,12 @@ class UserConnectionService
 
         return true;
     }
+
+    public function storeUserToken(User $user, string $token)
+    {
+        $this->db->makeRequest("UPDATE User SET token = :token WHERE id = :id", [
+            'token' => $token,
+            'id' => $user->getId()
+        ]);
+    }
 }
