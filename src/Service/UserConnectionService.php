@@ -96,4 +96,12 @@ class UserConnectionService
             'id' => $user->getId()
         ]);
     }
+
+    public function updateUserPassword(User $user, string $password)
+    {
+        $this->db->makeRequest("UPDATE User SET password = :password WHERE id = :id", [
+            'password' => $password,
+            'id' => $user->getId()
+        ]);
+    }
 }

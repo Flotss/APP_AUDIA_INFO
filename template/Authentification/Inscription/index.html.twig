@@ -48,7 +48,7 @@
         <input type="text" class="form-control" placeholder="Prenom" name="first_name" />
 
         {# mot de passe checklist #}
-        <div class="password-checklist" style="display:none">
+        <div class="password-checklist animate" style="display:none">
           <div class="password-checklist-item">
             <i id="password-length" class="fa-solid fa-xmark bad"></i>
             <span class="password-checklist-item-text">8 caractères minimum</span>
@@ -71,10 +71,14 @@
           </div>
         </div>
       </div>
+      
       <button class="btn" id="login" type="submit">Se connecter</button>
       <button class="btn" id="signup" type="button">S'inscrire</button>
       <button class="btn" id="returnToLogin" type="button" style="display: none">Retourner à la connexion</button>
     </form>
+  </div>
+  <div class="container forgot-password animate">
+    <p> Vous avez oublié votre mot de passe ? <a href="/forgot_password">Cliquez ici</a> </p>
   </div>
 {% endblock %}
 
@@ -83,6 +87,7 @@
       const btnReturn = document.getElementById('returnToLogin');
       const btnLogin = document.getElementById('login');
       const btnSignup = document.getElementById('signup');
+      const forgotPassword = document.querySelector('.container.forgot-password');
 
       const inputAction = document.querySelector('input[name="actionLogin"]');
       
@@ -97,6 +102,7 @@
         document.getElementById('signup-fields').style.maxHeight = '300px';
         btnReturn.style.display = 'block';
         btnLogin.style.display = 'none';
+        forgotPassword.style.display = 'none';
         setTimeout(() => {
           btnSignup.type = 'submit';
           inputAction.value = 'signup';
@@ -111,6 +117,7 @@
         btnLogin.style.display = 'block';
         btnSignup.type = 'button';
         inputAction.value = 'login';
+        forgotPassword.style.display = 'block';
 
         setRequiredFields(false);
       });

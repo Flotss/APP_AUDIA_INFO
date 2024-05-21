@@ -12,19 +12,21 @@
 {% endblock %}
 
 {% block body %}
-    {# alert section #}
-    {% if messageError is defined %}
-        <div class="alert alert-danger" role="alert">
-            <i class="fa-solid fa-exclamation-triangle"></i>
-            <span>{{ messageError }}</span>
-        </div>
-    {% endif %}
-    {% if message is defined %}
-        <div class="alert alert-success" role="alert">
-            <i class="fa-solid fa-check"></i>
-            <span>{{ message }}</span>
-        </div>
-    {% endif %}
+    <div class="alert-section">
+        {# alert section #}
+        {% if messageError is defined %}
+            <div class="alert alert-danger" role="alert">
+                <i class="fa-solid fa-exclamation-triangle"></i>
+                <span>{{ messageError }}</span>
+            </div>
+        {% endif %}
+        {% if message is defined %}
+            <div class="alert alert-success" role="alert">
+                <i class="fa-solid fa-check"></i>
+                <span>{{ message }}</span>
+            </div>
+        {% endif %}
+    </div>
     <div class="container">
         <img class="logo" src="/assets/logo_eventIT.png" alt="Logo" />
         <form action="/forgot_password" method="POST">

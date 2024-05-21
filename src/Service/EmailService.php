@@ -30,8 +30,6 @@ class EmailService
     public function sendEmail($to, $toName, $subject, $htmlContent, $altBody)
     {
         try {
-            $this->mailer->SMTPDebug = SMTP::DEBUG_SERVER; // Affiche chaque étape de l'envoi du message
-
             $this->mailer->setFrom('noreply.eventit@gmail.com', 'Event IT');
             $this->mailer->addAddress($to, $toName);
             $this->mailer->isHTML(true);

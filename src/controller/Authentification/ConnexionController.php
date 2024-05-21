@@ -6,6 +6,7 @@ use App\Service\UserConnectionService;
 use App\Utils\Cookies;
 use App\Utils\Security;
 use App\Controller\AbstractController;
+use App\Database\DataBaseSingleton;
 
 /**
  * The ConnexionController class is responsible for handling requests related to the index page.
@@ -14,6 +15,7 @@ class ConnexionController extends AbstractController
 {
 
     private UserConnectionService $userConnectionService;
+    private DataBaseSingleton $db;
 
     /**
      * Constructs a new instance of the ConnexionController class.
@@ -25,6 +27,7 @@ class ConnexionController extends AbstractController
 
         if ($_SERVER["REQUEST_URI"] === "/connexion") {
             $this->userConnectionService = new UserConnectionService();
+            $this->db = DataBaseSingleton::getInstance();
 
             // IF CONNECTED REDIRECT TO HOME
             Cookies::exists("user") ? header("Location: /") : null;
@@ -79,6 +82,13 @@ class ConnexionController extends AbstractController
             Security::validatePassword($password);
         } catch (\Exception $e) {
             $this->data['messageError'] = $e->getMessage();
+            return;
+        }
+
+        // Check if the email is already used
+        $user = $this->db->getUserByEmail($email);
+        if ($user) {
+            $this->data['messageError'] = "Email déjà utilisé, veuillez en choisir un autre.";
             return;
         }
 

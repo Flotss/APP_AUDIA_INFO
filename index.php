@@ -51,6 +51,8 @@ $routesGet = [
 
 $routePost = [
     '/connexion' => $routesGet['/connexion'],
+    '/forgot_password' => $routesGet['/forgot_password'],
+    '/change_password' => $routesGet['/change_password'],
     '/admin/cgu' => $routesGet['/admin/cgu'],
     '/admin/faq' => $routesGet['/admin/faq'],
 ];
@@ -89,4 +91,6 @@ try {
     // Pour l'instant on redirige vers la page d'accueil
     $controller = new IndexController();
     $controller->index();
+
+    echo $e->getMessage();
 }
