@@ -10,6 +10,11 @@ class EmailService
 {
     private $mailer;
 
+    private const SMTP_HOST = 'smtp.gmail.com';
+    private const SMTP_USERNAME = 'noreply.eventit@gmail.com';
+    private const SMTP_PASSWORD = 'hadx rhfd csqo hwxj';
+    private const SMTP_PORT = 587;
+
     public function __construct()
     {
         $this->mailer = new PHPMailer(true);
@@ -20,12 +25,12 @@ class EmailService
     {
         $this->mailer->isSMTP();
         $this->mailer->CharSet = 'UTF-8';
-        $this->mailer->Host = 'smtp.gmail.com';
+        $this->mailer->Host = self::SMTP_HOST;
         $this->mailer->SMTPAuth = true;
-        $this->mailer->Username = 'noreply.eventit@gmail.com';
-        $this->mailer->Password = 'hadx rhfd csqo hwxj';
+        $this->mailer->Username = self::SMTP_USERNAME;
+        $this->mailer->Password = self::SMTP_PASSWORD;
         $this->mailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $this->mailer->Port = 587;
+        $this->mailer->Port = self::SMTP_PORT;
     }
 
     public function sendEmail($to, $toName, $subject, $htmlContent, $altBody)

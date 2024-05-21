@@ -21,9 +21,6 @@ use App\Controller\CguAdminController;
 
 session_start();
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
-
 
 if (!isset($_GET['url'])) {
     $_GET['url'] = '/';
