@@ -7,7 +7,11 @@
 {% block stylesheet %}
 	<link
       rel="stylesheet"
-      href="/template/Authentification/Inscription/connexions.css"
+      href="/template/Authentification/Inscription/style.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/template/Authentification/style.css"
     />
 {% endblock %}
 
@@ -48,7 +52,7 @@
         <input type="text" class="form-control" placeholder="Prenom" name="first_name" />
 
         {# mot de passe checklist #}
-        <div class="password-checklist animate" style="display:none">
+        <div class="password-checklist animate slide-down" style="display:none">
           <div class="password-checklist-item">
             <i id="password-length" class="fa-solid fa-xmark bad"></i>
             <span class="password-checklist-item-text">8 caractères minimum</span>
