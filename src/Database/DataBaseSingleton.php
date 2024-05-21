@@ -122,6 +122,23 @@ class DataBaseSingleton
     }
 
     /**
+     * Get a user by their token.
+     *
+     * @param string $token The token of the user.
+     * @return User|null The user object if found, null otherwise.
+     */
+    public function getUserByToken(string $token): ?User
+    {
+        $userData = $this->makeRequest('SELECT * FROM User WHERE token = :token', ['token' => $token]);
+
+        if (!empty($userData)) {
+            return User::createUserFromArray($userData[0]);
+        }
+
+        return null;
+    }
+
+    /**
      * Make a database query and return the result as an array.
      *
      * @param string $query The SQL query.

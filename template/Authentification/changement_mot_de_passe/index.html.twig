@@ -1,0 +1,63 @@
+{% extends '/base.html.twig' %}
+
+{% block title %}
+    Changer le mot de passe
+{% endblock %}
+
+{% block stylesheet %}
+    <link
+        rel="stylesheet"
+        href="/template/Authentification/style.css"
+    />
+{% endblock %}
+
+{% block body %}
+    <div class="alert-section">
+        {# alert section #}
+        {% if messageError is defined %}
+            <div class="alert alert-danger" role="alert">
+                <i class="fa-solid fa-exclamation-triangle"></i>
+                <span>{{ messageError }}</span>
+            </div>
+        {% endif %}
+        {% if message is defined %}
+            <div class="alert alert-success" role="alert">
+                <i class="fa-solid fa-check"></i>
+                <span>{{ message }}</span>
+            </div>
+        {% endif %}
+    </div>
+    <div class="container">
+        <img class="logo" src="/assets/logo_eventIT.png" alt="Logo" />
+        <h3 style="margin-bottom:1em;">Changer votre mot de passe </h3>
+        <form action="/change_password" method="POST">
+            <input type="hidden" name="token" value="{{ token }}">
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Nouveau mot de passe" name="new_password" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Confirmer le mot de passe" name="confirm_password" required>
+                <i class="fa fa-lock"></i>
+            </div>
+            <button class="btn" type="submit">Changer le mot de passe</button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        const passwordInput = document.querySelector('input[name="new_password"]');
+        const confirmPasswordInput = document.querySelector('input[name="confirm_password"]');
+
+        // Add event listeners to validate password and confirm password match
+        passwordInput.addEventListener('input', validatePasswords);
+        confirmPasswordInput.addEventListener('input', validatePasswords);
+
+        function validatePasswords() {
+            const passwordsMatch = passwordInput.value === confirmPasswordInput.value;
+            const feedbackIcon = this.nextElementSibling;
+
+            feedbackIcon.className = passwordsMatch ? 'fa-solid fa-check good' : 'fa-solid fa-xmark bad';
+        }
+    </script>
+{% endblock %}
