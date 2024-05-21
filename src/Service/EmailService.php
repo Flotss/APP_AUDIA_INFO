@@ -19,6 +19,7 @@ class EmailService
     private function setup()
     {
         $this->mailer->isSMTP();
+        $this->mailer->CharSet = 'UTF-8';
         $this->mailer->Host = 'smtp.gmail.com';
         $this->mailer->SMTPAuth = true;
         $this->mailer->Username = 'noreply.eventit@gmail.com';
