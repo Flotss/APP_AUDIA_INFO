@@ -17,6 +17,10 @@ class AdminVerificationService
 
     public function isAdmin()
     {
+        if (!Cookies::exists('user')) {
+            return false;
+        }
+
         // Get user from cookie
         $user = Cookies::get('user');
         if ($user === null) {
@@ -27,8 +31,7 @@ class AdminVerificationService
         // Get user from database to be sure
         $user = $this->db->getUserByEmail($user->getEmail());
 
-        // Check if the user is an admin
-        if ($user->getRole() !== 'ADMIN') {
+        if ($user === null || $user->getRole() !== 'ADMIN') {
             return false;
         }
 
