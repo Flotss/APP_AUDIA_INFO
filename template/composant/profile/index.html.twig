@@ -16,11 +16,11 @@
     <form action="/profile" method="POST">
         <input type="hidden" name="image" value="{{ user.image }}">
         <div class="input-field">
-            <input class="input" type="text" placeholder=" " name="nom" id="nom" value="{{ user.firstName }}">
+            <input class="input" type="text" placeholder=" " name="firstName" id="nom" value="{{ user.firstName }}">
             <label for="nom">Nom</label>
         </div>
         <div class="input-field">
-            <input class="input" type="text" placeholder=" " name="prenom" id="prenom" value="{{ user.lastName }}">
+            <input class="input" type="text" placeholder=" " name="lastName" id="prenom" value="{{ user.lastName }}">
             <label for="prenom">Prénom</label>
         </div>
         <div class="input-field">
@@ -32,15 +32,15 @@
             <label for="email">Adresse email</label>
         </div>
         <div class="input-field">
-            <input class="input" type="tel" placeholder=" " name="telephone" id="telephone" value="{{ user.phone }}">
+            <input class="input" type="tel" placeholder=" " name="phone" id="telephone" value="{{ user.phone }}">
             <label for="telephone">Numéro de téléphone</label>
         </div>
         <div class="input-field">
-            <input class="input" type="text" placeholder=" " name="adresse" id="adresse" value="{{ user.location }}">
+            <input class="input" type="text" placeholder=" " name="location" id="adresse" value="{{ user.location }}">
             <label for="adresse">Adresse postale</label>
         </div>
         <div class="select-field">
-            <select class="select" name="preferences_acoustiques" id="preferences_acoustiques" onchange="onChange(this)">
+            <select class="select" name="preference_acoustique" id="preferences_acoustiques" onchange="onChange(this)">
                 {% for option in preferences_acoustique_options %}
                     <option value="{{ option.name }}" {% if preferences_acoustique == option.name %}selected{% endif %}>{{ option.name }}</option>
                 {% endfor %}
@@ -48,7 +48,7 @@
             <label for="preferences_acoustiques">Préférences acoustiques</label>
         </div>
         <div class="select-field">
-            <select class="select" name="preferences_temperature" id="preferences_temperature" onchange="onChange(this)">
+            <select class="select" name="preference_temperature" id="preferences_temperature" onchange="onChange(this)">
                 {% for option in preferences_temperature_options %}
                     <option value="{{ option.name }}" {% if preferences_temperature == option.name %}selected{% endif %}>{{ option.name }}</option>
                 {% endfor %}

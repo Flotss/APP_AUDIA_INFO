@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Entity\User;
 use App\Database\DataBaseSingleton;
+use App\Utils\Cookies;
 
 /**
  * The UserService class provides methods to manage users.
@@ -59,5 +60,39 @@ class UserService
         $query->execute(['email' => $email]);
         $preferenceSon = $query->fetchColumn();
         return $preferenceSon;
+    }
+
+    public function updateUser(User $user): void
+    {
+        $query = $this->db->getConnection()->prepare('UPDATE User SET username = :username, email = :email, password = :password, firstName = :firstName, lastName = :lastName, location = :location, phone = :phone, role = :role WHERE id = :id');
+        $query->execute([
+            'id' => $user->getId(),
+            'username' => $user->getUsername(),
+            'email' => $user->getEmail(),
+            'password' => $user->getPassword(),
+            'firstName' => $user->getFirstName(),
+            'lastName' => $user->getLastName(),
+            'location' => $user->getLocation(),
+            'phone' => $user->getPhone(),
+            'role' => $user->getRole()
+        ]);
+
+        Cookies::set('user', serialize($user));
+    }
+
+    public function updatePreferenceTemperature(User $user, string $preferenceTemperature): void
+    {
+        $query = $this->db->getConnection()->prepare('UPDATE UserPreferences up
+        SET temperatureTypeId = (SELECT id FROM temperatureType WHERE name = :name)
+        WHERE userId = :userId');
+        $query->execute(['name' => $preferenceTemperature, 'userId' => $user->getId()]);
+    }
+
+    public function updatePreferenceSon(User $user, string $preferenceSon): void
+    {
+        $query = $this->db->getConnection()->prepare('UPDATE UserPreferences up
+        SET acousticsTypeId = (SELECT id FROM acousticsType WHERE name = :name)
+        WHERE userId = :userId');
+        $query->execute(['name' => $preferenceSon, 'userId' => $user->getId()]);
     }
 }

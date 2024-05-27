@@ -110,6 +110,13 @@ class User
         return $this->username;
     }
 
+    public function setUserName(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
     /**
      * Sets the username of the user.
      *

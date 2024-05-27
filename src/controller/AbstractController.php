@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Service\AdminVerificationService;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
+use App\Entity\User;
 
 /**
  * The AbstractController class provides a base class for other controllers in the application.
@@ -15,7 +16,7 @@ abstract class AbstractController
     protected $pathToLoad;
     protected $twigError;
     protected $data = [];
-    protected $user;
+    protected User $user;
 
     /**
      * Constructs a new AbstractController instance.
