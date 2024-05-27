@@ -15,6 +15,7 @@ abstract class AbstractController
     protected $pathToLoad;
     protected $twigError;
     protected $data = [];
+    protected $user;
 
     /**
      * Constructs a new AbstractController instance.
@@ -35,6 +36,10 @@ abstract class AbstractController
         $isAdmin = $isConnected && $serviceAdmin->isAdmin();
         $this->addData('user_connected', $isConnected);
         $this->addData('admin', $isAdmin);
+
+        if ($isConnected) {
+            $this->user = unserialize($user);
+        }
     }
 
     /**
@@ -117,5 +122,11 @@ abstract class AbstractController
         // } catch (\Exception $e) {
         // echo $this->twigError->render('error.html.twig', ['error' => $e->getMessage()]);
         // }
+    }
+
+
+    protected function isConnected()
+    {
+        return $this->data['user_connected'];
     }
 }

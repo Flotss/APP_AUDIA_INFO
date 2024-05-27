@@ -7,6 +7,7 @@ use App\Controller\IndexController;
 use App\Controller\Authentification\ConnexionController;
 use App\Controller\Authentification\ChangePasswordController;
 use App\Controller\Authentification\PasswordForgotController;
+use App\Controller\ProfileController;
 use App\Controller\FaqController;
 use App\Exceptions\RouterException;
 use App\Controller\ContactController;
@@ -36,6 +37,7 @@ $routesGet = [
     '/connexion' => new ConnexionController(),
     '/forgot_password' => new PasswordForgotController(),
     '/change_password' => new ChangePasswordController(),
+    '/profile' => new ProfileController(),
 
     '/cgu' => new CguController(),
     '/mentionslegales' => new MentionslegalesController(),
@@ -48,8 +50,11 @@ $routesGet = [
 
 $routePost = [
     '/connexion' => $routesGet['/connexion'],
+    '/profile' => $routesGet['/profile'],
+
     '/forgot_password' => $routesGet['/forgot_password'],
     '/change_password' => $routesGet['/change_password'],
+
     '/admin/cgu' => $routesGet['/admin/cgu'],
     '/admin/faq' => $routesGet['/admin/faq'],
 ];

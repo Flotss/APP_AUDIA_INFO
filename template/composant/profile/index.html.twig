@@ -1,0 +1,120 @@
+{% extends '/base.html.twig' %}
+
+{% block title %}
+	Profile
+{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="/template/composant/profile/style.css">
+{% endblock %}
+
+
+{% block body %}
+<div class="container">
+    <div class="profile-picture"></div>
+
+    <form action="/profile" method="POST">
+        <input type="hidden" name="image" value="{{ user.image }}">
+        <div class="input-field">
+            <input class="input" type="text" placeholder=" " name="nom" id="nom" value="{{ user.firstName }}">
+            <label for="nom">Nom</label>
+        </div>
+        <div class="input-field">
+            <input class="input" type="text" placeholder=" " name="prenom" id="prenom" value="{{ user.lastName }}">
+            <label for="prenom">Prénom</label>
+        </div>
+        <div class="input-field">
+            <input class="input" type="text" placeholder=" " name="username" id="username" value="{{ user.username }}">
+            <label for="username">Nom d'utilisateur</label>
+        </div>
+        <div class="input-field">
+            <input class="input" type="email" placeholder=" " name="email" id="email" value="{{ user.email }}">
+            <label for="email">Adresse email</label>
+        </div>
+        <div class="input-field">
+            <input class="input" type="tel" placeholder=" " name="telephone" id="telephone" value="{{ user.phone }}">
+            <label for="telephone">Numéro de téléphone</label>
+        </div>
+        <div class="input-field">
+            <input class="input" type="text" placeholder=" " name="adresse" id="adresse" value="{{ user.location }}">
+            <label for="adresse">Adresse postale</label>
+        </div>
+        <div class="select-field">
+            <select class="select" name="preferences_acoustiques" id="preferences_acoustiques" onchange="onChange(this)">
+                {% for option in preferences_acoustique_options %}
+                    <option value="{{ option.name }}" {% if preferences_acoustique == option.name %}selected{% endif %}>{{ option.name }}</option>
+                {% endfor %}
+            </select>
+            <label for="preferences_acoustiques">Préférences acoustiques</label>
+        </div>
+        <div class="select-field">
+            <select class="select" name="preferences_temperature" id="preferences_temperature" onchange="onChange(this)">
+                {% for option in preferences_temperature_options %}
+                    <option value="{{ option.name }}" {% if preferences_temperature == option.name %}selected{% endif %}>{{ option.name }}</option>
+                {% endfor %}
+            </select>
+            <label for="preferences_temperature">Préférences de température</label>
+        </div>
+
+        <button class="button" type="button">Modifier MDP</button>
+        <button class="button" type="submit">Enregistrer</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script>
+    const inputs = document.querySelectorAll('.input');
+    const selects = document.querySelectorAll('.select');
+    const initialValues = {};
+
+    inputs.forEach((input) => {
+        // Store the initial value of each input
+        initialValues[input.name] = input.value;
+
+        input.addEventListener('input', function() {
+            if (isModified(input)) {
+                input.classList.add('modified');
+            } else {
+                input.classList.remove('modified');
+            }
+        });
+    });
+
+    selects.forEach((select) => {
+        // Store the initial value of each select
+        initialValues[select.name] = select.value;
+    });
+
+    // Check if any input value has been modified
+    function isModified(element = null) {
+        let modified = false;
+
+        if (element) {
+            modified = element.value !== initialValues[element.name];
+        } else {
+            inputs.forEach((input) => {
+                if (input.value !== initialValues[input.name]) {
+                    modified = true;
+                }
+            });
+
+            selects.forEach((select) => {
+                if (select.value !== initialValues[select.name]) {
+                    modified = true;
+                }
+            });
+        }
+
+        return modified;
+    }
+
+    function onChange(element) {
+        if (isModified(element)) {
+            element.classList.add('modified');
+        } else {
+            element.classList.remove('modified');
+        }
+    }
+</script>
+{% endblock %}

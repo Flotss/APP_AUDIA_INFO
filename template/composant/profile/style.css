@@ -1,0 +1,133 @@
+.container {
+  width: 400px;
+  margin: 70px auto;
+  padding: 20px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.profile-picture {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #ddd;
+  margin: 10px auto;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.input-field {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.input-field input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: none;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #c5c5c5;
+}
+
+.input-field label {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #757575;
+  pointer-events: none;
+  transition: 0.2s ease all;
+}
+
+.input-field input:placeholder-shown + label {
+  top: 50%;
+  font-size: 16px;
+}
+
+.input-field input:not(:placeholder-shown) + label,
+.input-field input:focus + label {
+  top: 0;
+  font-size: 12px;
+}
+
+.input-field input.modified {
+  border-bottom: 3px solid #dacd58;
+}
+
+.select-field {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.select-field select {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: none;
+  padding: 0.5rem 0;
+  margin-top: 1rem;
+  border-bottom: 1px solid #c5c5c5;
+  appearance: none;
+}
+
+.select-field label {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #757575;
+  pointer-events: none;
+  transition: 0.2s ease all;
+}
+
+.select-field select:not(:placeholder-shown) + label,
+.select-field select:focus + label {
+  top: 0;
+  font-size: 12px;
+}
+
+.select-field select:placeholder-shown + label {
+  top: 50%;
+  font-size: 16px;
+}
+
+.select-field select.modified {
+  border-bottom: 3px solid #dacd58;
+}
+
+.inline {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.button {
+  background-color: #5db6f7;
+  color: white;
+  padding: 10px 20px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #4cb3fd;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
