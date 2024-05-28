@@ -64,9 +64,8 @@ class UserService
 
     public function updateUser(User $user): void
     {
-        $query = $this->db->getConnection()->prepare('UPDATE User SET username = :username, email = :email, password = :password, firstName = :firstName, lastName = :lastName, location = :location, phone = :phone, role = :role WHERE id = :id');
+        $query = $this->db->getConnection()->prepare('UPDATE User SET username = :username, email = :email, password = :password, firstName = :firstName, lastName = :lastName, location = :location, phone = :phone, role = :role, image = :image WHERE id = :id');
         $query->execute([
-            'id' => $user->getId(),
             'username' => $user->getUsername(),
             'email' => $user->getEmail(),
             'password' => $user->getPassword(),
@@ -74,7 +73,9 @@ class UserService
             'lastName' => $user->getLastName(),
             'location' => $user->getLocation(),
             'phone' => $user->getPhone(),
-            'role' => $user->getRole()
+            'role' => $user->getRole(),
+            'image' => $user->getImage(),
+            'id' => $user->getId()
         ]);
 
         Cookies::set('user', serialize($user));

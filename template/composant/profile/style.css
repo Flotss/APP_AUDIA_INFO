@@ -1,4 +1,4 @@
-.container {
+.container-profile-edit {
   width: 400px;
   margin: 70px auto;
   padding: 20px;
@@ -14,6 +14,22 @@
   border-radius: 50%;
   background-color: #ddd;
   margin: 10px auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-input {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
 }
 
 .input {

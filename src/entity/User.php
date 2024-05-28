@@ -34,6 +34,7 @@ class User
     private string $location;
     private string $phone;
     private string $role;
+    private string $image;
 
 
 
@@ -44,7 +45,7 @@ class User
      * @param string $email The email of the user.
      * @param string|null $password The password of the user (optional).
      */
-    public function __construct(int $id, string $username, string $email, string $password, string $firstName, string $lastName, string $location = "", string $phone = "", string $role = 'USER')
+    public function __construct(int $id, string $username, string $email, string $password, string $firstName, string $lastName, string $location = "", string $phone = "", string $role = 'USER', string $image = "")
     {
         $this->id = $id;
         $this->username = $username;
@@ -55,6 +56,7 @@ class User
         $this->location = $location;
         $this->phone = $phone;
         $this->role = $role;
+        $this->image = $image;
     }
 
     /**
@@ -64,7 +66,7 @@ class User
      */
     public static function createUserFromArray(array $data)
     {
-        return new self($data['id'], $data['username'], $data['email'], $data['password'], $data['firstName'], $data['lastName'], $data['location'], $data['phone'], $data['role']);
+        return new self($data['id'], $data['username'], $data['email'], $data['password'], $data['firstName'], $data['lastName'], $data['location'], $data['phone'], $data['role'], $data['image'] ?? "");
     }
 
     /**
@@ -252,6 +254,18 @@ class User
     public function setRole(string $role): self
     {
         $this->role = $role;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

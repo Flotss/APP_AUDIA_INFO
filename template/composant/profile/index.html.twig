@@ -10,25 +10,26 @@
 
 
 {% block body %}
-<div class="container">
-    <div class="profile-picture"></div>
-
-    <form action="/profile" method="POST">
-        <input type="hidden" name="image" value="{{ user.image }}">
+<div class="container-profile-edit">
+    <form action="/profile" method="POST" id="profile-form">
+        <div class="profile-picture">
+            <input type="file" name="image" accept="image/*" class="profile-input">
+            <img src="{{ user.image }}" class="profile-image">
+        </div>
         <div class="input-field">
-            <input class="input" type="text" placeholder=" " name="firstName" id="nom" value="{{ user.firstName }}">
+            <input class="input" type="text" placeholder=" " name="firstName" id="nom" value="{{ user.firstName }}" required>
             <label for="nom">Nom</label>
         </div>
         <div class="input-field">
-            <input class="input" type="text" placeholder=" " name="lastName" id="prenom" value="{{ user.lastName }}">
+            <input class="input" type="text" placeholder=" " name="lastName" id="prenom" value="{{ user.lastName }}" required>
             <label for="prenom">Prénom</label>
         </div>
         <div class="input-field">
-            <input class="input" type="text" placeholder=" " name="username" id="username" value="{{ user.username }}">
+            <input class="input" type="text" placeholder=" " name="username" id="username" value="{{ user.username }}" required>
             <label for="username">Nom d'utilisateur</label>
         </div>
         <div class="input-field">
-            <input class="input" type="email" placeholder=" " name="email" id="email" value="{{ user.email }}">
+            <input class="input" type="email" placeholder=" " name="email" id="email" value="{{ user.email }}" required>
             <label for="email">Adresse email</label>
         </div>
         <div class="input-field">
@@ -116,5 +117,75 @@
             element.classList.remove('modified');
         }
     }
+
+
+    // IMAGE
+    const profilePicture = document.querySelector('.profile-picture');
+    const profileInput = document.querySelector('.profile-input');
+    const profileImage = document.querySelector('.profile-image');
+
+    profileInput.addEventListener('change', function() {
+        const file = this.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+             reader.addEventListener('load', function() {
+                const image = new Image();
+                image.src = reader.result;
+                image.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    const maxWidth = 800;
+                    const maxHeight = 800;
+                    let width = image.width;
+                    let height = image.height;
+
+                    if (width > maxWidth || height > maxHeight) {
+                        // Calculate the new dimensions with the same aspect ratio
+                        if (width > height) {
+                            height *= maxWidth / width;
+                            width = maxWidth;
+                        } else {
+                            width *= maxHeight / height;
+                            height = maxHeight;
+                        }
+                    }
+
+                    canvas.width = width;
+                    canvas.height = height;
+                    ctx.drawImage(image, 0, 0, width, height);
+
+                    const compressedImage = canvas.toDataURL('image/jpeg', 0.7);
+
+                    profileImage.src = compressedImage;
+                    console.log(compressedImage);
+
+                    // Create a hidden input to hold the base64 image
+                    let hiddenInput = document.createElement('input');
+                    hiddenInput.type = 'hidden';
+                    hiddenInput.name = 'imageBase64';
+                    hiddenInput.value = compressedImage;
+
+                    // Append the hidden input to the form
+                    let form = document.getElementById('profile-form');
+                    form.appendChild(hiddenInput);
+                };
+            });
+
+            reader.readAsDataURL(file);
+        }
+    });
+
+   
+
+    // FORM
+    const form = document.querySelector('form');
+    const button = document.querySelector('.button');
+
+    button.addEventListener('click', function() {
+        form.action = '/profile/password';
+        form.submit();
+    });
 </script>
 {% endblock %}

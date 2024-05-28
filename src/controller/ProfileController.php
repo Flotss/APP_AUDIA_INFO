@@ -23,17 +23,14 @@ class ProfileController extends AbstractController
                 exit();
             }
 
-            $this->getPreferencesUser();
-            $this->getAllPreferences();
-
-
             // POST request
             if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $this->updatePreferences();
                 $this->updateUser();
-
-                header('Location: /profile');
             }
+
+            $this->getPreferencesUser();
+            $this->getAllPreferences();
         }
     }
 
@@ -80,6 +77,7 @@ class ProfileController extends AbstractController
         $email = Security::sanitizeInput($_POST["email"]);
         $phone = Security::sanitizeInput($_POST["phone"]);
         $location = Security::sanitizeInput($_POST["location"]);
+        $image = $_POST["imageBase64"];
 
         $userService = new UserService();
         $user = $userService->getUser($this->user->getEmail());
@@ -90,6 +88,7 @@ class ProfileController extends AbstractController
         $user = $user->setEmail($email);
         $user = $user->setPhone($phone);
         $user = $user->setLocation($location);
+        $user = $user->setImage($image);
 
 
         $userService->updateUser($user);
