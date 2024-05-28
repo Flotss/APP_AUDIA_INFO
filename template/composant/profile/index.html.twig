@@ -16,13 +16,15 @@
             <input type="file" name="image" accept="image/*" class="profile-input">
             <img src="{{ user.image }}" class="profile-image">
         </div>
-        <div class="input-field">
-            <input class="input" type="text" placeholder=" " name="firstName" id="nom" value="{{ user.firstName }}" required>
-            <label for="nom">Nom</label>
-        </div>
-        <div class="input-field">
-            <input class="input" type="text" placeholder=" " name="lastName" id="prenom" value="{{ user.lastName }}" required>
-            <label for="prenom">Prénom</label>
+        <div class="inline">
+            <div class="input-field">
+                <input class="input" type="text" placeholder=" " name="firstName" id="prenom" value="{{ user.firstName }}" required>
+                <label for="prenom">Prénom</label>
+            </div>
+            <div class="input-field">
+                <input class="input" type="text" placeholder=" " name="lastName" id="nom" value="{{ user.lastName }}" required>
+                <label for="nom">Nom</label>
+            </div>
         </div>
         <div class="input-field">
             <input class="input" type="text" placeholder=" " name="username" id="username" value="{{ user.username }}" required>
