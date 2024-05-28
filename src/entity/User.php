@@ -34,6 +34,7 @@ class User
     private string $location;
     private string $phone;
     private string $role;
+    private string $image;
 
 
 
@@ -55,6 +56,7 @@ class User
         $this->location = $location;
         $this->phone = $phone;
         $this->role = $role;
+        $this->image = "";
     }
 
     /**
@@ -108,6 +110,13 @@ class User
     public function getUsername(): ?string
     {
         return $this->username;
+    }
+
+    public function setUserName(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
     }
 
     /**
@@ -245,6 +254,18 @@ class User
     public function setRole(string $role): self
     {
         $this->role = $role;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Service\AdminVerificationService;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
+use App\Entity\User;
 
 /**
  * The AbstractController class provides a base class for other controllers in the application.
@@ -15,6 +16,7 @@ abstract class AbstractController
     protected $pathToLoad;
     protected $twigError;
     protected $data = [];
+    protected User $user;
 
     /**
      * Constructs a new AbstractController instance.
@@ -35,6 +37,10 @@ abstract class AbstractController
         $isAdmin = $isConnected && $serviceAdmin->isAdmin();
         $this->addData('user_connected', $isConnected);
         $this->addData('admin', $isAdmin);
+
+        if ($isConnected) {
+            $this->user = unserialize($user);
+        }
     }
 
     /**
@@ -112,10 +118,16 @@ abstract class AbstractController
      */
     protected function tryCatch(callable $callback)
     {
-        // try {
-        $callback();
-        // } catch (\Exception $e) {
-        // echo $this->twigError->render('error.html.twig', ['error' => $e->getMessage()]);
-        // }
+        try {
+            $callback();
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+
+    protected function isConnected()
+    {
+        return $this->data['user_connected'];
     }
 }
