@@ -78,15 +78,12 @@ class ChangePasswordController extends AbstractController
             if ($user) {
                 $this->userConnectionService->updateUserPassword($user, Security::hashPassword($password));
                 $this->data['message'] = "Mot de passe modifié avec succès. Vous allez être redirigé vers la page de connexion.";
-
-                // wait 5 seconds before redirecting
-                header("refresh:5;url=/connexion");
             } else {
                 $this->data['messageError'] = "Token invalide ou expiré. Vous allez être redirigé vers la page de connexion.";
-
-                // wait 5 seconds before redirecting
-                header("refresh:5;url=/connexion");
             }
+
+            // wait 5 seconds before redirecting
+            header("refresh:5;url=/connexion");
         } else {
             $this->data['messageError'] = "Les mots de passe ne correspondent pas.";
         }
