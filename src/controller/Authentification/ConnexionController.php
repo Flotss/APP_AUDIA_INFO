@@ -22,7 +22,6 @@ class ConnexionController extends AbstractController
      */
     public function __construct()
     {
-        ob_start();
         parent::__construct("Authentification/Inscription");
 
 
@@ -69,8 +68,6 @@ class ConnexionController extends AbstractController
         } else {
             $this->data['messageError'] = "Email ou mot de passe incorrect";
         }
-
-        ob_end_flush();
     }
 
     private function handleInscription()
@@ -102,7 +99,5 @@ class ConnexionController extends AbstractController
         } else {
             $this->data['messageError'] = "Erreur lors de l'inscription";
         }
-
-        ob_end_flush();
     }
 }
