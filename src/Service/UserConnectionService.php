@@ -93,5 +93,9 @@ class UserConnectionService
             'password' => $password,
             'id' => $user->getId()
         ]);
+
+        $this->db->makeRequest("UPDATE User SET token = NULL WHERE id = :id", [
+            'id' => $user->getId()
+        ]);
     }
 }

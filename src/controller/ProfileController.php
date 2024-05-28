@@ -14,7 +14,7 @@ class ProfileController extends AbstractController
 
     public function __construct()
     {
-        parent::__construct("composant/profile");
+        parent::__construct("profile");
         $this->userService = new UserService();
 
         if ($_SERVER['REQUEST_URI'] === '/profile') {
