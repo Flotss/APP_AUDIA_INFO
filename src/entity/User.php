@@ -45,7 +45,7 @@ class User
      * @param string $email The email of the user.
      * @param string|null $password The password of the user (optional).
      */
-    public function __construct(int $id, string $username, string $email, string $password, string $firstName, string $lastName, string $location = "", string $phone = "", string $role = 'USER', string $image = "")
+    public function __construct(int $id, string $username, string $email, string $password, string $firstName, string $lastName, string $location = "", string $phone = "", string $role = 'USER')
     {
         $this->id = $id;
         $this->username = $username;
@@ -56,7 +56,7 @@ class User
         $this->location = $location;
         $this->phone = $phone;
         $this->role = $role;
-        $this->image = $image;
+        $this->image = "";
     }
 
     /**
@@ -66,7 +66,7 @@ class User
      */
     public static function createUserFromArray(array $data)
     {
-        return new self($data['id'], $data['username'], $data['email'], $data['password'], $data['firstName'], $data['lastName'], $data['location'], $data['phone'], $data['role'], $data['image'] ?? "");
+        return new self($data['id'], $data['username'], $data['email'], $data['password'], $data['firstName'], $data['lastName'], $data['location'], $data['phone'], $data['role']);
     }
 
     /**

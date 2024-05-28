@@ -40,6 +40,14 @@ class UserService
         return $user;
     }
 
+    public function getImage(string $email): ?string
+    {
+        $query = $this->db->getConnection()->prepare('SELECT image FROM User WHERE email = :email');
+        $query->execute(['email' => $email]);
+        $image = $query->fetchColumn();
+        return $image;
+    }
+
     public function getPreferenceTemperature(string $email): ?string
     {
         $query = $this->db->getConnection()->prepare('SELECT name FROM User u 

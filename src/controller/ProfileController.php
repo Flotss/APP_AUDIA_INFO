@@ -10,18 +10,19 @@ use App\Utils\Security;
 class ProfileController extends AbstractController
 {
 
+    private $userService;
+
     public function __construct()
     {
         parent::__construct("composant/profile");
 
-
-
-        // if url = /profile
         if ($_SERVER['REQUEST_URI'] === '/profile') {
             if (!$this->isConnected()) {
                 header('Location: /connexion');
                 exit();
             }
+
+            $this->userService = new UserService();
 
             // POST request
             if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -29,17 +30,18 @@ class ProfileController extends AbstractController
                 $this->updateUser();
             }
 
+            // GET request
             $this->getPreferencesUser();
             $this->getAllPreferences();
+            $this->user->setImage($this->userService->getImage($this->user->getEmail()));
+            $this->addData('user', $this->user);
         }
     }
 
     private function getPreferencesUser()
     {
-        $userService = new UserService();
-
+        $userService = $this->userService;
         $user = $userService->getUser($this->user->getEmail());
-        $this->data['user'] = $user;
         $preferenceTemperature = $userService->getPreferenceTemperature($user->getEmail());
         $preferenceSon = $userService->getPreferenceSon($user->getEmail());
 
@@ -61,7 +63,7 @@ class ProfileController extends AbstractController
 
     private function updatePreferences()
     {
-        $userService = new UserService();
+        $userService = $this->userService;
         $preferenceTemperature = $_POST['preference_temperature'];
         $preferenceSon = $_POST['preference_acoustique'];
 
@@ -79,7 +81,7 @@ class ProfileController extends AbstractController
         $location = Security::sanitizeInput($_POST["location"]);
         $image = $_POST["imageBase64"];
 
-        $userService = new UserService();
+        $userService = $this->userService;
         $user = $userService->getUser($this->user->getEmail());
 
         $user = $user->setFirstName($firstName);

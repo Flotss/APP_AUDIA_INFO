@@ -27,16 +27,6 @@ class UserConnectionService
     }
 
     /**
-     * Creates a new user from cookie data.
-     * 
-     * @return User The created user object.
-     */
-    public function createUserFromCookie(): ?User
-    {
-        return Cookies::get('user') ?? null;
-    }
-
-    /**
      * Logs in a user with the provided email and password.
      * 
      * @param string $email The user's email.

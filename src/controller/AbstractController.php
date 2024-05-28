@@ -118,11 +118,11 @@ abstract class AbstractController
      */
     protected function tryCatch(callable $callback)
     {
-        // try {
-        $callback();
-        // } catch (\Exception $e) {
-        // echo $this->twigError->render('error.html.twig', ['error' => $e->getMessage()]);
-        // }
+        try {
+            $callback();
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
 
