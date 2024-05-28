@@ -28,6 +28,10 @@ if (!isset($_GET['url'])) {
 }
 $router = new Router($_GET['url']);
 
+
+$ProfileController = new ProfileController();
+
+
 $routesGet = [
     '/' => new IndexController(),
     '/faq' => new FaqController(),
@@ -37,7 +41,8 @@ $routesGet = [
     '/connexion' => new ConnexionController(),
     '/forgot_password' => new PasswordForgotController(),
     '/change_password' => new ChangePasswordController(),
-    '/profile' => new ProfileController(),
+    '/profile' => $ProfileController,
+    '/profile/password' => $ProfileController,
 
     '/cgu' => new CguController(),
     '/mentionslegales' => new MentionslegalesController(),
@@ -51,6 +56,7 @@ $routesGet = [
 $routePost = [
     '/connexion' => $routesGet['/connexion'],
     '/profile' => $routesGet['/profile'],
+    '/profile/password' => $routesGet['/profile/password'],
 
     '/forgot_password' => $routesGet['/forgot_password'],
     '/change_password' => $routesGet['/change_password'],

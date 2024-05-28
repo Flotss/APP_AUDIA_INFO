@@ -6,10 +6,14 @@
 
 {% block stylesheet %}
     <link rel="stylesheet" href="/template/composant/profile/style.css">
+    <link rel="stylesheet" href="/template/composant/alert-section/style.css">
 {% endblock %}
 
 
 {% block body %}
+{# include composant alert-section #}
+{% include 'composant/alert-section/alert-section.html.twig' with { 'message': message, 'messageError': messageError } %}
+
 <div class="container-profile-edit">
     <form action="/profile" method="POST" id="profile-form">
         <div class="profile-picture">
@@ -59,16 +63,34 @@
             <label for="preferences_temperature">Préférences de température</label>
         </div>
 
-        <button class="button" type="button">Modifier MDP</button>
+        <button id="btn-pwd" class="button" type="button">Modifier MDP</button>
         <button class="button" type="submit">Enregistrer</button>
     </form>
 </div>
+<dialog class="modal" id="dialog">
+    <form class="modal-content" action="/profile/password" method="POST">
+        <div class="input-field">
+            <input class="input" type="password" placeholder=" " name="currentPassword" id="currentPassword" required>
+            <label for="currentPassword">Mot de passe actuel</label>
+        </div>
+        <div class="input-field">
+            <input class="input" type="password" placeholder=" " name="newPassword" id="newPassword" required>
+            <label for="newPassword">Nouveau mot de passe</label>
+        </div>
+        <div class="input-field">
+            <input class="input" type="password" placeholder=" " name="confirmPassword" id="confirmPassword" required>
+            <label for="confirmPassword">Confirmer le mot de passe</label>
+        </div>
+        <button class="button" type="submit">Enregistrer</button>
+    </form>
+</dialog>
 {% endblock %}
 
 {% block javascript %}
 <script>
-    const inputs = document.querySelectorAll('.input');
+    const inputs = document.querySelectorAll('.input:not(dialog .input)');
     const selects = document.querySelectorAll('.select');
+    const imageInput = document.querySelector('.profile-input');
     const initialValues = {};
 
     inputs.forEach((input) => {
@@ -89,6 +111,14 @@
         initialValues[select.name] = select.value;
     });
 
+    imageInput.addEventListener('change', function() {
+        if (isModified()) {
+            imageInput.classList.add('modified');
+        } else {
+            imageInput.classList.remove('modified');
+        }
+    });
+
     // Check if any input value has been modified
     function isModified(element = null) {
         let modified = false;
@@ -107,6 +137,11 @@
                     modified = true;
                 }
             });
+
+            // Image input
+            if (imageInput.files.length > 0) {
+                modified = true;
+            }
         }
 
         return modified;
@@ -182,12 +217,48 @@
    
 
     // FORM
-    const form = document.querySelector('form');
-    const button = document.querySelector('.button');
+    const form = document.getElementById('profile-form');
+    const dialog = document.getElementById('dialog');
+    const btnPwd = document.getElementById('btn-pwd');
 
-    button.addEventListener('click', function() {
-        form.action = '/profile/password';
-        form.submit();
+    form.addEventListener('submit', function(event) {
+        if (!isModified()) {
+            event.preventDefault();
+            alert('Aucune modification détectée');
+        }
     });
+
+    btnPwd.addEventListener('click', function() {
+        dialog.showModal();
+    });
+
+    dialog.addEventListener('close', function() {
+        const inputs = dialog.querySelectorAll('.input');
+
+        inputs.forEach((input) => {
+            input.value = '';
+        });
+    });
+
+    dialog.querySelector('form').addEventListener('submit', function(event) {
+        const currentPassword = document.getElementById('currentPassword');
+        const newPassword = document.getElementById('newPassword');
+        const confirmPassword = document.getElementById('confirmPassword');
+
+        if (currentPassword.value === newPassword.value) {
+            event.preventDefault();
+            alert('Le nouveau mot de passe doit être différent de l\'ancien');
+        } else if (newPassword.value !== confirmPassword.value) {
+            event.preventDefault();
+            alert('Les mots de passe ne correspondent pas');
+        }
+    });
+
+    window.addEventListener('mousedown', function(event) {
+        if (event.target === dialog) {
+            dialog.close();
+        }
+    });
+    
 </script>
 {% endblock %}
