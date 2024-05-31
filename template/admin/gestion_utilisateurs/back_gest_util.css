@@ -1,36 +1,44 @@
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 20px;
+  padding: 20px;
 }
 
-.blue-banner {
-  background-color: rgb(69, 134, 209);
-  color: rgb(0, 0, 0);
-  padding: 0.5px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  border-radius: 20px;
-  width: 100%; /* Ajouté pour que le bandeau s'étende sur toute la largeur du conteneur */
+.user-list {
+  border-right: 1px solid #ccc;
+  padding-right: 20px;
 }
 
-.title {
-  border: 2px solid black;
-  border-radius: 10px;
+.user-details {
+  padding-left: 20px;
+}
+
+@media (max-width: 768px) {
+  body {
+    grid-template-columns: 1fr;
+  }
+
+  .user-list {
+    border-right: none;
+    padding-right: 0;
+  }
+
+  .user-details {
+    padding-left: 0;
+  }
+}
+
+.user-item {
+  cursor: pointer;
   padding: 10px;
-  margin-left: 100px;
-  margin-right: 100px;
+  border-bottom: 1px solid #eee;
 }
 
-.title-space {
-  margin-right: 200px;
+.user-item:hover {
+  background-color: #f0f0f0;
 }
 
-.user-management {
-  margin-right: 200px;
-}
-
-table {
-  margin-top: 20px; /* Ajouté pour ajouter un espace entre le bandeau et le tableau */
+.container-profile-edit {
+  margin-top: 0px;
 }

@@ -36,6 +36,9 @@ class User
     private string $role;
     private string $image;
 
+    public string $prefTemp;
+    public string $prefSon;
+
 
 
     /**
@@ -266,6 +269,30 @@ class User
     public function setImage(string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getPrefTemp(): ?string
+    {
+        return $this->prefTemp;
+    }
+
+    public function setPrefTemp(string $prefTemp): self
+    {
+        $this->prefTemp = $prefTemp;
+
+        return $this;
+    }
+
+    public function getPrefSon(): ?string
+    {
+        return $this->prefSon;
+    }
+
+    public function setPrefSon(string $prefSon): self
+    {
+        $this->prefSon = $prefSon;
 
         return $this;
     }

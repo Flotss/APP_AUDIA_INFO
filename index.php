@@ -52,7 +52,7 @@ $routesGet = [
     // ADMIN ROUTES
     '/admin/faq' => new FaqAdminController(),
     '/admin/cgu' => new CguAdminController(),
-    '/admin/gestion_utilisateurs' => new GestionUtilisateursController(),
+    '/admin/users' => new GestionUtilisateursController(),
 ];
 
 $routePost = [

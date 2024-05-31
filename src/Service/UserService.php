@@ -26,6 +26,14 @@ class UserService
         $this->db = DataBaseSingleton::getInstance();
     }
 
+    public function getAllUser(): array
+    {
+        $query = $this->db->getConnection()->prepare('SELECT * FROM User');
+        $query->execute();
+        $users = $query->fetchAll();
+        return $users;
+    }
+
     public function getUser(string $email): ?User
     {
         $query = $this->db->getConnection()->prepare('SELECT * FROM User WHERE email = :email');

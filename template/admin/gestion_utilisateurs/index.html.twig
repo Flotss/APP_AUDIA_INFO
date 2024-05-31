@@ -5,34 +5,142 @@
 {% endblock %}
 
 {% block stylesheet %}
-	<link
-  rel="stylesheet"
-  href="/template\admin\gestion_utilisateurs\back_gest_util.css"
-/>
+	<link rel="stylesheet" href="/template\components\alert-section\style.css"/>
+  <link rel="stylesheet" href="/template/profile/style.css">
+	<link rel="stylesheet" href="/template\admin\gestion_utilisateurs\back_gest_util.css"/>
 {% endblock %}
 
 {% block body %}
-	<main>
-  <div class="blue-banner">
-    <h2 class="title">Nom</h2>
-    <h2 class="title title-space">Prénom</h2>
-    <h2 class="user-management">Gestion des utilisateurs</h2>
-  </div>
-  <!-- Ajoutez ici les détails des utilisateurs et le formulaire de gestion des utilisateurs -->
-</main>
-<table>
-  <tr>
-    <th>Potter</th>
-    <th>Harry</th>
-  </tr>
-  <tr>
-    <td>Potter</td>
-    <td>Harry</td>
-  </tr>
-  <tr>
-    <td>Potter</td>
-    <td>Harry</td>
-  </tr>
-  <!-- Ajoutez autant de lignes que nécessaire -->
-</table>
-{% endblock %}
+	{% include 'composant/alert-section/alert-section.html.twig' with { 'message': message, 'messageError': messageError } %}
+	<div class="container">
+		<div class="user-list">
+			<h2>Liste des Utilisateurs</h2>
+			<ul>
+				{% for user in users %}
+					<li class="user-item" data-id="{{ user.id }}" data-username="{{ user.username }}" data-email="{{ user.email }}" data-firstname="{{ user.firstName }}" data-lastname="{{ user.lastName }}" data-location="{{ user.location }}" data-phone="{{ user.phone }}" data-role="{{ user.role }}" data-prefTemp="{{ arrayTemperature[user.id] }}" data-prefAcoust="{{ arrayAcoustique[user.id] }}">
+						{{ user.firstName }}
+						{{ user.lastName }}
+					{% endfor %}
+				</ul>
+			</div>
+			<div class="user-details">
+				<h2>Détails de l'Utilisateur</h2>
+				<div class="container-profile-edit" style="display:none">
+					<form action="/profile" method="POST" id="profile-form">
+						<div class="profile-picture">
+							<input type="file" name="image" accept="image/*" class="profile-input">
+							<img src="{{ user.image }}" class="profile-image">
+						</div>
+						<div class="inline">
+							<div class="input-field">
+								<input class="input" type="text" placeholder=" " name="firstName" id="prenom" value="{{ user.firstName }}" required>
+								<label for="prenom">Prénom</label>
+							</div>
+							<div class="input-field">
+								<input class="input" type="text" placeholder=" " name="lastName" id="nom" value="{{ user.lastName }}" required>
+								<label for="nom">Nom</label>
+							</div>
+						</div>
+						<div class="input-field">
+							<input class="input" type="text" placeholder=" " name="username" id="username" value="{{ user.username }}" required>
+							<label for="username">Nom d'utilisateur</label>
+						</div>
+						<div class="input-field">
+							<input class="input" type="email" placeholder=" " name="email" id="email" value="{{ user.email }}" required>
+							<label for="email">Adresse email</label>
+						</div>
+						<div class="input-field">
+							<input class="input" type="tel" placeholder=" " name="phone" id="telephone" value="{{ user.phone }}">
+							<label for="telephone">Numéro de téléphone</label>
+						</div>
+						<div class="input-field">
+							<input class="input" type="text" placeholder=" " name="location" id="adresse" value="{{ user.location }}">
+							<label for="adresse">Adresse postale</label>
+						</div>
+						<div class="select-field">
+							<select class="select" name="preference_acoustique" id="preferences_acoustiques" onchange="onChange(this)">
+								{% for option in preferences_acoustique_options %}
+									<option value="{{ option.name }}" {% if preferences_acoustique == option.name %} selected {% endif %}>{{ option.name }}</option>
+								{% endfor %}
+							</select>
+							<label for="preferences_acoustiques">Préférences acoustiques</label>
+						</div>
+						<div class="select-field">
+							<select class="select" name="preference_temperature" id="preferences_temperature" onchange="onChange(this)">
+								{% for option in preferences_temperature_options %}
+									<option value="{{ option.name }}">{{ option.name }}</option>
+								{% endfor %}
+							</select>
+							<label for="preferences_temperature">Préférences de température</label>
+						</div>
+
+						<button id="btn-pwd" class="button" type="button">Modifier MDP</button>
+						<button class="button" type="submit">Enregistrer</button>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<dialog class="modal" id="dialog">
+			<form class="modal-content" action="/profile/password" method="POST">
+				<div class="input-field">
+					<input class="input" type="password" placeholder=" " name="currentPassword" id="currentPassword" required>
+					<label for="currentPassword">Mot de passe actuel</label>
+				</div>
+				<div class="input-field">
+					<input class="input" type="password" placeholder=" " name="newPassword" id="newPassword" required>
+					<label for="newPassword">Nouveau mot de passe</label>
+				</div>
+				<div class="input-field">
+					<input class="input" type="password" placeholder=" " name="confirmPassword" id="confirmPassword" required>
+					<label for="confirmPassword">Confirmer le mot de passe</label>
+				</div>
+				<button class="button" type="submit">Enregistrer</button>
+			</form>
+		</dialog>
+	{% endblock %}
+	{% block script %}
+		<script src="/template/profile/scripts/formHandler.js"></script>
+		<script src="/template/profile/scripts/inputHandler.js"></script>
+		<script src="/template/profile/scripts/imageHandler.js"></script>
+		<script>
+			document.addEventListener('DOMContentLoaded', function () {
+      const userItems = document.querySelectorAll('.user-item');
+      const userInfo = document.getElementById('user-info');
+      const profileForm = document.getElementById('profile-form');
+      const containerProfileEdit = document.querySelector('.container-profile-edit');
+
+      userItems.forEach(userItem => {
+        userItem.addEventListener('click', function () {
+          containerProfileEdit.style.display = 'block';
+
+          const id = userItem.getAttribute('data-id');
+          const username = userItem.getAttribute('data-username');
+          const email = userItem.getAttribute('data-email');
+          const firstname = userItem.getAttribute('data-firstname');
+          const lastname = userItem.getAttribute('data-lastname');
+          const location = userItem.getAttribute('data-location');
+          const phone = userItem.getAttribute('data-phone');
+          const role = userItem.getAttribute('data-role');
+
+          profileForm.setAttribute('action', `/profile/${id}`);
+          profileForm.querySelector('#username').value = username;
+          profileForm.querySelector('#email').value = email;
+          profileForm.querySelector('#prenom').value = firstname;
+          profileForm.querySelector('#nom').value = lastname;
+          profileForm.querySelector('#adresse').value = location;
+          profileForm.querySelector('#telephone').value = phone;
+          profileForm.querySelector('#preferences_acoustiques').value = role;
+          profileForm.querySelector('#preferences_temperature').value = role;
+
+          // Selected option
+          const prefTemp = userItem.getAttribute('data-prefTemp');
+          const prefAcoust = userItem.getAttribute('data-prefAcoust');
+
+          profileForm.querySelector('#preferences_acoustiques').value = prefAcoust;
+          profileForm.querySelector('#preferences_temperature').value = prefTemp;
+        });
+      });
+    });
+		</script>
+	{% endblock %}
