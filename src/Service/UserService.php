@@ -48,6 +48,20 @@ class UserService
         return $user;
     }
 
+    public function getUserById(int $id): ?User
+    {
+        $query = $this->db->getConnection()->prepare('SELECT * FROM User WHERE id = :id');
+        $query->execute(['id' => $id]);
+        $userData = $query->fetch();
+
+        if (!$userData) {
+            return null;
+        }
+
+        $user = User::createUserFromArray($userData);
+        return $user;
+    }
+
     public function getImage(string $email): ?string
     {
         $query = $this->db->getConnection()->prepare('SELECT image FROM User WHERE email = :email');
@@ -93,8 +107,6 @@ class UserService
             'image' => $user->getImage(),
             'id' => $user->getId()
         ]);
-
-        Cookies::set('user', serialize($user));
     }
 
     public function updatePreferenceTemperature(User $user, string $preferenceTemperature): void

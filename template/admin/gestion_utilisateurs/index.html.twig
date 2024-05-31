@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block stylesheet %}
-	<link rel="stylesheet" href="/template\components\alert-section\style.css"/>
+	<link rel="stylesheet" href="/template\composant\alert-section\style.css"/>
   <link rel="stylesheet" href="/template/profile/style.css">
 	<link rel="stylesheet" href="/template\admin\gestion_utilisateurs\back_gest_util.css"/>
 {% endblock %}
@@ -17,44 +17,46 @@
 			<h2>Liste des Utilisateurs</h2>
 			<ul>
 				{% for user in users %}
-					<li class="user-item" data-id="{{ user.id }}" data-username="{{ user.username }}" data-email="{{ user.email }}" data-firstname="{{ user.firstName }}" data-lastname="{{ user.lastName }}" data-location="{{ user.location }}" data-phone="{{ user.phone }}" data-role="{{ user.role }}" data-prefTemp="{{ arrayTemperature[user.id] }}" data-prefAcoust="{{ arrayAcoustique[user.id] }}">
+					<li class="user-item" data-id="{{ user.id }}" data-username="{{ user.username }}" data-email="{{ user.email }}" data-firstname="{{ user.firstName }}" data-lastname="{{ user.lastName }}" data-location="{{ user.location }}" data-phone="{{ user.phone }}" data-role="{{ user.role }}" data-prefTemp="{{ arrayTemperature[user.id] }}" data-prefAcoust="{{ arrayAcoustique[user.id] }}" data-image="{{ arrayImage[user.id] }}">
 						{{ user.firstName }}
 						{{ user.lastName }}
-					{% endfor %}
+				{% endfor %}
 				</ul>
 			</div>
 			<div class="user-details">
 				<h2>Détails de l'Utilisateur</h2>
+        <p id="p-selection"> Veuillez sélectionner un utilisateur pour voir ses détails </p>
 				<div class="container-profile-edit" style="display:none">
-					<form action="/profile" method="POST" id="profile-form">
+					<form action="/admin/users" method="POST" id="profile-form">
+            <input type="hidden" name="id" id="id">
 						<div class="profile-picture">
 							<input type="file" name="image" accept="image/*" class="profile-input">
-							<img src="{{ user.image }}" class="profile-image">
+							<img class="profile-image">
 						</div>
 						<div class="inline">
 							<div class="input-field">
-								<input class="input" type="text" placeholder=" " name="firstName" id="prenom" value="{{ user.firstName }}" required>
+								<input class="input" type="text" placeholder=" " name="firstName" id="prenom" required>
 								<label for="prenom">Prénom</label>
 							</div>
 							<div class="input-field">
-								<input class="input" type="text" placeholder=" " name="lastName" id="nom" value="{{ user.lastName }}" required>
+								<input class="input" type="text" placeholder=" " name="lastName" id="nom" required>
 								<label for="nom">Nom</label>
 							</div>
 						</div>
 						<div class="input-field">
-							<input class="input" type="text" placeholder=" " name="username" id="username" value="{{ user.username }}" required>
+							<input class="input" type="text" placeholder=" " name="username" id="username" required>
 							<label for="username">Nom d'utilisateur</label>
 						</div>
 						<div class="input-field">
-							<input class="input" type="email" placeholder=" " name="email" id="email" value="{{ user.email }}" required>
+							<input class="input" type="email" placeholder=" " name="email" id="email" required>
 							<label for="email">Adresse email</label>
 						</div>
 						<div class="input-field">
-							<input class="input" type="tel" placeholder=" " name="phone" id="telephone" value="{{ user.phone }}">
+							<input class="input" type="tel" placeholder=" " name="phone" id="telephone">
 							<label for="telephone">Numéro de téléphone</label>
 						</div>
 						<div class="input-field">
-							<input class="input" type="text" placeholder=" " name="location" id="adresse" value="{{ user.location }}">
+							<input class="input" type="text" placeholder=" " name="location" id="adresse">
 							<label for="adresse">Adresse postale</label>
 						</div>
 						<div class="select-field">
@@ -73,33 +75,15 @@
 							</select>
 							<label for="preferences_temperature">Préférences de température</label>
 						</div>
-
-						<button id="btn-pwd" class="button" type="button">Modifier MDP</button>
+            <button id="btn-pwd" hidden>Changer le mot de passe</button>
 						<button class="button" type="submit">Enregistrer</button>
 					</form>
 				</div>
 			</div>
 		</div>
-
-		<dialog class="modal" id="dialog">
-			<form class="modal-content" action="/profile/password" method="POST">
-				<div class="input-field">
-					<input class="input" type="password" placeholder=" " name="currentPassword" id="currentPassword" required>
-					<label for="currentPassword">Mot de passe actuel</label>
-				</div>
-				<div class="input-field">
-					<input class="input" type="password" placeholder=" " name="newPassword" id="newPassword" required>
-					<label for="newPassword">Nouveau mot de passe</label>
-				</div>
-				<div class="input-field">
-					<input class="input" type="password" placeholder=" " name="confirmPassword" id="confirmPassword" required>
-					<label for="confirmPassword">Confirmer le mot de passe</label>
-				</div>
-				<button class="button" type="submit">Enregistrer</button>
-			</form>
-		</dialog>
+    <dialog id="dialog"><form></form></dialog>
 	{% endblock %}
-	{% block script %}
+	{% block javascript %}
 		<script src="/template/profile/scripts/formHandler.js"></script>
 		<script src="/template/profile/scripts/inputHandler.js"></script>
 		<script src="/template/profile/scripts/imageHandler.js"></script>
@@ -109,10 +93,12 @@
       const userInfo = document.getElementById('user-info');
       const profileForm = document.getElementById('profile-form');
       const containerProfileEdit = document.querySelector('.container-profile-edit');
+      const pSelection = document.getElementById('p-selection');
 
       userItems.forEach(userItem => {
         userItem.addEventListener('click', function () {
           containerProfileEdit.style.display = 'block';
+          pSelection.style.display = 'none';
 
           const id = userItem.getAttribute('data-id');
           const username = userItem.getAttribute('data-username');
@@ -123,7 +109,7 @@
           const phone = userItem.getAttribute('data-phone');
           const role = userItem.getAttribute('data-role');
 
-          profileForm.setAttribute('action', `/profile/${id}`);
+          profileForm.querySelector('#id').value = id;
           profileForm.querySelector('#username').value = username;
           profileForm.querySelector('#email').value = email;
           profileForm.querySelector('#prenom').value = firstname;
@@ -139,6 +125,11 @@
 
           profileForm.querySelector('#preferences_acoustiques').value = prefAcoust;
           profileForm.querySelector('#preferences_temperature').value = prefTemp;
+
+          // Image
+          const image = userItem.getAttribute('data-image');
+          const profileImage = profileForm.querySelector('.profile-image');
+          profileImage.src = image;
         });
       });
     });

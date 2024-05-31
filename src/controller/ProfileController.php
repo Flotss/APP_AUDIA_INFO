@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Service\UserService;
 use App\Database\DataBaseSingleton;
 use App\Utils\Security;
+use App\Utils\Cookies;
 
 
 class ProfileController extends AbstractController
@@ -113,6 +114,7 @@ class ProfileController extends AbstractController
 
 
         $userService->updateUser($user);
+        Cookies::set('user', serialize($user));
     }
 
     private function updatePassword()

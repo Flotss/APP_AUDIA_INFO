@@ -65,6 +65,7 @@ $routePost = [
 
     '/admin/cgu' => $routesGet['/admin/cgu'],
     '/admin/faq' => $routesGet['/admin/faq'],
+    '/admin/users' => $routesGet['/admin/users'],
 ];
 
 foreach ($routesGet as $route => $controller) {
