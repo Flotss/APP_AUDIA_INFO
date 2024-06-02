@@ -8,16 +8,18 @@ use App\Utils\Security;
 use App\Controller\AbstractController;
 use App\Database\DataBaseSingleton;
 use App\Service\EmailService;
+use App\Service\UserService;
 
 /**
  * The PasswordForgotController class is responsible for handling requests related to the index page.
+ * This class be able to send an email to the user to reset his password.
  */
 class PasswordForgotController extends AbstractController
 {
 
-    private DataBaseSingleton $db;
     private EmailService $emailService;
     private UserConnectionService $userConnectionService;
+    private UserService $userService;
 
     /**
      * Constructs a new instance of the PasswordForgotController class.
@@ -28,7 +30,7 @@ class PasswordForgotController extends AbstractController
 
 
         if ($_SERVER["REQUEST_URI"] === "/forgot_password") {
-            $this->db = DataBaseSingleton::getInstance();
+            $this->userService = DataBaseSingleton::getInstance();
             $this->emailService = new EmailService();
             $this->userConnectionService = new UserConnectionService();
 
@@ -50,7 +52,7 @@ class PasswordForgotController extends AbstractController
     private function handlePostRequest()
     {
         $email = Security::sanitizeInput($_POST["email"]);
-        $user = $this->db->getUserByEmail($email);
+        $user = $this->userService->getUserByEmail($email);
 
         if ($user) {
             // Send email

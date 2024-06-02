@@ -125,7 +125,9 @@ abstract class AbstractController
         }
     }
 
-
+    /**
+     * Verifies that the user is an admin.
+     */
     protected function isConnected()
     {
         return $this->data['user_connected'];

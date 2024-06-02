@@ -2,21 +2,28 @@
 
 namespace App\Service;
 
-use App\Database\DataBaseSingleton;
 use App\Utils\Cookies;
-use App\Entity\User;
 
 class AdminVerificationService
 {
-    private $db;
+    private UserService $userService;
 
+    /**
+     * AdminVerificationService constructor.
+     */
     public function __construct()
     {
-        $this->db = DataBaseSingleton::getInstance();
+        $this->userService = new UserService();
     }
 
+    /**
+     * Checks if the current user is an admin.
+     *
+     * @return bool Returns true if the user is an admin, false otherwise.
+     */
     public function isAdmin()
     {
+        // Check if user is in cookie
         if (!Cookies::exists('user')) {
             return false;
         }
@@ -26,11 +33,13 @@ class AdminVerificationService
         if ($user === null) {
             return false;
         }
+        // If user is in cookie, unserialize it
         $user = unserialize($user);
 
         // Get user from database to be sure
-        $user = $this->db->getUserByEmail($user->getEmail());
+        $user = $this->userService->getUserByEmail($user->getEmail());
 
+        // If user is not in database or is not an admin, return false
         if ($user === null || $user->getRole() !== 'ADMIN') {
             return false;
         }

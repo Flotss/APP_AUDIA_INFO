@@ -7,10 +7,17 @@ use App\Service\UserService;
 use App\Database\DataBaseSingleton;
 use App\Utils\Security;
 
+/**
+ * Class GestionUtilisateursController
+ * @package App\Controller\Admin
+ */
 class GestionUtilisateursController extends AbstractAdminController
 {
     private UserService $userService;
 
+    /**
+     * GestionUtilisateursController constructor.
+     */
     public function __construct()
     {
         parent::__construct("admin/gestion_utilisateurs");
@@ -35,10 +42,7 @@ class GestionUtilisateursController extends AbstractAdminController
                 }
             }
 
-
-
-
-            // Retreive all users to display them
+            // Retrieve all users to display them
             $users = $this->userService->getAllUser();
             $this->addData('users', $users);
 
@@ -65,6 +69,9 @@ class GestionUtilisateursController extends AbstractAdminController
         }
     }
 
+    /**
+     * Get all preferences from temperatureType and sonType tables and add them to the data array.
+     */
     private function getAllPreferences()
     {
         $db = DataBaseSingleton::getInstance();
@@ -77,6 +84,10 @@ class GestionUtilisateursController extends AbstractAdminController
         $this->addData('preferences_acoustique_options', $resSon);
     }
 
+    /**
+     * Get the image for each user and add them to the data array.
+     * @param array $users The array of users.
+     */
     private function getImageForUsers($users)
     {
         $arrayImage = [];
@@ -87,7 +98,9 @@ class GestionUtilisateursController extends AbstractAdminController
         $this->addData('arrayImage', $arrayImage);
     }
 
-
+    /**
+     * Update the user's information based on the form data.
+     */
     private function updateUser()
     {
         $id = Security::sanitizeInput($_POST["id"]);
@@ -109,10 +122,12 @@ class GestionUtilisateursController extends AbstractAdminController
         $user = $user->setLocation($location);
         $user = $user->setImage($image);
 
-
         $userService->updateUser($user);
     }
 
+    /**
+     * Update the user's preferences based on the form data.
+     */
     private function updatePreferences()
     {
         $userService = $this->userService;

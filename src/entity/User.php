@@ -6,31 +6,12 @@ use App\Utils\Security;
 
 class User
 {
-    /**
-     * @var int|null The ID of the user.
-     */
     private $id;
-
-    /**
-     * @var string|null The username of the user.
-     */
     private string $username;
-
     private string $firstName;
-
     private string $lastName;
-
-
-    /**
-     * @var string|null The email of the user.
-     */
     private string $email;
-
-    /**
-     * @var string|null The hashed password of the user.
-     */
     private string $password;
-
     private string $location;
     private string $phone;
     private string $role;

@@ -56,6 +56,9 @@ class ConnexionController extends AbstractController
         throw new \Exception("Invalid action.");
     }
 
+    /**
+     * Handles the connection.
+     */
     private function handleConnection()
     {
         $email = Security::sanitizeInput($_POST["email"]);
@@ -70,6 +73,9 @@ class ConnexionController extends AbstractController
         }
     }
 
+    /**
+     * Handles the inscription.
+     */
     private function handleInscription()
     {
         $email = Security::sanitizeInput($_POST["email"]);
