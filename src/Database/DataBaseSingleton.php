@@ -12,7 +12,7 @@ use PDO;
 class DataBaseSingleton
 {
     private static ?DataBaseSingleton $instance = null;
-    private PDO $connection;
+    public PDO $connection;
 
     /**
      * Private constructor to prevent creating multiple instances of the class.

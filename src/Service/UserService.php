@@ -26,10 +26,32 @@ class UserService
         $this->db = DataBaseSingleton::getInstance();
     }
 
+    public function getAllUser(): array
+    {
+        $query = $this->db->getConnection()->prepare('SELECT * FROM User');
+        $query->execute();
+        $users = $query->fetchAll();
+        return $users;
+    }
+
     public function getUser(string $email): ?User
     {
         $query = $this->db->getConnection()->prepare('SELECT * FROM User WHERE email = :email');
         $query->execute(['email' => $email]);
+        $userData = $query->fetch();
+
+        if (!$userData) {
+            return null;
+        }
+
+        $user = User::createUserFromArray($userData);
+        return $user;
+    }
+
+    public function getUserById(int $id): ?User
+    {
+        $query = $this->db->getConnection()->prepare('SELECT * FROM User WHERE id = :id');
+        $query->execute(['id' => $id]);
         $userData = $query->fetch();
 
         if (!$userData) {
@@ -85,8 +107,6 @@ class UserService
             'image' => $user->getImage(),
             'id' => $user->getId()
         ]);
-
-        Cookies::set('user', serialize($user));
     }
 
     public function updatePreferenceTemperature(User $user, string $preferenceTemperature): void
