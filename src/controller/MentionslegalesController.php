@@ -14,6 +14,11 @@ class MentionslegalesController extends AbstractController
 
         // Recuperer le contenu depuis la base de donnée
         $service = new RetrieveDataFromDataUtils();
-        $this->data['mentions_legales'] = $service->getContentByKey("mentions_legales")->getValue();
+
+        try {
+            $this->data['mentions_legales'] = $service->getContentByKey("mentions_legales")->getValue();
+        } catch (\Exception $e) {
+            $this->data['messageError'] = "Mentions légales non disponibles";
+        }
     }
 }

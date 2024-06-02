@@ -20,6 +20,10 @@ class RetrieveDataFromDataUtils
     {
         $result = $this->db->makeRequest("SELECT * FROM DataUtil WHERE cle = :cle", ["cle" => $key]);
 
+        if (empty($result)) {
+            throw new \Exception("No content found for key $key");
+        }
+
         return new Content($result[0]['id'], $result[0]['cle'], $result[0]['texte']);
     }
 
