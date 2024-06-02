@@ -9,21 +9,29 @@
 {% endblock %}
 
 {% block body %}
-	    <div class="container">
-      <button class="scroll-btn left-btn" onclick="scrollLeft()">
-        &#10094;
-      </button>
-      <div class="cinema-list">
-	  	<div class="cinema-item"><a href="http://localhost/monitoring?id=1"><img src="/assets/Image/Grand_rex.jpg" alt="Cinéma 1" /></div>
-        <div class="cinema-item"><a href="http://localhost/monitoring?id=2"><img src="cinema.jpg" alt="Cinéma 2" /></div>
-        <div class="cinema-item"><a href="http://localhost/monitoring?id=3"><img src="cinema.jpg" alt="Cinéma 3" /></div>
-        <div class="cinema-item"><a href="http://localhost/monitoring?id=4"><img src="cinema.jpg" alt="Cinéma 4" /></div>
-		<div class="cinema-item"><a href="http://localhost/monitoring?id=5"><img src="cinema.jpg" alt="Cinéma 5" /></div>
-      </div>
-      <button class="scroll-btn right-btn" onclick="scrollRight()">
-        &#10095;
-      </button>
-    </div>
+	<div class="container">
+		<button class="scroll-btn left-btn" onclick="scrollLeft()">
+			&#10094;
+		</button>
+		<div class="cinema-list">
+			<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+				<div class="carousel-inner">
+					{% for cinema in cinemas %}
+						<div class="carousel-item {% if loop.first %}active{% endif %}">
+							<a href="http://localhost/monitoring?id={{ cinema.id }}">
+								<img src="{{ cinema.image }}" alt="Cinéma {{ cinema.id }}" />
+							</a>
+						</div>
+					{% endfor %}
+				</div>
+			
+				</a>
+			</div>
+		</div>
+		<button class="scroll-btn right-btn" onclick="scrollRight()">
+			&#10095;
+		</button>
+	</div>
 {% endblock %}
 
 {% block javascript %}
