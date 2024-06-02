@@ -36,17 +36,21 @@ class User
     private string $role;
     private string $image;
 
-    public string $prefTemp;
-    public string $prefSon;
-
-
+    public string $prefTemp = "";
+    public string $prefSon = "";
 
     /**
      * User constructor.
      *
+     * @param int $id The ID of the user.
      * @param string $username The username of the user.
      * @param string $email The email of the user.
-     * @param string|null $password The password of the user (optional).
+     * @param string $password The password of the user.
+     * @param string $firstName The first name of the user.
+     * @param string $lastName The last name of the user.
+     * @param string $location The location of the user.
+     * @param string $phone The phone number of the user.
+     * @param string $role The role of the user.
      */
     public function __construct(int $id, string $username, string $email, string $password, string $firstName, string $lastName, string $location = "", string $phone = "", string $role = 'USER')
     {
@@ -63,17 +67,18 @@ class User
     }
 
     /**
-     * User constructor with array.
+     * Creates a new User object from an array of data.
      *
      * @param array $data The user data.
+     * @return User The created User object.
      */
-    public static function createUserFromArray(array $data)
+    public static function createUserFromArray(array $data): User
     {
         return new self($data['id'], $data['username'], $data['email'], $data['password'], $data['firstName'], $data['lastName'], $data['location'], $data['phone'], $data['role']);
     }
 
     /**
-     * Converts the user to a string.
+     * Converts the user to a string representation.
      *
      * @return string The user as a string.
      */
@@ -115,6 +120,12 @@ class User
         return $this->username;
     }
 
+    /**
+     * Sets the username of the user.
+     *
+     * @param string $username The new username.
+     * @return self
+     */
     public function setUserName(string $username): self
     {
         $this->username = $username;
@@ -168,6 +179,12 @@ class User
         return $this->password;
     }
 
+    /**
+     * Sets the password of the user.
+     *
+     * @param string $password The new password.
+     * @return self
+     */
     public function setPassword(string $password): self
     {
         $this->password = $password;
@@ -176,7 +193,7 @@ class User
     }
 
     /**
-     * Sets the password of the user.
+     * Sets the hashed password of the user.
      *
      * @param string $password The new password.
      * @return self
@@ -188,11 +205,22 @@ class User
         return $this;
     }
 
+    /**
+     * Gets the first name of the user.
+     *
+     * @return string|null The first name of the user.
+     */
     public function getFirstName(): ?string
     {
         return $this->firstName;
     }
 
+    /**
+     * Sets the first name of the user.
+     *
+     * @param string $firstName The new first name.
+     * @return self
+     */
     public function setFirstName(string $firstName): self
     {
         $this->firstName = $firstName;
@@ -200,11 +228,22 @@ class User
         return $this;
     }
 
+    /**
+     * Gets the last name of the user.
+     *
+     * @return string|null The last name of the user.
+     */
     public function getLastName(): ?string
     {
         return $this->lastName;
     }
 
+    /**
+     * Sets the last name of the user.
+     *
+     * @param string $lastName The new last name.
+     * @return self
+     */
     public function setLastName(string $lastName): self
     {
         $this->lastName = $lastName;
@@ -212,11 +251,23 @@ class User
         return $this;
     }
 
+    /**
+     * Gets the full name of the user.
+     *
+     * @return string The full name of the user.
+     */
     public function getFullName(): string
     {
         return $this->firstName . ' ' . $this->lastName;
     }
 
+    /**
+     * Sets the full name of the user.
+     *
+     * @param string $firstName The new first name.
+     * @param string $lastName The new last name.
+     * @return self
+     */
     public function setFullName(string $firstName, string $lastName): self
     {
         $this->firstName = $firstName;
@@ -225,11 +276,22 @@ class User
         return $this;
     }
 
+    /**
+     * Gets the location of the user.
+     *
+     * @return string|null The location of the user.
+     */
     public function getLocation(): ?string
     {
         return $this->location;
     }
 
+    /**
+     * Sets the location of the user.
+     *
+     * @param string $location The new location.
+     * @return self
+     */
     public function setLocation(string $location): self
     {
         $this->location = $location;
@@ -237,11 +299,22 @@ class User
         return $this;
     }
 
+    /**
+     * Gets the phone number of the user.
+     *
+     * @return string|null The phone number of the user.
+     */
     public function getPhone(): ?string
     {
         return $this->phone;
     }
 
+    /**
+     * Sets the phone number of the user.
+     *
+     * @param string $phone The new phone number.
+     * @return self
+     */
     public function setPhone(string $phone): self
     {
         $this->phone = $phone;
@@ -249,11 +322,22 @@ class User
         return $this;
     }
 
+    /**
+     * Gets the role of the user.
+     *
+     * @return string|null The role of the user.
+     */
     public function getRole(): ?string
     {
         return $this->role;
     }
 
+    /**
+     * Sets the role of the user.
+     *
+     * @param string $role The new role.
+     * @return self
+     */
     public function setRole(string $role): self
     {
         $this->role = $role;
@@ -261,11 +345,22 @@ class User
         return $this;
     }
 
+    /**
+     * Gets the image of the user.
+     *
+     * @return string|null The image of the user.
+     */
     public function getImage(): ?string
     {
         return $this->image;
     }
 
+    /**
+     * Sets the image of the user.
+     *
+     * @param string $image The new image.
+     * @return self
+     */
     public function setImage(string $image): self
     {
         $this->image = $image;
@@ -273,11 +368,22 @@ class User
         return $this;
     }
 
+    /**
+     * Gets the preferred temperature of the user.
+     *
+     * @return string|null The preferred temperature of the user.
+     */
     public function getPrefTemp(): ?string
     {
         return $this->prefTemp;
     }
 
+    /**
+     * Sets the preferred temperature of the user.
+     *
+     * @param string $prefTemp The new preferred temperature.
+     * @return self
+     */
     public function setPrefTemp(string $prefTemp): self
     {
         $this->prefTemp = $prefTemp;
@@ -285,11 +391,22 @@ class User
         return $this;
     }
 
+    /**
+     * Gets the preferred sound of the user.
+     *
+     * @return string|null The preferred sound of the user.
+     */
     public function getPrefSon(): ?string
     {
         return $this->prefSon;
     }
 
+    /**
+     * Sets the preferred sound of the user.
+     *
+     * @param string $prefSon The new preferred sound.
+     * @return self
+     */
     public function setPrefSon(string $prefSon): self
     {
         $this->prefSon = $prefSon;
