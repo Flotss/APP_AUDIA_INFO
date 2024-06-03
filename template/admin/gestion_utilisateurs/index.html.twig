@@ -102,58 +102,58 @@
 		<script src="/template/profile/scripts/imageHandler.js"></script>
 		<script>
 			document.addEventListener('DOMContentLoaded', function () {
-      const userItems = document.querySelectorAll('.user-item');
-      const userInfo = document.getElementById('user-info');
-      const profileForm = document.getElementById('profile-form');
-      const containerProfileEdit = document.querySelector('.container-profile-edit');
-      const pSelection = document.getElementById('p-selection');
+				const userItems = document.querySelectorAll('.user-item');
+				const userInfo = document.getElementById('user-info');
+				const profileForm = document.getElementById('profile-form');
+				const containerProfileEdit = document.querySelector('.container-profile-edit');
+				const pSelection = document.getElementById('p-selection');
 
-      userItems.forEach(userItem => {
-        userItem.addEventListener('click', function () {
-          containerProfileEdit.style.display = 'block';
-          pSelection.style.display = 'none';
+				userItems.forEach(userItem => {
+					userItem.addEventListener('click', function () {
+						containerProfileEdit.style.display = 'block';
+						pSelection.style.display = 'none';
 
-          const id = userItem.getAttribute('data-id');
-          const username = userItem.getAttribute('data-username');
-          const email = userItem.getAttribute('data-email');
-          const firstname = userItem.getAttribute('data-firstname');
-          const lastname = userItem.getAttribute('data-lastname');
-          const location = userItem.getAttribute('data-location');
-          const phone = userItem.getAttribute('data-phone');
-          const role = userItem.getAttribute('data-role');
+						const id = userItem.getAttribute('data-id');
+						const username = userItem.getAttribute('data-username');
+						const email = userItem.getAttribute('data-email');
+						const firstname = userItem.getAttribute('data-firstname');
+						const lastname = userItem.getAttribute('data-lastname');
+						const location = userItem.getAttribute('data-location');
+						const phone = userItem.getAttribute('data-phone');
+						const role = userItem.getAttribute('data-role');
 
-          profileForm.querySelector('#id').value = id;
-          profileForm.querySelector('#username').value = username;
-          profileForm.querySelector('#email').value = email;
-          profileForm.querySelector('#prenom').value = firstname;
-          profileForm.querySelector('#nom').value = lastname;
-          profileForm.querySelector('#adresse').value = location;
-          profileForm.querySelector('#telephone').value = phone;
-          profileForm.querySelector('#preferences_acoustiques').value = role;
-          profileForm.querySelector('#preferences_temperature').value = role;
+						profileForm.querySelector('#id').value = id;
+						profileForm.querySelector('#username').value = username;
+						profileForm.querySelector('#email').value = email;
+						profileForm.querySelector('#prenom').value = firstname;
+						profileForm.querySelector('#nom').value = lastname;
+						profileForm.querySelector('#adresse').value = location;
+						profileForm.querySelector('#telephone').value = phone;
+						profileForm.querySelector('#preferences_acoustiques').value = role;
+						profileForm.querySelector('#preferences_temperature').value = role;
 
-		  document.getElementById('id-delete').value = id;
+						document.getElementById('id-delete').value = id;
 
-          // Selected option
-          const prefTemp = userItem.getAttribute('data-prefTemp');
-          const prefAcoust = userItem.getAttribute('data-prefAcoust');
+						// Selected option
+						const prefTemp = userItem.getAttribute('data-prefTemp');
+						const prefAcoust = userItem.getAttribute('data-prefAcoust');
 
-          profileForm.querySelector('#preferences_acoustiques').value = prefAcoust;
-          profileForm.querySelector('#preferences_temperature').value = prefTemp;
+						profileForm.querySelector('#preferences_acoustiques').value = prefAcoust;
+						profileForm.querySelector('#preferences_temperature').value = prefTemp;
 
-          // Image
-          const image = userItem.getAttribute('data-image');
-          const profileImage = profileForm.querySelector('.profile-image');
-          profileImage.src = image;
-        });
-      });
-    });
+						// Image
+						const image = userItem.getAttribute('data-image');
+						const profileImage = profileForm.querySelector('.profile-image');
+						profileImage.src = image;
+					});
+				});
+			});
 
-	const btnDelete = document.getElementById('btn-delete');
-	const dialogDelete = document.getElementById('dialog-delete');
-	
-	btnDelete.addEventListener('click', function () {
-		dialogDelete.showModal();
-	});
+			const btnDelete = document.getElementById('btn-delete');
+			const dialogDelete = document.getElementById('dialog-delete');
+			
+			btnDelete.addEventListener('click', function () {
+				dialogDelete.showModal();
+			});
 		</script>
 	{% endblock %}
