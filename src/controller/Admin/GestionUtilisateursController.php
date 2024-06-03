@@ -20,11 +20,19 @@ class GestionUtilisateursController extends AbstractAdminController
             $this->userService = new UserService();
             // if post 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                // Get the form data
-                $this->updateUser();
-                $this->updatePreferences();
+                if ($_POST['action'] === 'update') {
+                    // Get the form data
+                    $this->updateUser();
+                    $this->updatePreferences();
 
-                $this->addData('message', 'Utilisateur mis à jour');
+                    $this->addData('message', 'Utilisateur mis à jour');
+                }
+
+                if ($_POST['action'] === 'delete') {
+                    $id = Security::sanitizeInput($_POST["id"]);
+                    $this->userService->deleteUser($id);
+                    $this->addData('message', 'Utilisateur supprimé');
+                }
             }
 
 

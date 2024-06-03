@@ -124,4 +124,10 @@ class UserService
         WHERE userId = :userId');
         $query->execute(['name' => $preferenceSon, 'userId' => $user->getId()]);
     }
+
+    public function deleteUser(int $id): void
+    {
+        $this->db->makeRequest('DELETE FROM UserPreferences WHERE userId = :id', ['id' => $id]);
+        $this->db->makeRequest('DELETE FROM User WHERE id = :id', ['id' => $id]);
+    }
 }

@@ -25,10 +25,11 @@
 			</div>
 			<div class="user-details">
 				<h2>Détails de l'Utilisateur</h2>
-        <p id="p-selection"> Veuillez sélectionner un utilisateur pour voir ses détails </p>
+        		<p id="p-selection"> Veuillez sélectionner un utilisateur pour voir ses détails </p>
 				<div class="container-profile-edit" style="display:none">
 					<form action="/admin/users" method="POST" id="profile-form">
-            <input type="hidden" name="id" id="id">
+						<input type="hidden" name="action" value="update">
+            			<input type="hidden" name="id" id="id">
 						<div class="profile-picture">
 							<input type="file" name="image" accept="image/*" class="profile-input">
 							<img class="profile-image">
@@ -75,13 +76,25 @@
 							</select>
 							<label for="preferences_temperature">Préférences de température</label>
 						</div>
-            <button id="btn-pwd" hidden>Changer le mot de passe</button>
+            			<button id="btn-pwd" hidden>Changer le mot de passe</button>
 						<button class="button" type="submit">Enregistrer</button>
+						<button id="btn-delete" class="button" style="background-color: red;" type="button">Supprimer l'utilisateur</button>
 					</form>
 				</div>
 			</div>
 		</div>
     <dialog id="dialog"><form></form></dialog>
+	<dialog class="modal" id="dialog-delete">
+		<form class="modal-content" action="/admin/users" method="POST">
+			<input type="hidden" name="action" value="delete">
+			<input class="input" type="text" placeholder=" " name="id" id="id-delete" hidden>
+			<p>Êtes-vous sûr de vouloir supprimer cet utilisateur ?</p>
+			<div style="display: flex; justify-content: space-between;">
+				<button class="button" type="button" style="margin-left:10px; background-color: grey;" onclick="dialogDelete.close()">Annuler</button>
+				<button class="button" type="submit" style="margin-left:10px; background-color: red;">Supprimer l'utilisateur</button>
+			</div>
+		</form>
+	</dialog>
 	{% endblock %}
 	{% block javascript %}
 		<script src="/template/profile/scripts/formHandler.js"></script>
@@ -119,6 +132,8 @@
           profileForm.querySelector('#preferences_acoustiques').value = role;
           profileForm.querySelector('#preferences_temperature').value = role;
 
+		  document.getElementById('id-delete').value = id;
+
           // Selected option
           const prefTemp = userItem.getAttribute('data-prefTemp');
           const prefAcoust = userItem.getAttribute('data-prefAcoust');
@@ -133,5 +148,12 @@
         });
       });
     });
+
+	const btnDelete = document.getElementById('btn-delete');
+	const dialogDelete = document.getElementById('dialog-delete');
+	
+	btnDelete.addEventListener('click', function () {
+		dialogDelete.showModal();
+	});
 		</script>
 	{% endblock %}
