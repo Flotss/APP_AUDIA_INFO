@@ -3,7 +3,7 @@
   "description": "Application web d'AUDIA",
   "type": "project",
   "require": {
-    "php": "8.1.12",
+    "php": "8.1.28",
     "twig/twig": "^3.0",
     "phpmailer/phpmailer": "^6.9"
   },

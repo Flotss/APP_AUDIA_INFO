@@ -13,17 +13,18 @@ h1 {
 }
 
 h2 {
-  font-size: 110%;
+  font-size: 120%;
 }
+
 .terms {
   margin: 0 auto;
-  padding: 2%;
+  padding: 4%;
   width: 90%;
+  white-space: pre-line; /* Ajout de la propriété pour les sauts de ligne */
 }
 
 .barre {
   margin: 0 auto;
-
   width: 90%;
   border-top: 1px solid rgba(0, 0, 0, 0.5);
   padding: 1%;
