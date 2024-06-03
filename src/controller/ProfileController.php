@@ -13,12 +13,16 @@ class ProfileController extends AbstractController
 
     private $userService;
 
+    /**
+     * Constructs a new instance of the ProfileController class.
+     */
     public function __construct()
     {
         parent::__construct("profile");
         $this->userService = new UserService();
 
         if ($_SERVER['REQUEST_URI'] === '/profile') {
+            // IF NOT CONNECTED REDIRECT TO LOGIN
             if (!$this->isConnected()) {
                 header('Location: /connexion');
                 exit();
@@ -43,21 +47,31 @@ class ProfileController extends AbstractController
                 $this->updatePassword();
             }
 
+            // GET request
             $this->handleGetRequest();
         }
     }
 
+    /**
+     * Handles a GET request.
+     * This method is responsible for checking if the user is connected and getting the user's data.
+     */
     private function handleGetRequest()
     {
-        // GET request
+        // Get user data
         $this->getPreferencesUser();
         $this->getAllPreferences();
 
+        // Get user data
         $this->user = $this->userService->getUser($this->user->getEmail());
         $this->user->setImage($this->userService->getImage($this->user->getEmail()));
         $this->addData('user', $this->user);
     }
 
+    /**
+     * Gets the user's preferences.
+     * This method is responsible for getting the user's preferences from the database.
+     */
     private function getPreferencesUser()
     {
         $userService = $this->userService;
@@ -69,6 +83,10 @@ class ProfileController extends AbstractController
         $this->addData('preferences_acoustique', $preferenceSon);
     }
 
+    /**
+     * Gets all preferences from the temperatureType and acousticsType tables.
+     * This method is responsible for getting all preferences from the temperatureType and acousticsType tables.
+     */
     private function getAllPreferences()
     {
         $db = DataBaseSingleton::getInstance();
@@ -81,6 +99,10 @@ class ProfileController extends AbstractController
         $this->addData('preferences_acoustique_options', $resSon);
     }
 
+    /**
+     * Updates the user's preferences.
+     * This method is responsible for updating the user's preferences in the database.
+     */
     private function updatePreferences()
     {
         $userService = $this->userService;
@@ -91,8 +113,13 @@ class ProfileController extends AbstractController
         $userService->updatePreferenceSon($this->user, $preferenceSon);
     }
 
+    /**
+     * Updates the user's data.
+     * This method is responsible for updating the user's data in the database.
+     */
     private function updateUser()
     {
+        // Sanitize input
         $firstName = Security::sanitizeInput($_POST["firstName"]);
         $lastName = Security::sanitizeInput($_POST["lastName"]);
         $username = Security::sanitizeInput($_POST["username"]);
@@ -101,6 +128,7 @@ class ProfileController extends AbstractController
         $location = Security::sanitizeInput($_POST["location"]);
         $image = $_POST["imageBase64"] ?? "";
 
+        // Update user
         $userService = $this->userService;
         $user = $userService->getUser($this->user->getEmail());
 
@@ -112,32 +140,41 @@ class ProfileController extends AbstractController
         $user = $user->setLocation($location);
         $user = $user->setImage($image);
 
-
         $userService->updateUser($user);
+
+        // Update user in cookies
         Cookies::set('user', serialize($user));
     }
 
+    /**
+     * Updates the user's password.
+     * This method is responsible for updating the user's password in the database.
+     */
     private function updatePassword()
     {
+        // Sanitize input
         $oldPassword = Security::sanitizeInput($_POST["currentPassword"]);
         $newPassword = Security::sanitizeInput($_POST["newPassword"]);
         $confirmPassword = Security::sanitizeInput($_POST["confirmPassword"]);
 
+        // Check if new password and confirm password match
         if ($newPassword !== $confirmPassword) {
             $this->addData('messageError', 'Les mots de passe ne correspondent pas');
             return;
         }
 
+        // Get user from database
         $userService = $this->userService;
         $user = $userService->getUser($this->user->getEmail());
 
 
-
+        // Check if old password is correct
         if (!password_verify($oldPassword, $user->getPassword())) {
             $this->addData('messageError', 'Ancien mot de passe incorrect');
             return;
         }
 
+        // Update password
         $user = $user->setPasswordHashed($newPassword);
         $userService->updateUser($user);
         $this->addData('message', 'Mot de passe mis à jour');

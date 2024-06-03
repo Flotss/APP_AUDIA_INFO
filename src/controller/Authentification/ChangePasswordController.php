@@ -6,16 +6,17 @@ use App\Service\UserConnectionService;
 use App\Utils\Cookies;
 use App\Utils\Security;
 use App\Controller\AbstractController;
-use App\Database\DataBaseSingleton;
+use App\Service\UserService;
 
 /**
  * The ChangePasswordController class is responsible for handling requests related to the index page.
+ * This class be able to change the password of the user.
  */
 class ChangePasswordController extends AbstractController
 {
 
     private UserConnectionService $userConnectionService;
-    private DataBaseSingleton $db;
+    private UserService $userService;
 
     /**
      * Constructs a new instance of the ChangePasswordController class.
@@ -27,7 +28,7 @@ class ChangePasswordController extends AbstractController
         $REQUEST_URI = explode("?", $_SERVER["REQUEST_URI"])[0];
         if ($REQUEST_URI === "/change_password") {
             $this->userConnectionService = new UserConnectionService();
-            $this->db = DataBaseSingleton::getInstance();
+            $this->userService = new UserService();
 
             // IF CONNECTED REDIRECT TO HOME
             Cookies::exists("user") ? header("Location: /") : null;
@@ -51,7 +52,7 @@ class ChangePasswordController extends AbstractController
     private function handleGetRequest()
     {
         $token = Security::sanitizeInput($_GET["token"]);
-        $user = $this->db->getUserByToken($token);
+        $user = $this->userService->getUserByToken($token);
 
         if ($user) {
             $this->data['token'] = $token;
@@ -73,7 +74,7 @@ class ChangePasswordController extends AbstractController
         $passwordConfirm = Security::sanitizeInput($_POST["confirm_password"]);
 
         if ($password === $passwordConfirm) {
-            $user = $this->db->getUserByToken($token);
+            $user = $this->userService->getUserByToken($token);
 
             if ($user) {
                 $this->userConnectionService->updateUserPassword($user, Security::hashPassword($password));

@@ -14,6 +14,7 @@ use App\Utils\Cookies;
  */
 class UserConnectionService
 {
+    private UserService $userService;
     private DataBaseSingleton $db;
 
     /**
@@ -23,6 +24,7 @@ class UserConnectionService
      */
     public function __construct()
     {
+        $this->userService = new UserService();
         $this->db = DataBaseSingleton::getInstance();
     }
 
@@ -37,7 +39,7 @@ class UserConnectionService
     public function loginUser($email, $password): bool
     {
         // Check if the user exists in the database
-        $user = $this->db->getUserByEmail($email);
+        $user = $this->userService->getUserByEmail($email);
 
         if ($user && Security::verifyPassword($password, $user->getPassword())) {
             // Save the user to a cookie
@@ -58,8 +60,10 @@ class UserConnectionService
      * @param string $username The user's username.
      * @param string $email The user's email.
      * @param string $password The user's password.
+     * @param string $firstName The user's first name.
+     * @param string $lastName The user's last name.
      * 
-     * @return User The registered user object.
+     * @return bool True if the registration is successful, false otherwise.
      */
     public function registerUser($username, $email, $password, $firstName, $lastName): bool
     {
@@ -70,7 +74,7 @@ class UserConnectionService
         $user->setPasswordHashed($password);
 
         // Save the user to the database
-        $user = $this->db->saveUser($user);
+        $user = $this->userService->saveUser($user);
 
         // Save the user to a cookie
         $user = serialize($user);
@@ -79,6 +83,14 @@ class UserConnectionService
         return true;
     }
 
+    /**
+     * Stores the authentication token for a user.
+     * 
+     * @param User $user The user object.
+     * @param string $token The authentication token.
+     * 
+     * @return void
+     */
     public function storeUserToken(User $user, string $token)
     {
         $this->db->makeRequest("UPDATE User SET token = :token WHERE id = :id", [
@@ -87,6 +99,14 @@ class UserConnectionService
         ]);
     }
 
+    /**
+     * Updates the password for a user.
+     * 
+     * @param User $user The user object.
+     * @param string $password The new password.
+     * 
+     * @return void
+     */
     public function updateUserPassword(User $user, string $password)
     {
         $this->db->makeRequest("UPDATE User SET password = :password WHERE id = :id", [
