@@ -125,6 +125,12 @@ class UserService
         $query->execute(['name' => $preferenceSon, 'userId' => $user->getId()]);
     }
 
+    /**
+     * Deletes a user from the database.
+     *
+     * @param int $id The ID of the user to delete.
+     * @return void
+     */
     public function deleteUser(int $id): void
     {
         $this->db->makeRequest('DELETE FROM UserPreferences WHERE userId = :id', ['id' => $id]);
