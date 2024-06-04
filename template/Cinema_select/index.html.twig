@@ -1,0 +1,42 @@
+{% extends '/base.html.twig' %}
+
+{% block title %}
+	Monitoring
+{% endblock %}
+
+{% block stylesheet %}
+	<link rel="stylesheet" href="/template/Cinema_select/style.css"/>
+{% endblock %}
+
+{% block body %}
+	<div class="padd">
+		<h2 class="titre_s">Choisir le cinéma de votre choix :</h2>
+		<div class="container">
+			<br>
+			<button class="scroll-btn left-btn" onclick="scrollLeft()">
+				&#10094;
+			</button>
+			<div class="cinema-list">
+				<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+					<div class="carousel-inner">
+						{% for cinema in cinemas %}
+							<div class="carousel-item {% if loop.first %}active{% endif %}" style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+								<a href="http://localhost/monitoring?id={{ cinema.id }}">
+									<img src="{{ cinema.image }}" alt="Cinéma {{ cinema.id }}" />
+								</a>
+								<div class="cinema-name">{{ cinema.name }}</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+			<button class="scroll-btn right-btn" onclick="scrollRight()">
+				&#10095;
+			</button>
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascript %}
+	<script src="/template/Cinema_select/script.js"></script>
+{% endblock %}

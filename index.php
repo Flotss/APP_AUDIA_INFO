@@ -14,12 +14,17 @@ use App\Controller\ContactController;
 use App\Controller\MonitoringController;
 use App\Controller\CguController;
 use App\Controller\MentionslegalesController;
+use App\Controller\Cinema_selectController;
+
 use App\Controller\DeconnexionController;
 
 //ADMIN
 use App\Controller\FaqAdminController;
 use App\Controller\CguAdminController;
 use App\Controller\Admin\GestionUtilisateursController;
+
+//API
+use App\Controller\ApiController\MonitoringApiController;
 
 session_start();
 
@@ -47,6 +52,7 @@ $routesGet = [
 
     '/cgu' => new CguController(),
     '/mentionslegales' => new MentionslegalesController(),
+    '/cinema_select' => new Cinema_selectController(),
     '/deconnexion' => new DeconnexionController(),
 
     // ADMIN ROUTES
@@ -68,6 +74,16 @@ $routePost = [
     '/admin/users' => $routesGet['/admin/users'],
 ];
 
+
+$routeApiGet = [
+    '/api/monitoring' => new MonitoringApiController(),
+];
+
+
+$routeApiGet = [
+    '/api/monitoring' => new MonitoringApiController(),
+];
+
 foreach ($routesGet as $route => $controller) {
     $router->get($route, function () use ($controller) {
         $controller->index();
@@ -77,6 +93,12 @@ foreach ($routesGet as $route => $controller) {
 foreach ($routePost as $route => $controller) {
     $router->post($route, function () use ($controller) {
         $controller->index();
+    });
+}
+
+foreach ($routeApiGet as $route => $controller) {
+    $router->get($route, function () use ($controller) {
+        $controller->get();
     });
 }
 

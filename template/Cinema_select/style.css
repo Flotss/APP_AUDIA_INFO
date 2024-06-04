@@ -1,0 +1,79 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+body {
+  background-color: #b3c6ff;
+}
+
+.padd {
+  padding: 45px;
+}
+
+.titre_section {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.carousel-inner {
+  display: flex;
+}
+
+.cinema-list {
+  display: flex;
+  overflow-x: hidden;
+  width: 80%;
+  scroll-behavior: smooth;
+}
+
+.carousel-item {
+  display: flex;
+  min-width: 25%;
+  padding: 10px;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+.carousel-item a {
+  text-decoration: none;
+  color: black;
+}
+
+.scroll-btn {
+  background-color: #666;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.scroll-btn:hover {
+  background-color: #444;
+}
+
+.left-btn {
+  margin-right: 10px;
+}
+
+.right-btn {
+  margin-left: 10px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: fixed;
+}
