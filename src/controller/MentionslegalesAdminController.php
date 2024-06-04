@@ -12,7 +12,7 @@ class MentionslegalesAdminController extends AbstractAdminController
         parent::__construct("mentionslegales/admin");
 
         // POST request
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['mentions_legales'])) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['mentionslegales'])) {
             $this->updateCgu();
         }
 
@@ -25,9 +25,9 @@ class MentionslegalesAdminController extends AbstractAdminController
     private function updateCgu()
     {
         $service = new RetrieveDataFromDataUtils();
-        $service->updateContentByKey("mentions_legales", $_POST['mentions_legales']);
+        $service->updateContentByKey("mentions_legales", $_POST['mentionslegales']);
 
-        $this->data['mentions_legales'] = $_POST['mentions_legales'];
-        $this->data['message'] = "mentions_legales mis à jour";
+        $this->data['mentionslegales'] = $_POST['mentions_legales'];
+        $this->data['message'] = " Mentions Légales ont été mis à jour";
     }
 }

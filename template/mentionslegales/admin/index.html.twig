@@ -6,6 +6,7 @@
 
 {% block stylesheet %}
     <link rel="stylesheet" href="/template/mentionslegales/admin/mentionslegales.css"/>
+    <link rel="stylesheet" href="/template/composant/alert-section/style.css"/>
 {% endblock %}
 
 {% block body %}
@@ -19,18 +20,19 @@
         <div class="barre"></div>
         <br/>
 
-        {% if error %}
-            <div class="alert alert-danger" role="alert">
-                {{ error }}
-            </div>
-        {% endif %}
+        <div class="alert-section">
+            {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endif %}
 
-        {% if message %}
-            <div class="alert alert-success" role="alert">
-                {{ message }}
-            </div>
-        {% endif %}
-
+            {% if message %}
+                <div class="alert alert-success" role="alert">
+                    {{ message }}
+                </div>
+            {% endif %}
+        </div>
         <div class="terms">
             <div class="form-group">
                 <form method="post" action="/admin/mentionslegales">
