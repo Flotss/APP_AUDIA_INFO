@@ -1,14 +1,20 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Service\FaqService;
 use InvalidArgumentException;
 
+/**
+ * The FaqAdminController class is responsible for handling requests related to the FAQ page.
+ */
 class FaqAdminController extends AbstractAdminController
 {
     private FaqService $service;
 
+    /**
+     * Constructs a new instance of the FaqAdminController class.
+     */
     public function __construct()
     {
         parent::__construct("faq/admin");

@@ -1,0 +1,159 @@
+{% extends '/base.html.twig' %}
+
+{% block title %}
+	Gestion des utilisateurs
+{% endblock %}
+
+{% block stylesheet %}
+	<link rel="stylesheet" href="/template\composant\alert-section\style.css"/>
+  <link rel="stylesheet" href="/template/profile/style.css">
+	<link rel="stylesheet" href="/template\admin\gestion_utilisateurs\back_gest_util.css"/>
+{% endblock %}
+
+{% block body %}
+	{% include 'composant/alert-section/alert-section.html.twig' with { 'message': message, 'messageError': messageError } %}
+	<div class="container">
+		<div class="user-list">
+			<h2>Liste des Utilisateurs</h2>
+			<ul>
+				{% for user in users %}
+					<li class="user-item" data-id="{{ user.id }}" data-username="{{ user.username }}" data-email="{{ user.email }}" data-firstname="{{ user.firstName }}" data-lastname="{{ user.lastName }}" data-location="{{ user.location }}" data-phone="{{ user.phone }}" data-role="{{ user.role }}" data-prefTemp="{{ arrayTemperature[user.id] }}" data-prefAcoust="{{ arrayAcoustique[user.id] }}" data-image="{{ arrayImage[user.id] }}">
+						{{ user.firstName }}
+						{{ user.lastName }}
+				{% endfor %}
+				</ul>
+			</div>
+			<div class="user-details">
+				<h2>Détails de l'Utilisateur</h2>
+        		<p id="p-selection"> Veuillez sélectionner un utilisateur pour voir ses détails </p>
+				<div class="container-profile-edit" style="display:none">
+					<form action="/admin/users" method="POST" id="profile-form">
+						<input type="hidden" name="action" value="update">
+            			<input type="hidden" name="id" id="id">
+						<div class="profile-picture">
+							<input type="file" name="image" accept="image/*" class="profile-input">
+							<img class="profile-image">
+						</div>
+						<div class="inline">
+							<div class="input-field">
+								<input class="input" type="text" placeholder=" " name="firstName" id="prenom" required>
+								<label for="prenom">Prénom</label>
+							</div>
+							<div class="input-field">
+								<input class="input" type="text" placeholder=" " name="lastName" id="nom" required>
+								<label for="nom">Nom</label>
+							</div>
+						</div>
+						<div class="input-field">
+							<input class="input" type="text" placeholder=" " name="username" id="username" required>
+							<label for="username">Nom d'utilisateur</label>
+						</div>
+						<div class="input-field">
+							<input class="input" type="email" placeholder=" " name="email" id="email" required>
+							<label for="email">Adresse email</label>
+						</div>
+						<div class="input-field">
+							<input class="input" type="tel" placeholder=" " name="phone" id="telephone">
+							<label for="telephone">Numéro de téléphone</label>
+						</div>
+						<div class="input-field">
+							<input class="input" type="text" placeholder=" " name="location" id="adresse">
+							<label for="adresse">Adresse postale</label>
+						</div>
+						<div class="select-field">
+							<select class="select" name="preference_acoustique" id="preferences_acoustiques" onchange="onChange(this)">
+								{% for option in preferences_acoustique_options %}
+									<option value="{{ option.name }}" {% if preferences_acoustique == option.name %} selected {% endif %}>{{ option.name }}</option>
+								{% endfor %}
+							</select>
+							<label for="preferences_acoustiques">Préférences acoustiques</label>
+						</div>
+						<div class="select-field">
+							<select class="select" name="preference_temperature" id="preferences_temperature" onchange="onChange(this)">
+								{% for option in preferences_temperature_options %}
+									<option value="{{ option.name }}">{{ option.name }}</option>
+								{% endfor %}
+							</select>
+							<label for="preferences_temperature">Préférences de température</label>
+						</div>
+            			<button id="btn-pwd" hidden>Changer le mot de passe</button>
+						<button class="button" type="submit">Enregistrer</button>
+						<button id="btn-delete" class="button" style="background-color: red;" type="button">Supprimer l'utilisateur</button>
+					</form>
+				</div>
+			</div>
+		</div>
+    <dialog id="dialog"><form></form></dialog>
+	<dialog class="modal" id="dialog-delete">
+		<form class="modal-content" action="/admin/users" method="POST">
+			<input type="hidden" name="action" value="delete">
+			<input class="input" type="text" placeholder=" " name="id" id="id-delete" hidden>
+			<p>Êtes-vous sûr de vouloir supprimer cet utilisateur ?</p>
+			<div style="display: flex; justify-content: space-between;">
+				<button class="button" type="button" style="margin-left:10px; background-color: grey;" onclick="dialogDelete.close()">Annuler</button>
+				<button class="button" type="submit" style="margin-left:10px; background-color: red;">Supprimer l'utilisateur</button>
+			</div>
+		</form>
+	</dialog>
+{% endblock %}
+{% block javascript %}
+	<script src="/template/profile/scripts/formHandler.js"></script>
+	<script src="/template/profile/scripts/inputHandler.js"></script>
+	<script src="/template/profile/scripts/imageHandler.js"></script>
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			const userItems = document.querySelectorAll('.user-item');
+			const userInfo = document.getElementById('user-info');
+			const profileForm = document.getElementById('profile-form');
+			const containerProfileEdit = document.querySelector('.container-profile-edit');
+			const pSelection = document.getElementById('p-selection');
+
+			userItems.forEach(userItem => {
+				userItem.addEventListener('click', function () {
+					containerProfileEdit.style.display = 'block';
+					pSelection.style.display = 'none';
+
+					const id = userItem.getAttribute('data-id');
+					const username = userItem.getAttribute('data-username');
+					const email = userItem.getAttribute('data-email');
+					const firstname = userItem.getAttribute('data-firstname');
+					const lastname = userItem.getAttribute('data-lastname');
+					const location = userItem.getAttribute('data-location');
+					const phone = userItem.getAttribute('data-phone');
+					const role = userItem.getAttribute('data-role');
+
+					profileForm.querySelector('#id').value = id;
+					profileForm.querySelector('#username').value = username;
+					profileForm.querySelector('#email').value = email;
+					profileForm.querySelector('#prenom').value = firstname;
+					profileForm.querySelector('#nom').value = lastname;
+					profileForm.querySelector('#adresse').value = location;
+					profileForm.querySelector('#telephone').value = phone;
+					profileForm.querySelector('#preferences_acoustiques').value = role;
+					profileForm.querySelector('#preferences_temperature').value = role;
+
+					document.getElementById('id-delete').value = id;
+
+					// Selected option
+					const prefTemp = userItem.getAttribute('data-prefTemp');
+					const prefAcoust = userItem.getAttribute('data-prefAcoust');
+
+					profileForm.querySelector('#preferences_acoustiques').value = prefAcoust;
+					profileForm.querySelector('#preferences_temperature').value = prefTemp;
+
+					// Image
+					const image = userItem.getAttribute('data-image');
+					const profileImage = profileForm.querySelector('.profile-image');
+					profileImage.src = image;
+				});
+			});
+		});
+
+		const btnDelete = document.getElementById('btn-delete');
+		const dialogDelete = document.getElementById('dialog-delete');
+		
+		btnDelete.addEventListener('click', function () {
+			dialogDelete.showModal();
+		});
+	</script>
+{% endblock %}

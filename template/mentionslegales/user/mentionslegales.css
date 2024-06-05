@@ -1,0 +1,48 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  width: 70%;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+h2 {
+  font-size: 120%;
+}
+
+.terms {
+  margin: 0 auto;
+  padding: 4%;
+  width: 90%;
+  white-space: pre-line; /* Ajout de la propriété pour les sauts de ligne */
+}
+
+.barre {
+  margin: 0 auto;
+  width: 90%;
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  padding: 1%;
+}
+
+.modify-button {
+  display: block;
+  width: 200px;
+  height: 50px;
+  margin: 20px auto;
+  background-color: #01afff;
+  color: white;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 5px solid black;
+  cursor: pointer;
+}
+
+.modify-button:hover {
+  background-color: #4e4e4e;
+}

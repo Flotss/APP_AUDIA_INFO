@@ -1,0 +1,93 @@
+{% extends '/base.html.twig' %}
+
+{% block title %}
+	Profile
+{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="/template/profile/style.css">
+    <link rel="stylesheet" href="/template/composant/alert-section/style.css">
+{% endblock %}
+
+
+{% block body %}
+{# include composant alert-section #}
+{% include 'composant/alert-section/alert-section.html.twig' with { 'message': message, 'messageError': messageError } %}
+
+<div class="container-profile-edit">
+    <form action="/profile" method="POST" id="profile-form">
+        <div class="profile-picture">
+            <input type="file" name="image" accept="image/*" class="profile-input">
+            <img src="{{ user.image }}" class="profile-image">
+        </div>
+        <div class="inline">
+            <div class="input-field">
+                <input class="input" type="text" placeholder=" " name="firstName" id="prenom" value="{{ user.firstName }}" required>
+                <label for="prenom">Prénom</label>
+            </div>
+            <div class="input-field">
+                <input class="input" type="text" placeholder=" " name="lastName" id="nom" value="{{ user.lastName }}" required>
+                <label for="nom">Nom</label>
+            </div>
+        </div>
+        <div class="input-field">
+            <input class="input" type="text" placeholder=" " name="username" id="username" value="{{ user.username }}" required>
+            <label for="username">Nom d'utilisateur</label>
+        </div>
+        <div class="input-field">
+            <input class="input" type="email" placeholder=" " name="email" id="email" value="{{ user.email }}" required>
+            <label for="email">Adresse email</label>
+        </div>
+        <div class="input-field">
+            <input class="input" type="tel" placeholder=" " name="phone" id="telephone" value="{{ user.phone }}">
+            <label for="telephone">Numéro de téléphone</label>
+        </div>
+        <div class="input-field">
+            <input class="input" type="text" placeholder=" " name="location" id="adresse" value="{{ user.location }}">
+            <label for="adresse">Adresse postale</label>
+        </div>
+        <div class="select-field">
+            <select class="select" name="preference_acoustique" id="preferences_acoustiques" onchange="onChange(this)">
+                {% for option in preferences_acoustique_options %}
+                    <option value="{{ option.name }}" {% if preferences_acoustique == option.name %}selected{% endif %}>{{ option.name }}</option>
+                {% endfor %}
+            </select>
+            <label for="preferences_acoustiques">Préférences acoustiques</label>
+        </div>
+        <div class="select-field">
+            <select class="select" name="preference_temperature" id="preferences_temperature" onchange="onChange(this)">
+                {% for option in preferences_temperature_options %}
+                    <option value="{{ option.name }}" {% if preferences_temperature == option.name %}selected{% endif %}>{{ option.name }}</option>
+                {% endfor %}
+            </select>
+            <label for="preferences_temperature">Préférences de température</label>
+        </div>
+
+        <button id="btn-pwd" class="button" type="button">Modifier MDP</button>
+        <button class="button" type="submit">Enregistrer</button>
+    </form>
+</div>
+<dialog class="modal" id="dialog">
+    <form class="modal-content" action="/profile/password" method="POST">
+        <div class="input-field">
+            <input class="input" type="password" placeholder=" " name="currentPassword" id="currentPassword" required>
+            <label for="currentPassword">Mot de passe actuel</label>
+        </div>
+        <div class="input-field">
+            <input class="input" type="password" placeholder=" " name="newPassword" id="newPassword" required>
+            <label for="newPassword">Nouveau mot de passe</label>
+        </div>
+        <div class="input-field">
+            <input class="input" type="password" placeholder=" " name="confirmPassword" id="confirmPassword" required>
+            <label for="confirmPassword">Confirmer le mot de passe</label>
+        </div>
+        <button class="button" type="submit">Enregistrer</button>
+    </form>
+</dialog>
+{% endblock %}
+
+{% block javascript %}
+<script src="/template/profile/scripts/formHandler.js"></script>
+<script src="/template/profile/scripts/inputHandler.js"></script>
+<script src="/template/profile/scripts/imageHandler.js"></script>
+{% endblock %}

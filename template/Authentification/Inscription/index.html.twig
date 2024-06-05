@@ -7,28 +7,21 @@
 {% block stylesheet %}
 	<link
       rel="stylesheet"
-      href="/template/Connexion_Inscription/Inscription/connexions.css"
+      href="/template/Authentification/Inscription/style.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/template/Authentification/style.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/template/composant/alert-section/style.css"
     />
 {% endblock %}
 
 {% block body %}
   {# alert section #}
-  {% if messageError is defined or message  is defined  %}
-  <div class="alert-section">
-    {% if messageError  %}
-        <div class="alert alert-danger" role="alert">
-          <i class="fa-solid fa-exclamation-triangle"></i>
-          <span>{{ messageError }}</span>
-        </div>
-    {% endif %}
-    {% if message  %}
-        <div class="alert alert-success" role="alert">
-          <i class="fa-solid fa-check"></i>
-          <span>{{ message }}</span>
-        </div>
-    {% endif %}
-  </div>
-  {% endif %}
+  {% include 'composant/alert-section/alert-section.html.twig' with { 'message': message, 'messageError': messageError } %}
   <div class="container">
     <img class="logo" src="/assets/logo_eventIT.png" alt="Logo" />
     <form onAction="/connexion" method="POST">
@@ -48,7 +41,7 @@
         <input type="text" class="form-control" placeholder="Prenom" name="first_name" />
 
         {# mot de passe checklist #}
-        <div class="password-checklist" style="display:none">
+        <div class="password-checklist animate slide-down" style="display:none">
           <div class="password-checklist-item">
             <i id="password-length" class="fa-solid fa-xmark bad"></i>
             <span class="password-checklist-item-text">8 caractères minimum</span>
@@ -71,10 +64,14 @@
           </div>
         </div>
       </div>
+      
       <button class="btn" id="login" type="submit">Se connecter</button>
       <button class="btn" id="signup" type="button">S'inscrire</button>
       <button class="btn" id="returnToLogin" type="button" style="display: none">Retourner à la connexion</button>
     </form>
+  </div>
+  <div class="container forgot-password animate">
+    <p> Vous avez oublié votre mot de passe ? <a href="/forgot_password">Cliquez ici</a> </p>
   </div>
 {% endblock %}
 
@@ -83,6 +80,7 @@
       const btnReturn = document.getElementById('returnToLogin');
       const btnLogin = document.getElementById('login');
       const btnSignup = document.getElementById('signup');
+      const forgotPassword = document.querySelector('.container.forgot-password');
 
       const inputAction = document.querySelector('input[name="actionLogin"]');
       
@@ -97,6 +95,7 @@
         document.getElementById('signup-fields').style.maxHeight = '300px';
         btnReturn.style.display = 'block';
         btnLogin.style.display = 'none';
+        forgotPassword.style.display = 'none';
         setTimeout(() => {
           btnSignup.type = 'submit';
           inputAction.value = 'signup';
@@ -111,6 +110,7 @@
         btnLogin.style.display = 'block';
         btnSignup.type = 'button';
         inputAction.value = 'login';
+        forgotPassword.style.display = 'block';
 
         setRequiredFields(false);
       });

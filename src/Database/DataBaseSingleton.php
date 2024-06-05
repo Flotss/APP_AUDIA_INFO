@@ -12,7 +12,7 @@ use PDO;
 class DataBaseSingleton
 {
     private static ?DataBaseSingleton $instance = null;
-    private PDO $connection;
+    public PDO $connection;
 
     /**
      * Private constructor to prevent creating multiple instances of the class.
@@ -49,76 +49,6 @@ class DataBaseSingleton
     public function getConnection(): PDO
     {
         return $this->connection;
-    }
-
-    /**
-     * Save a user to the database.
-     *
-     * @param User $user The user to be saved.
-     * @return void
-     */
-    public function saveUser(User $user): User
-    {
-        if ($user->getId() != 0) {
-            $query = $this->connection->prepare('UPDATE User SET username = :username, firstName = :firstName, lastName = :lastName, email = :email, location = :location, phone = :phone, password = :password, role = :role WHERE id = :id');
-            $query->bindValue('id', $user->getId());
-        } else {
-            $query = $this->connection->prepare('INSERT INTO User (username, firstName, lastName, email, location, phone, password, role) VALUES (:username, :firstName, :lastName, :email, :location, :phone, :password, :role)');
-        }
-        $query->execute([
-            'username' => $user->getUsername(),
-            'firstName' => $user->getFirstName(),
-            'lastName' => $user->getLastName(),
-            'email' => $user->getEmail(),
-            'location' => $user->getLocation(),
-            'phone' => $user->getPhone(),
-            'password' => $user->getPassword(),
-            'role' => $user->getRole(),
-        ]);
-
-        if ($user->getId() == 0) {
-            $user->setId($this->connection->lastInsertId());
-        }
-
-        return $user;
-    }
-
-    /**
-     * Get a user from the database by username.
-     *
-     * @param string $username The username of the user.
-     * @return User|null The user object if found, null otherwise.
-     */
-    public function getUserByUsername(string $username): ?User
-    {
-        $query = $this->connection->prepare('SELECT * FROM User WHERE username = :username');
-        $query->execute(['username' => $username]);
-        $userData = $query->fetch();
-
-        if ($userData) {
-            return User::createUserFromArray($userData);
-        }
-
-        return null;
-    }
-
-    /**
-     * Get a user from the database by email.
-     *
-     * @param string $email The email of the user.
-     * @return User|null The user object if found, null otherwise.
-     */
-    public function getUserByEmail(string $email): ?User
-    {
-        $query = $this->connection->prepare('SELECT * FROM User WHERE email = :email');
-        $query->execute(['email' => $email]);
-        $userData = $query->fetch();
-
-        if ($userData) {
-            return User::createUserFromArray($userData);
-        }
-
-        return null;
     }
 
     /**

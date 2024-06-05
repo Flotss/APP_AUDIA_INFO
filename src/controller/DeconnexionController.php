@@ -15,9 +15,13 @@ class DeconnexionController extends AbstractController
     {
         parent::__construct("index");
 
+        // IF CONNECTED REDIRECT TO HOME
         if (isset($_COOKIE['user']) && $_SERVER["REQUEST_URI"] === "/deconnexion") {
+            // Delete the cookie
             setcookie('user', '', time() - 3600, '/');
             unset($_COOKIE['user']);
+
+            // Redirect to home
             header('Location: /');
         }
     }

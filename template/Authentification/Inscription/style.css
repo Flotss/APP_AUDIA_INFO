@@ -1,0 +1,28 @@
+.container.forgot-password {
+  margin-top: 10px;
+}
+
+.forgot-password {
+  text-align: center;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.forgot-password a {
+  color: #003569;
+  text-decoration: none;
+  margin: 0;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate {
+  animation: fade-in 0.5s ease-in-out;
+}

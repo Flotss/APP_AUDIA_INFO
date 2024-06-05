@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Service\AdminVerificationService;
+use App\Controller\AbstractController;
 
 /**
  * The AbstractAdminController class is responsible for handling requests related to the index page.
@@ -12,6 +13,8 @@ abstract class AbstractAdminController extends AbstractController
 
     /**
      * Constructs a new instance of the AbstractAminController class.
+     *
+     * @param string $templatePath The path to the template directory.
      */
     public function __construct(string $templatePath = 'template/admin')
     {
@@ -79,7 +82,10 @@ abstract class AbstractAdminController extends AbstractController
         });
     }
 
-
+    /**
+     * Verifies if the user is an admin.
+     * If the user is not an admin, it redirects to the homepage and exits the script.
+     */
     private function verifyAdmin()
     {
         $adminVerificationService = new AdminVerificationService();
@@ -91,6 +97,11 @@ abstract class AbstractAdminController extends AbstractController
         $this->data["admin"] = true;
     }
 
+    /**
+     * Redirects the user to the specified page.
+     *
+     * @param string $page The page to redirect to.
+     */
     private function redirect($page)
     {
         if ($page == '/') {

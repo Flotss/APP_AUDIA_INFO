@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Authentification;
 
 use App\Service\UserConnectionService;
 use App\Utils\Cookies;
 use App\Utils\Security;
+use App\Controller\AbstractController;
+use App\Service\UserService;
 
 /**
  * The ConnexionController class is responsible for handling requests related to the index page.
@@ -13,17 +15,19 @@ class ConnexionController extends AbstractController
 {
 
     private UserConnectionService $userConnectionService;
+    private UserService $userService;
 
     /**
      * Constructs a new instance of the ConnexionController class.
      */
     public function __construct()
     {
-        parent::__construct("Connexion_Inscription/Inscription");
+        parent::__construct("Authentification/Inscription");
 
 
         if ($_SERVER["REQUEST_URI"] === "/connexion") {
             $this->userConnectionService = new UserConnectionService();
+            $this->userService = new UserService();
 
             // IF CONNECTED REDIRECT TO HOME
             Cookies::exists("user") ? header("Location: /") : null;
@@ -52,6 +56,9 @@ class ConnexionController extends AbstractController
         throw new \Exception("Invalid action.");
     }
 
+    /**
+     * Handles the connection.
+     */
     private function handleConnection()
     {
         $email = Security::sanitizeInput($_POST["email"]);
@@ -66,6 +73,9 @@ class ConnexionController extends AbstractController
         }
     }
 
+    /**
+     * Handles the inscription.
+     */
     private function handleInscription()
     {
         $email = Security::sanitizeInput($_POST["email"]);
@@ -78,6 +88,13 @@ class ConnexionController extends AbstractController
             Security::validatePassword($password);
         } catch (\Exception $e) {
             $this->data['messageError'] = $e->getMessage();
+            return;
+        }
+
+        // Check if the email is already used
+        $user = $this->userService->getUserByEmail($email);
+        if ($user) {
+            $this->data['messageError'] = "Email déjà utilisé, veuillez en choisir un autre.";
             return;
         }
 
