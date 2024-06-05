@@ -40,7 +40,32 @@ Si vous rencontrez une erreur concernant la version de PHP, vérifiez que vous a
 php -v
 ```
 
+<br>
+<br>
+<br>
+<br>
+
+# Lancer localement le projet :
+
+## Étape 5 : Lancer le serveur PHP
+
+Nous avons utilisé XAMPP pour lancer le serveur PHP localement. Vous pouvez le télécharger à partir du lien suivant :
+
+https://www.apachefriends.org/fr/index.html
+
+Après avoir installé XAMPP, vous devez lancer le serveur Apache.
+
 Si vous avez besoin d'aide supplémentaire, n'hésitez pas à demander.
+
+**Note :** Pensez bien à configurer le dossier racine de votre serveur Apache pour qu'il pointe vers le dossier public du projet.
+
+## Étape 6 : Se rendre sur le site
+
+Pour accéder au site, vous devez ouvrir votre navigateur et taper l'URL suivante :
+
+```bash
+http://localhost
+```
 
 ## Information pratique :
 
