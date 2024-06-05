@@ -84,10 +84,6 @@ $routeApiGet = [
 ];
 
 
-$routeApiGet = [
-    '/api/monitoring' => new MonitoringApiController(),
-];
-
 foreach ($routesGet as $route => $controller) {
     $router->get($route, function () use ($controller) {
         $controller->index();
