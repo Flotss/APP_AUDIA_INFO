@@ -17,12 +17,28 @@
             {% if not user_connected %}
                 <li class="liheader"><a href="/connexion">Connexion</a></li>
             {% endif %}
-            <li class="liheader">
-                <form action="/search" method="GET">
-                    <input type="text" name="query" placeholder="Search" class="search-input">
-                    <button type="submit" id="search-button">Search</button>
-                </form>
-            </li>
-        </ul>
+                <li class="liheader">
+                    
+                    .<form action="/search" method="GET">
+        <input type="text" list="search-results" name="query" placeholder="Search" class="search-input">
+        <button type="submit" id="search-button">Search</button>
+        <datalist id="search-results">
+            <option value="/accueil">Accueil</option>
+            <option value="/monitoring">Monitoring</option>
+            <option value="/contact">Contact</option>
+            <option value="/faq">FAQ</option>
+            {% if admin %}
+                <option value="/backoffice">Backoffice</option>
+            {% endif %}
+            {% if user_connected %}
+                <option value="/profil">Profil</option>
+                <option value="/deconnexion">Deconnexion</option>
+            {% endif %}
+            {% if not user_connected %}
+                <option value="/connexion">Connexion</option>
+            {% endif %}
+        </datalist>
+    </form>
+</li>
     </nav>
 </header>

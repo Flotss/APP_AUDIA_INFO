@@ -17,6 +17,7 @@ use App\Controller\MentionslegalesController;
 use App\Controller\Cinema_selectController;
 
 use App\Controller\DeconnexionController;
+use App\Controller\SearchController;
 
 //ADMIN
 use App\Controller\Admin\FaqAdminController;
@@ -40,6 +41,7 @@ $ProfileController = new ProfileController();
 
 
 $routesGet = [
+
     '/' => new IndexController(),
     '/faq' => new FaqController(),
     '/contact' => new ContactController(),
@@ -55,13 +57,13 @@ $routesGet = [
     '/mentionslegales' => new MentionslegalesController(),
     '/cinema_select' => new Cinema_selectController(),
     '/deconnexion' => new DeconnexionController(),
+    '/search' => new SearchController(),
 
     // ADMIN ROUTES
     '/admin/faq' => new FaqAdminController(),
     '/admin/cgu' => new CguAdminController(),
     '/admin/mentionslegales' => new MentionslegalesAdminController(),
     '/admin/users' => new GestionUtilisateursController(),
-
 ];
 
 $routePost = [
@@ -124,6 +126,4 @@ try {
     // Pour l'instant on redirige vers la page d'accueil
     $controller = new IndexController();
     $controller->index();
-
-    echo $e->getMessage();
 }
