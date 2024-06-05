@@ -1,5 +1,6 @@
 body {
   font-family: Arial, sans-serif;
+  line-height: 1.5; /* Ajoutez la valeur souhaitée pour l'interligne */
 }
 
 .container {
@@ -15,17 +16,18 @@ h1 {
 h2 {
   font-size: 110%;
 }
+
 .terms {
   margin: 0 auto;
-  border: 1px solid black;
-  padding: 3%;
+  padding: 4%;
   width: 90%;
+  line-height: 3; /* Ajoutez la valeur souhaitée pour l'interligne */
 }
 
 .barre {
   margin: 0 auto;
-
   width: 90%;
   border-top: 1px solid rgba(0, 0, 0, 0.5);
   padding: 0, 5%;
+  line-height: 2; /* Ajoutez la valeur souhaitée pour l'interligne */
 }

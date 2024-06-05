@@ -21,6 +21,7 @@ use App\Controller\DeconnexionController;
 //ADMIN
 use App\Controller\FaqAdminController;
 use App\Controller\CguAdminController;
+use App\Controller\MentionslegalesAdminController;
 use App\Controller\Admin\GestionUtilisateursController;
 
 //API
@@ -58,7 +59,9 @@ $routesGet = [
     // ADMIN ROUTES
     '/admin/faq' => new FaqAdminController(),
     '/admin/cgu' => new CguAdminController(),
+    '/admin/mentionslegales' => new MentionslegalesAdminController(),
     '/admin/users' => new GestionUtilisateursController(),
+
 ];
 
 $routePost = [
@@ -72,6 +75,7 @@ $routePost = [
     '/admin/cgu' => $routesGet['/admin/cgu'],
     '/admin/faq' => $routesGet['/admin/faq'],
     '/admin/users' => $routesGet['/admin/users'],
+    '/admin/mentionslegales' => $routesGet['/admin/mentionslegales'],
 ];
 
 

@@ -41,6 +41,6 @@ class CguAdminController extends AbstractAdminController
         $service->updateContentByKey("cgu", $_POST['cgu']);
 
         $this->data['cgu'] = $_POST['cgu'];
-        $this->data['message'] = "CGU mis à jour";
+        $this->data['message'] = "CGU ont été mis à jour";
     }
 }

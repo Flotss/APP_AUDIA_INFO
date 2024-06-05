@@ -16,7 +16,7 @@ class MentionslegalesController extends AbstractController
      */
     public function __construct()
     {
-        parent::__construct("mentionslegales");
+        parent::__construct("mentionslegales/user");
 
         // Retrieve the content from the data utils service
         $service = new RetrieveDataFromDataUtils();
