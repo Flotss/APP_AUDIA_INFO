@@ -12,6 +12,7 @@ use App\Controller\MonitoringController;
 use App\Controller\CguController;
 use App\Controller\MentionslegalesController;
 use App\Controller\DeconnexionController;
+use App\Controller\SearchController;
 
 //ADMIN
 use App\Controller\FaqAdminController;
@@ -28,6 +29,7 @@ if (!isset($_GET['url'])) {
 $router = new Router($_GET['url']);
 
 $routesGet = [
+
     '/' => new IndexController(),
     '/faq' => new FaqController(),
     '/contact' => new ContactController(),
@@ -40,6 +42,8 @@ $routesGet = [
     // ADMIN ROUTES
     '/admin/faq' => new FaqAdminController(),
     '/admin/cgu' => new CguAdminController(),
+
+    '/search' => new SearchController(),
 ];
 
 $routePost = [

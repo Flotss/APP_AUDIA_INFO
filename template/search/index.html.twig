@@ -1,0 +1,31 @@
+{% extends '/base.html.twig' %}
+
+{% block title %}
+	Mentions Légales
+{% endblock %}
+
+{% block stylesheet %}
+	<link rel="stylesheet" href="/template/search/style.css"/>
+{% endblock %}	
+
+{% block body %}
+
+{# for loop filteredArray #}
+    <div class="container">
+        <br/>
+        <h1> <B >Résultats de la recherche</B></h1>     
+        <br/>
+    </div>
+    <div class="barre">
+        <br/>
+        <div class="terms">
+            {% for result in filteredArray %}
+                <a href="{{result.url}}">{{ result.name }}</a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}	
+
+{% block javascript %}
+	<script src="template/index/index.js"></script>
+{% endblock %}
