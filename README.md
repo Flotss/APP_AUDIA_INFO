@@ -2,6 +2,8 @@
 
 Site web de l'application AUDIA
 
+[Voir document de déploiement](https://github.com/Flotss/APP_AUDIA_INFO/blob/main/docs/Manuel%20de%20d%C3%A9ploiment.md)
+
 ## Installation
 
 Suivez ces étapes pour installer et configurer ce projet sur votre propre machine.
