@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Service\RetrieveDataFromDataUtils;
+
 
 /**
  * The CguAdminController class is responsible for handling the CGU (Conditions Générales d'Utilisation) administration.

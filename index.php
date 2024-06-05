@@ -19,9 +19,9 @@ use App\Controller\Cinema_selectController;
 use App\Controller\DeconnexionController;
 
 //ADMIN
-use App\Controller\FaqAdminController;
-use App\Controller\CguAdminController;
-use App\Controller\MentionslegalesAdminController;
+use App\Controller\Admin\FaqAdminController;
+use App\Controller\Admin\CguAdminController;
+use App\Controller\Admin\MentionslegalesAdminController;
 use App\Controller\Admin\GestionUtilisateursController;
 
 //API

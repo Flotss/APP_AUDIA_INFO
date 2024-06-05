@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Service\AdminVerificationService;
+use App\Controller\AbstractController;
 
 /**
  * The AbstractAdminController class is responsible for handling requests related to the index page.

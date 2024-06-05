@@ -2,7 +2,6 @@
 
 namespace App\Controller\Admin;
 
-use App\Controller\AbstractAdminController;
 use App\Service\UserService;
 use App\Database\DataBaseSingleton;
 use App\Utils\Security;
