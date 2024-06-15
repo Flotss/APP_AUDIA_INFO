@@ -159,8 +159,9 @@ class PasserelleController extends AbstractController
         }
 
         $data_tab = str_split($data, 33);
-        $filterData =  [];
-        for ($i = 0, $size = count($data_tab); $i < $size; $i++) {
+
+        $data = [];
+        for ($i = 0, $size = count($data_tab); $i < $size &&  $i < 300; $i++) {
             $trame = ""; // Declare the variable $trame
             $trame = $data_tab[$i]; // Assign a value to $trame
             // décodage avec des substring
@@ -172,13 +173,10 @@ class PasserelleController extends AbstractController
                 sscanf($trame, "%1s%4s%1s%1s%2s%4s%4s%2s%4s%2s%2s%2s%2s%2s");
 
             $trame = new Trame($t, $o, $r, $c, $n, $v, $a, $x, $year, $month, $day, $hour, $min, $sec);
-            $trame->setDate(2024, 06, 14);
-            // If moins d'une semaine automatic
-            if ($trame->getYear() == 2024 && $trame->getMonth() == Date('m')) {
-                $filterData[] = $trame;
-            }
+
+            $data[] = $trame;
         }
 
-        $this->addData('trames', $filterData);
+        $this->addData('trames', $data);
     }
 }
