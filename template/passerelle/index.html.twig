@@ -1,0 +1,73 @@
+{% extends '/base.html.twig' %}
+
+{% block title %}
+	Passerelle
+{% endblock %}
+
+{% block stylesheet %}
+	<link rel="stylesheet" href="/template/passerelle/style.css"/>
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1>Passerelle</h1>
+		<div class="researchBar">
+			<input typeText="text" id="search" placeholder="Recherche">
+		</div>
+		<div class="box" >
+			<table id="trameTab" class="table-fill">
+				<thead>
+					<tr>
+						<th class="text-left">Origine</th>
+						<th class="text-left">Recepteur</th>
+						<th class="text-left">Controle</th>
+						<th class="text-left">Numero</th>
+						<th class="text-left">Valeur</th>
+						<th class="text-left">Ack</th>
+						<th class="text-left">Checksum</th>
+						<th class="text-left">Date</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for trame in trames %}
+						<tr>
+							<td class="text-left">{{ trame.origine }}</td>
+							<td class="text-left">{{ trame.recepteur }}</td>
+							<td class="text-left">{{ trame.controle }}</td>
+							<td class="text-left">{{ trame.numero }}</td>
+							<td class="text-left">{{ trame.valeur }}</td>
+							<td class="text-left">{{ trame.ack }}</td>
+							<td class="text-left">{{ trame.checksum }}</td>
+							<td class="text-left">{{ trame.year }}-{{ trame.month }}-{{ trame.day }} {{ trame.hour }}:{{ trame.min }}:{{ trame.sec }}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+<script>
+const search = document.getElementById('search');
+const trameTab = document.getElementById('trameTab');
+const trames = trameTab.getElementsByTagName('tr');
+
+search.addEventListener('keyup', function(e) {
+	const searchValue = e.target.value.toLowerCase();
+	console.log(searchValue);
+	for (let i = 0; i < trames.length; i++) {
+		const td = trames[i].getElementsByTagName('td');
+		for (let j = 0; j < td.length; j++) {
+			const tdValue = td[j];
+			if (tdValue) {
+				if (tdValue.innerHTML.toLowerCase().indexOf(searchValue) > -1) {
+					trames[i].style.display = '';
+					break;
+				} else {
+					trames[i].style.display = 'none';
+				}
+			}
+		}
+	}
+});
+</script>
+{% endblock %}
