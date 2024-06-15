@@ -15,6 +15,7 @@ use App\Controller\MonitoringController;
 use App\Controller\CguController;
 use App\Controller\MentionslegalesController;
 use App\Controller\Cinema_selectController;
+use App\Controller\PasserelleController;
 
 use App\Controller\DeconnexionController;
 
@@ -44,6 +45,7 @@ $routesGet = [
     '/faq' => new FaqController(),
     '/contact' => new ContactController(),
     '/monitoring' => new MonitoringController(),
+    '/passerelle' => new PasserelleController(),
 
     '/connexion' => new ConnexionController(),
     '/forgot_password' => new PasswordForgotController(),
