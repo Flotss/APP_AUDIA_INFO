@@ -146,7 +146,7 @@ class PasserelleController extends AbstractController
         curl_setopt(
             $ch,
             CURLOPT_URL,
-            "http://projets-tomcat.isep.fr:8080/appService?ACTION=GETLOG&TEAM=1G08"
+            "http://projets-tomcat.isep.fr:8080/appService?ACTION=GETLOG&TEAM=G08C"
         );
         curl_setopt($ch, CURLOPT_HEADER, FALSE);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
@@ -161,7 +161,7 @@ class PasserelleController extends AbstractController
         $data_tab = str_split($data, 33);
 
         $data = [];
-        for ($i = 0, $size = count($data_tab); $i < $size &&  $i < 300; $i++) {
+        for ($i = count($data_tab) - 1; $i >= 0 && $i >= count($data_tab) - 300; $i--) {
             $trame = ""; // Declare the variable $trame
             $trame = $data_tab[$i]; // Assign a value to $trame
             // décodage avec des substring
